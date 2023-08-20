@@ -8,12 +8,13 @@ import javax.persistence.*;
 
 import java.util.List;
 
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter @Setter
 @Builder
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id") @ToString(of = "id")
+@AllArgsConstructor @NoArgsConstructor
 public class Administrador {
 
     @Id
@@ -36,6 +37,6 @@ public class Administrador {
     @OneToMany(mappedBy = "administrador")
     private List<SaidaAntecipada> saidasAntecipadas;
 
-    @OneToMany(mappedBy = "administrador")
+    @OneToMany(mappedBy = "administrador", fetch = EAGER)
     private List<Permissao> permissoes;
 }

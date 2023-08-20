@@ -15,8 +15,7 @@ public class LoginController {
     private BuscarUsuarioLoginService buscarUsuarioLoginService;
 
     @PostMapping
-    public String login(){
-        return "ENTROU";
-        //return buscarUsuarioLoginService.buscar();
+    public UsuarioResponse login(){
+        return buscarUsuarioLoginService.buscar();
     }
 }

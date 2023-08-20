@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.check_if.security.config;
+package br.edu.ifsul.sapucaia.check_if.security;
 
 import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
 import br.edu.ifsul.sapucaia.check_if.domain.Portaria;

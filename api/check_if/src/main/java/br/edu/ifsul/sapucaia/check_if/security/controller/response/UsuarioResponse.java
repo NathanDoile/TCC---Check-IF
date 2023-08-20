@@ -1,12 +1,12 @@
 package br.edu.ifsul.sapucaia.check_if.security.controller.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class UsuarioResponse {
 
     private String nome;

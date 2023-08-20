@@ -9,7 +9,7 @@ import br.edu.ifsul.sapucaia.check_if.mapper.ResponsavelMapper;
 import br.edu.ifsul.sapucaia.check_if.repository.AdministradorRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.PortariaRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
-import br.edu.ifsul.sapucaia.check_if.security.config.UsuarioSecurity;
+import br.edu.ifsul.sapucaia.check_if.security.UsuarioSecurity;
 import br.edu.ifsul.sapucaia.check_if.security.controller.response.UsuarioResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

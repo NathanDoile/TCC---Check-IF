@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter @Setter
 @Builder
-@AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id") @ToString(of = "id")
+@AllArgsConstructor @NoArgsConstructor
 public class Portaria {
 
     @Id

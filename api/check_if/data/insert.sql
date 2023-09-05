@@ -13,4 +13,5 @@ INSERT INTO permissao VALUES (null, 'PORTARIA', null, 1, null);
 INSERT INTO permissao VALUES (null, 'RESPONSAVEL', 1, null, null);
 
 INSERT INTO aluno VALUES (null, 'Nathan de Souza Doile', '078790INFQ', '4K', '2004-07-29', true);
-INSERT INTO aluno VALUES (null, 'Emily Eberhardt', '123456INFQ', '4I', '2004-12-30', true);
+INSERT INTO aluno VALUES (null, 'Emily Aparecida da Silveira Eberhardt', '078630INFQ', '4I', '2004-12-30', true);
+INSERT INTO aluno VALUES (null, 'Bianca Ramos Alves', '078510INFQ', '4I', '2005-03-07', true);

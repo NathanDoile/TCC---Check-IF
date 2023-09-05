@@ -25,7 +25,7 @@ public class Professor {
 
     private String email;
 
-    private int celular;
+    private Long celular;
 
     private boolean notificacaoWhatsapp;
 

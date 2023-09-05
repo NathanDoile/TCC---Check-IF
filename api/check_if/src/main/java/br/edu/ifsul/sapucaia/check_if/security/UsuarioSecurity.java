@@ -7,6 +7,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class UsuarioSecurity implements UserDetails {
 
@@ -22,6 +25,10 @@ public class UsuarioSecurity implements UserDetails {
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
         this.ativo = usuario.isAtivo();
+        this.permissoes = usuario.getPermissoes()
+                .stream()
+                .map(permissao -> new SimpleGrantedAuthority(permissao.getFuncao().getRole()))
+                .collect(toList());
     }
 
     public UsuarioSecurity(Portaria usuario) {
@@ -30,14 +37,21 @@ public class UsuarioSecurity implements UserDetails {
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
         this.ativo = usuario.isAtivo();
+        this.permissoes = usuario.getPermissoes()
+                .stream()
+                .map(permissao -> new SimpleGrantedAuthority(permissao.getFuncao().getRole()))
+                .collect(toList());
     }
 
     public UsuarioSecurity(Responsavel usuario) {
-
         this.id = usuario.getId();
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
         this.ativo = usuario.isAtivo();
+        this.permissoes = usuario.getPermissoes()
+                .stream()
+                .map(permissao -> new SimpleGrantedAuthority(permissao.getFuncao().getRole()))
+                .collect(toList());
     }
 
     public Long getId() {

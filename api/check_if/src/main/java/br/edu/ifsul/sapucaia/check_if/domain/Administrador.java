@@ -3,6 +3,8 @@ package br.edu.ifsul.sapucaia.check_if.domain;
 
 import br.edu.ifsul.sapucaia.check_if.security.domain.Permissao;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 
@@ -37,6 +39,7 @@ public class Administrador {
     @OneToMany(mappedBy = "administrador")
     private List<SaidaAntecipada> saidasAntecipadas;
 
-    @OneToMany(mappedBy = "administrador", fetch = EAGER)
+    @OneToMany(mappedBy = "administrador")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Permissao> permissoes;
 }

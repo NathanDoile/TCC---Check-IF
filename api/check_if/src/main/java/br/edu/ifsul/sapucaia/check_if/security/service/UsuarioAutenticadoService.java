@@ -11,11 +11,13 @@ import br.edu.ifsul.sapucaia.check_if.repository.PortariaRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
 import br.edu.ifsul.sapucaia.check_if.security.UsuarioSecurity;
 import br.edu.ifsul.sapucaia.check_if.security.controller.response.UsuarioResponse;
+import br.edu.ifsul.sapucaia.check_if.security.domain.Enum.Funcao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import static br.edu.ifsul.sapucaia.check_if.security.domain.Enum.Funcao.*;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -42,48 +44,50 @@ public class UsuarioAutenticadoService {
 
     public Administrador getAdministrador() {
 
-        Long id = getUser().getId();
+        UsuarioSecurity user = getUser();
 
-        if (isNull(id)) {
+        if (isNull(user)) {
             return null;
         }
 
-        return administradorRepository.findById(id).orElse(null);
+        return administradorRepository.findById(user.getId()).orElse(null);
     }
 
     public Responsavel getResponsavel() {
-        Long id = getUser().getId();
 
-        if (isNull(id)) {
+        UsuarioSecurity user = getUser();
+
+        if (isNull(user)) {
             return null;
         }
 
-        return responsavelRepository.findById(id).orElse(null);
+        return responsavelRepository.findById(user.getId()).orElse(null);
     }
 
     public Portaria getPortaria() {
-        Long id = getUser().getId();
 
-        if (isNull(id)) {
+        UsuarioSecurity user = getUser();
+
+        if (isNull(user)) {
             return null;
         }
 
-        return portariaRepository.findById(id).orElse(null);
+        return portariaRepository.findById(user.getId()).orElse(null);
     }
 
     public UsuarioResponse getResponse() {
 
         UsuarioSecurity user = getUser();
 
-        if(user.getAuthorities().get(0).equals("ROLE_ADMINISTRADOR")){
+        if(user.getAuthorities().get(0).toString().equals(ADMINISTRADOR.getRole())){
             Administrador entity = getAdministrador();
             return nonNull(entity) ? AdministradorMapper.toResponse(entity) : new UsuarioResponse();
         }
-        else if(user.getAuthorities().get(0).equals("ROLE_PORTARIA")){
+        else if(user.getAuthorities().get(0).toString().equals(PORTARIA.getRole())){
             Portaria entity = getPortaria();
             return nonNull(entity) ? PortariaMapper.toResponse(entity) : new UsuarioResponse();
         }
-        else if(user.getAuthorities().get(0).equals("ROLE_RESPONSAVEL")){
+        else if(user.getAuthorities().get(0).toString().equals(RESPONSAVEL.getRole())){
             Responsavel entity = getResponsavel();
             return nonNull(entity) ? ResponsavelMapper.toResponse(entity) : new UsuarioResponse();
         }

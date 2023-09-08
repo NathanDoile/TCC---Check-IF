@@ -1,10 +1,12 @@
 package br.edu.ifsul.sapucaia.check_if.domain;
 
+import br.edu.ifsul.sapucaia.check_if.domain.enums.SituacaoSaida;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -26,7 +28,8 @@ public class SaidaAntecipada {
 
     private String nomeResponsavel;
 
-    private Boolean alunoSaiu;
+    @Enumerated(STRING)
+    private SituacaoSaida situacaoSaida;
 
     private String grauParentesco;
 

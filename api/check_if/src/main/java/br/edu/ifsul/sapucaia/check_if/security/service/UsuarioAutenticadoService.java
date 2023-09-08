@@ -11,7 +11,6 @@ import br.edu.ifsul.sapucaia.check_if.repository.PortariaRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
 import br.edu.ifsul.sapucaia.check_if.security.UsuarioSecurity;
 import br.edu.ifsul.sapucaia.check_if.security.controller.response.UsuarioResponse;
-import br.edu.ifsul.sapucaia.check_if.security.domain.Enum.Funcao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

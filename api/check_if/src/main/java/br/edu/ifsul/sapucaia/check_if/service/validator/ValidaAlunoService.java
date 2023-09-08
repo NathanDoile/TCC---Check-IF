@@ -20,4 +20,11 @@ public class ValidaAlunoService {
             throw new ResponseStatusException(NOT_FOUND, "Aluno não encontrado.");
         }
     }
+
+    public void porMatricula(String matricula) {
+
+        if(!alunoRepository.existsByMatricula(matricula)){
+            throw new ResponseStatusException(NOT_FOUND, "Aluno não encontrado.");
+        }
+    }
 }

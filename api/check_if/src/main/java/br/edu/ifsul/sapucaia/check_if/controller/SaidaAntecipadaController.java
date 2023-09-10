@@ -1,7 +1,9 @@
 package br.edu.ifsul.sapucaia.check_if.controller;
 
+import br.edu.ifsul.sapucaia.check_if.controller.request.CadastrarSaidaAntecipadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.request.SolicitarSaidaAntecipadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.SaidaAntecipadaResponse;
+import br.edu.ifsul.sapucaia.check_if.service.saidaantecipada.CadastrarSaidaAntecipadaService;
 import br.edu.ifsul.sapucaia.check_if.service.saidaantecipada.ObterSaidasAntecipadasService;
 import br.edu.ifsul.sapucaia.check_if.service.saidaantecipada.SolicitarSaidaAntecipadaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class SaidaAntecipadaController {
     @Autowired
     private SolicitarSaidaAntecipadaService solicitarSaidaAntecipadaService;
 
+    @Autowired
+    private CadastrarSaidaAntecipadaService cadastrarSaidaAntecipadaService;
+
     @Secured("ROLE_PORTARIA")
     @GetMapping
     @ResponseStatus(FOUND)
@@ -37,5 +42,12 @@ public class SaidaAntecipadaController {
     @ResponseStatus(CREATED)
     public SaidaAntecipadaResponse solicitar(@Valid @RequestBody SolicitarSaidaAntecipadaRequest request){
         return solicitarSaidaAntecipadaService.solicitar(request);
+    }
+
+    @Secured("ROLE_ADMINISTRADOR")
+    @PostMapping("/cadastrar")
+    @ResponseStatus(CREATED)
+    public SaidaAntecipadaResponse cadastrar(@Valid @RequestBody CadastrarSaidaAntecipadaRequest request){
+        return cadastrarSaidaAntecipadaService.cadastrar(request);
     }
 }

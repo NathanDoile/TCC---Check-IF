@@ -18,4 +18,6 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     Aluno findBySaidasAntecipadas(SaidaAntecipada saidaAntecipada);
 
     boolean existsByMatricula(String matricula);
+
+    Aluno findByMatricula(String matriculaAluno);
 }

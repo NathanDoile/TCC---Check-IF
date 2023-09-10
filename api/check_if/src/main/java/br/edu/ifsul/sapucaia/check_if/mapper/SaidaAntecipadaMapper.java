@@ -1,5 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.mapper;
 
+import br.edu.ifsul.sapucaia.check_if.controller.request.CadastrarSaidaAntecipadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.request.SolicitarSaidaAntecipadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.SaidaAntecipadaResponse;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
@@ -27,6 +28,16 @@ public class SaidaAntecipadaMapper {
         return SaidaAntecipada
                 .builder()
                 .dataHoraAutorizada(LocalDateTime.of(request.getDataAutorizada(),request.getHoraAutorizada()))
+                .motivo(request.getMotivo())
+                .build();
+    }
+
+    public static SaidaAntecipada toEntityFromCadastrarSaidaAntecipada(CadastrarSaidaAntecipadaRequest request){
+
+        return SaidaAntecipada
+                .builder()
+                .nomeResponsavel(request.getNomeResponsavel())
+                .grauParentesco(request.getGrauParentesco())
                 .motivo(request.getMotivo())
                 .build();
     }

@@ -4,9 +4,7 @@ import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
 import br.edu.ifsul.sapucaia.check_if.domain.Portaria;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.security.domain.Enum.Funcao;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -17,6 +15,9 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 @ToString(of = "id")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Permissao {
 
     @Id

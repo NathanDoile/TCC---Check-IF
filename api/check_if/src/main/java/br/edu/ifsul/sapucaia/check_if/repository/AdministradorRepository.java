@@ -8,4 +8,6 @@ public interface AdministradorRepository extends JpaRepository<Administrador, Lo
     boolean existsByEmail(String email);
 
     Administrador findByEmail(String email);
+
+    boolean existsBySiape(String siape);
 }

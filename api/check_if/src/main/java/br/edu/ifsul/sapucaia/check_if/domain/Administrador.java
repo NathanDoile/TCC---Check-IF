@@ -6,11 +6,13 @@ import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -41,5 +43,5 @@ public class Administrador {
 
     @OneToMany(mappedBy = "administrador")
     @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Permissao> permissoes;
+    private List<Permissao> permissoes = new ArrayList<>();
 }

@@ -17,6 +17,8 @@ public class AdministradorController {
     @Autowired
     private CadastrarAdministradorService cadastrarAdministradorService;
 
+
+
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping
     @ResponseStatus(CREATED)

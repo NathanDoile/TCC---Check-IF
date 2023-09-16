@@ -6,7 +6,7 @@ import br.edu.ifsul.sapucaia.check_if.repository.AdministradorRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.PermissaoRepository;
 import br.edu.ifsul.sapucaia.check_if.security.domain.Permissao;
 import br.edu.ifsul.sapucaia.check_if.service.permissao.CadastrarPermissaoAdministradorService;
-import br.edu.ifsul.sapucaia.check_if.service.validator.ValidarAdministradorService;
+import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,16 +27,16 @@ public class CadastrarAdministradorService {
     private AdministradorRepository administradorRepository;
 
     @Autowired
-    private ValidarAdministradorService validarAdministradorService;
+    private ValidaAdministradorService validaAdministradorService;
 
     @Autowired
     private CadastrarPermissaoAdministradorService cadastrarPermissaoAdministradorService;
 
     public void cadastrar(CadastrarAdministradorRequest request) {
 
-        validarAdministradorService.porEmail(request.getEmail());
+        validaAdministradorService.porEmail(request.getEmail());
 
-        validarAdministradorService.porSiape(request.getSiape());
+        validaAdministradorService.porSiape(request.getSiape());
 
         Permissao permissao = cadastrarPermissaoAdministradorService.cadastrar();
 

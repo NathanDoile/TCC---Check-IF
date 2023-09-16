@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class ValidarAdministradorService {
+public class ValidaAdministradorService {
 
     @Autowired
     private AdministradorRepository administradorRepository;

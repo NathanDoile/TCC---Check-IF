@@ -8,9 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface SaidaAntecipadaRepository extends JpaRepository<SaidaAntecipada, Long> {
 
     Page<SaidaAntecipada> findAllByDataHoraAutorizadaBetweenAndSituacaoSaidaOrderByDataHoraAutorizada
             (LocalDateTime inicioData, LocalDateTime fimData, SituacaoSaida situacaoSaida, Pageable pageable);
+
+    List<SaidaAntecipada> findAllByDataHoraSaidaBetweenAndAlunoOrderByDataHoraSaida(LocalDateTime inicioPeriodo, LocalDateTime fimPeriodo, Aluno aluno);
 }

@@ -2,12 +2,11 @@ package br.edu.ifsul.sapucaia.check_if.controller.request;
 
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Getter @Setter
+@Getter
 public class CadastrarAdministradorRequest {
 
     @NotBlank
@@ -19,6 +18,4 @@ public class CadastrarAdministradorRequest {
     @NotBlank
     @Email
     private String email;
-
-
 }

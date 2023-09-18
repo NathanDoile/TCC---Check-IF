@@ -8,12 +8,14 @@ import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.PermissaoRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
 import br.edu.ifsul.sapucaia.check_if.security.domain.Permissao;
+import br.edu.ifsul.sapucaia.check_if.service.aluno.CadastrarResponsavelNoAlunoService;
 import br.edu.ifsul.sapucaia.check_if.service.permissao.CadastrarPermissaoResponsavelService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaResponsavelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
@@ -44,7 +46,11 @@ public class CadastrarResponsavelService {
     @Autowired
     private PermissaoRepository permissaoRepository;
 
+    @Autowired
+    private CadastrarResponsavelNoAlunoService cadastrarResponsavelNoAlunoService;
 
+
+    @Transactional
     public void cadastrar(CadastrarResponsavelRequest request) {
 
         validarResponsavelService.porEmail(request.getEmail());
@@ -76,6 +82,13 @@ public class CadastrarResponsavelService {
         permissao.setResponsavel(responsavel);
 
         responsavelRepository.save(responsavel);
+
+        for(Long id : request.getIdAlunos()){
+
+            Aluno aluno = alunoRepository.findById(id).get();
+
+            cadastrarResponsavelNoAlunoService.cadastrar(responsavel, aluno);
+        }
 
         permissaoRepository.save(permissao);
     }

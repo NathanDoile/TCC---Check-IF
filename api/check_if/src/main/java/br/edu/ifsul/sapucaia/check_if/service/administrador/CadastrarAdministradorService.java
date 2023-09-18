@@ -10,6 +10,7 @@ import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAdministradorServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.AdministradorMapper.toEntity;
 import static java.util.List.of;
@@ -32,6 +33,7 @@ public class CadastrarAdministradorService {
     @Autowired
     private CadastrarPermissaoAdministradorService cadastrarPermissaoAdministradorService;
 
+    @Transactional
     public void cadastrar(CadastrarAdministradorRequest request) {
 
         validaAdministradorService.porEmail(request.getEmail());

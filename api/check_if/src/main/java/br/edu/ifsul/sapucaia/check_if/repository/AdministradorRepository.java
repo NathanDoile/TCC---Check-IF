@@ -10,4 +10,6 @@ public interface AdministradorRepository extends JpaRepository<Administrador, Lo
     Administrador findByEmail(String email);
 
     boolean existsBySiape(String siape);
+
+    boolean existsByEmailAndIdNot(String email, Long id);
 }

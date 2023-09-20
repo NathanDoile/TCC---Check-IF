@@ -4,6 +4,7 @@ import br.edu.ifsul.sapucaia.check_if.controller.request.chegadaatrasada.Registr
 import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaResponse;
 import br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada.ObterChegadasAtrasadasService;
 import br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada.RegistrarChegadaAtrasadaManualService;
+import br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada.RegistrarChegadaAtrasadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,9 @@ public class ChegadaAtrasadaController {
     @Autowired
     private RegistrarChegadaAtrasadaManualService registrarChegadaAtrasadaManualService;
 
+    @Autowired
+    private RegistrarChegadaAtrasadaService registrarChegadaAtrasadaService;
+
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping("/{data}/obter")
     @ResponseStatus(OK)
@@ -37,5 +41,11 @@ public class ChegadaAtrasadaController {
     @ResponseStatus(CREATED)
     public ChegadaAtrasadaResponse registrarManual(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request){
         return registrarChegadaAtrasadaManualService.registrar(request);
+    }
+
+    @PostMapping("/registrar/cracha/publico")
+    @ResponseStatus(CREATED)
+    public ChegadaAtrasadaResponse registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request){
+        return registrarChegadaAtrasadaService.registrar(request);
     }
 }

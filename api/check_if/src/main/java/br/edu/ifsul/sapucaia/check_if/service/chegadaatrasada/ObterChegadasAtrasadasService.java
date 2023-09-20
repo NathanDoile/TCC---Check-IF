@@ -3,7 +3,6 @@ package br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada;
 import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaResponse;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;
-import br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper;
 import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ChegadaAtrasadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class ObterChegadasAtrasadasService {
 
             Aluno aluno = alunoRepository.findByChegadasAtrasadas(chegadaAtrasada);
 
-            return toResponse(chegadaAtrasada, aluno);
+            return toResponse(chegadaAtrasada);
         });
     }
 }

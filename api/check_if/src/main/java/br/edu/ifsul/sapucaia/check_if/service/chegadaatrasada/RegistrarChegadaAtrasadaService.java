@@ -2,14 +2,12 @@ package br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada;
 
 import br.edu.ifsul.sapucaia.check_if.controller.request.chegadaatrasada.RegistrarChegadaAtrasadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaResponse;
-import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;
 import br.edu.ifsul.sapucaia.check_if.domain.Professor;
 import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ChegadaAtrasadaRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ProfessorRepository;
-import br.edu.ifsul.sapucaia.check_if.security.service.UsuarioAutenticadoService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,10 @@ import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toRe
 import static java.time.LocalDateTime.now;
 
 @Service
-public class RegistrarChegadaAtrasadaManualService {
+public class RegistrarChegadaAtrasadaService {
+
+    @Autowired
+    private ChegadaAtrasadaRepository chegadaAtrasadaRepository;
 
     @Autowired
     private ValidaAlunoService validaAlunoService;
@@ -35,12 +36,6 @@ public class RegistrarChegadaAtrasadaManualService {
     @Autowired
     private ProfessorRepository professorRepository;
 
-    @Autowired
-    private UsuarioAutenticadoService usuarioAutenticadoService;
-
-    @Autowired
-    private ChegadaAtrasadaRepository chegadaAtrasadaRepository;
-
     @Transactional
     public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request) {
 
@@ -48,14 +43,13 @@ public class RegistrarChegadaAtrasadaManualService {
         validaProfessorService.porId(request.getIdProfessor());
 
         Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
+
         Professor professor = professorRepository.findById(request.getIdProfessor()).get();
-        Administrador administrador = usuarioAutenticadoService.getAdministrador();
 
         ChegadaAtrasada chegadaAtrasada = toEntity(request);
         chegadaAtrasada.setDataHora(now());
         chegadaAtrasada.setAluno(aluno);
         chegadaAtrasada.setProfessor(professor);
-        chegadaAtrasada.setAdministrador(administrador);
 
         chegadaAtrasadaRepository.save(chegadaAtrasada);
 

@@ -5,7 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Builder
 @AllArgsConstructor
@@ -15,9 +16,17 @@ public class ChegadaAtrasadaResponse {
 
     private Long id;
 
-    private LocalDateTime dataHora;
+    private LocalDate data;
+
+    private LocalTime hora;
 
     private String nome;
 
     private String matricula;
+
+    private String professor;
+
+    private String disciplina;
+
+    private String motivo;
 }

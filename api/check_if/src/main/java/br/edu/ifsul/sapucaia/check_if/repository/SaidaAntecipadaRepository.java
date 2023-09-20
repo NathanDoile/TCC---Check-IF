@@ -16,4 +16,6 @@ public interface SaidaAntecipadaRepository extends JpaRepository<SaidaAntecipada
             (LocalDateTime inicioData, LocalDateTime fimData, SituacaoSaida situacaoSaida, Pageable pageable);
 
     List<SaidaAntecipada> findAllByDataHoraSaidaBetweenAndAlunoOrderByDataHoraSaida(LocalDateTime inicioPeriodo, LocalDateTime fimPeriodo, Aluno aluno);
+
+    SaidaAntecipada findByIdAndSituacaoSaida(Long id, SituacaoSaida situacaoSaida);
 }

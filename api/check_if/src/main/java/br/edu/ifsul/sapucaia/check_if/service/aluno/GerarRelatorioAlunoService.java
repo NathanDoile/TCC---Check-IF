@@ -1,6 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.service.aluno;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.GerarRelatorioAlunoRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.aluno.GerarRelatorioAlunoRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;
 import br.edu.ifsul.sapucaia.check_if.domain.SaidaAntecipada;

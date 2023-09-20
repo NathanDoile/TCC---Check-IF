@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import static java.time.LocalDate.now;
+import static java.time.temporal.ChronoUnit.YEARS;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -39,4 +41,9 @@ public class Aluno {
             joinColumns = @JoinColumn(name = "id_aluno"),
             inverseJoinColumns = @JoinColumn(name = "id_responsavel"))
     private List<Responsavel> responsaveis;
+
+    public Long idade(){
+
+        return YEARS.between(this.dataNascimento, now());
+    }
 }

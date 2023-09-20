@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 public class ValidaResponsavelService {
@@ -31,4 +32,11 @@ public class ValidaResponsavelService {
 
     }
 
+    public void porId(Long idResponsavel) {
+
+        if(!responsavelRepository.existsById(idResponsavel)){
+
+            throw new ResponseStatusException(NOT_FOUND, "Responsável não encontrado.");
+        }
+    }
 }

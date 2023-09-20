@@ -1,8 +1,8 @@
 package br.edu.ifsul.sapucaia.check_if.controller;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.AlterarAdministradorRequest;
-import br.edu.ifsul.sapucaia.check_if.controller.request.AlterarSenhaAdministradorRequest;
-import br.edu.ifsul.sapucaia.check_if.controller.request.CadastrarAdministradorRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.administrador.AlterarAdministradorRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.AlterarSenhaRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.administrador.CadastrarAdministradorRequest;
 import br.edu.ifsul.sapucaia.check_if.service.administrador.AlterarAdministradorService;
 import br.edu.ifsul.sapucaia.check_if.service.administrador.AlterarSenhaAdministradorService;
 import br.edu.ifsul.sapucaia.check_if.service.administrador.CadastrarAdministradorService;
@@ -45,7 +45,7 @@ public class AdministradorController {
     @Secured("ROLE_ADMINISTRADOR")
     @PutMapping("/alterar-senha")
     @ResponseStatus(OK)
-    public void alterarSenha(@Valid @RequestBody AlterarSenhaAdministradorRequest request){
+    public void alterarSenha(@Valid @RequestBody AlterarSenhaRequest request){
         alterarSenhaAdministradorService.alterar(request);
     }
 }

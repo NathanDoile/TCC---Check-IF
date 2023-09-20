@@ -6,10 +6,9 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-
 import java.util.List;
 
-import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -30,10 +29,6 @@ public class Responsavel {
 
     private String senha;
 
-    private boolean notificacaoWhatsapp;
-
-    private boolean notificacaoEmail;
-
     private boolean isAtivo;
 
     @OneToMany(mappedBy = "responsavel")
@@ -42,7 +37,33 @@ public class Responsavel {
     @ManyToMany(mappedBy = "responsaveis")
     private List<Aluno> alunos;
 
-    @OneToMany(mappedBy = "responsavel")
+    @OneToMany(mappedBy = "responsavel", cascade = PERSIST)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Permissao> permissoes;
+
+    @OneToMany(mappedBy = "responsavel", cascade = PERSIST)
+    private List<NotificacaoWhatsapp> notificacoesWhatsapp;
+
+    @OneToMany(mappedBy = "responsavel", cascade = PERSIST)
+    private List<NotificacaoEmail> notificacoesEmail;
+
+    public void adicionarPermissao(Permissao permissao){
+        this.permissoes.add(permissao);
+        permissao.setResponsavel(this);
+    }
+
+    public void adicionarAluno(Aluno aluno){
+        this.alunos.add(aluno);
+        aluno.getResponsaveis().add(this);
+    }
+
+    public void adicionarNotificaoEmail(NotificacaoEmail notificacaoEmail){
+        this.notificacoesEmail.add(notificacaoEmail);
+        notificacaoEmail.setResponsavel(this);
+    }
+
+    public void adicionarNotificacaoWhatsapp(NotificacaoWhatsapp notificacaoWhatsapp){
+        this.notificacoesWhatsapp.add(notificacaoWhatsapp);
+        notificacaoWhatsapp.setResponsavel(this);
+    }
 }

@@ -1,6 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.mapper;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.RegistrarChegadaAtrasadaRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.chegadaatrasada.RegistrarChegadaAtrasadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaResponse;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;

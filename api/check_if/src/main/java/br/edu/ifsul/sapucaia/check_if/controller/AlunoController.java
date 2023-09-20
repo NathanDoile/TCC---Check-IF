@@ -1,6 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.controller;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.GerarRelatorioAlunoRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.aluno.GerarRelatorioAlunoRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.AlunoResponse;
 import br.edu.ifsul.sapucaia.check_if.controller.response.PesquisarAlunoResponse;
 import br.edu.ifsul.sapucaia.check_if.service.aluno.GerarRelatorioAlunoService;

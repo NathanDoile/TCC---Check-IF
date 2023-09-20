@@ -1,15 +1,14 @@
 package br.edu.ifsul.sapucaia.check_if.service.responsavel;
 
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.CadastrarResponsavelRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.CadastrarResponsavelRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
-import br.edu.ifsul.sapucaia.check_if.repository.PermissaoRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
-import br.edu.ifsul.sapucaia.check_if.security.domain.Permissao;
-import br.edu.ifsul.sapucaia.check_if.service.aluno.CadastrarResponsavelNoAlunoService;
-import br.edu.ifsul.sapucaia.check_if.service.permissao.CadastrarPermissaoResponsavelService;
+import br.edu.ifsul.sapucaia.check_if.service.notificacaoemail.AdicionarNotificacaoEmailService;
+import br.edu.ifsul.sapucaia.check_if.service.notificaowhatsapp.AdicionarNotificacaoWhatsappService;
+import br.edu.ifsul.sapucaia.check_if.service.permissao.AdicinarPermissaoResponsavelService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaResponsavelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.ResponsavelMapper.toEntity;
-import static java.util.List.of;
 
 @Service
 public class CadastrarResponsavelService {
@@ -38,16 +36,16 @@ public class CadastrarResponsavelService {
     private AlunoRepository alunoRepository;
 
     @Autowired
-    private CadastrarPermissaoResponsavelService cadastrarPermissaoResponsavelService;
+    private AdicinarPermissaoResponsavelService adicionarPermissaoResponsavelService;
 
     @Autowired
     private ResponsavelRepository responsavelRepository;
 
     @Autowired
-    private PermissaoRepository permissaoRepository;
+    private AdicionarNotificacaoEmailService adicionarNotificacaoEmailService;
 
     @Autowired
-    private CadastrarResponsavelNoAlunoService cadastrarResponsavelNoAlunoService;
+    private AdicionarNotificacaoWhatsappService adicionarNotificacaoWhatsappService;
 
 
     @Transactional
@@ -62,34 +60,27 @@ public class CadastrarResponsavelService {
             validaAlunoService.porId(id);
         }
 
-        Permissao permissao = cadastrarPermissaoResponsavelService.cadastrar();
-
         Responsavel responsavel = toEntity(request);
         responsavel.setSenha(passwordEncoder.encode(responsavel.getCelular().toString()));
         responsavel.setAtivo(true);
-        responsavel.setNotificacaoEmail(true);
-        responsavel.setNotificacaoWhatsapp(true);
         responsavel.setAlunos(new ArrayList<>());
-        responsavel.setPermissoes(of(permissao));
+        responsavel.setPermissoes(new ArrayList<>());
+        responsavel.setNotificacoesEmail(new ArrayList<>());
+        responsavel.setNotificacoesWhatsapp(new ArrayList<>());
+
+        adicionarPermissaoResponsavelService.adicionar(responsavel);
 
         for(Long id : request.getIdAlunos()){
 
             Aluno aluno = alunoRepository.findById(id).get();
 
-            responsavel.getAlunos().add(aluno);
-        }
+            responsavel.adicionarAluno(aluno);
 
-        permissao.setResponsavel(responsavel);
+            adicionarNotificacaoEmailService.adicionar(responsavel, aluno);
+
+            adicionarNotificacaoWhatsappService.adicionar(responsavel, aluno);
+        }
 
         responsavelRepository.save(responsavel);
-
-        for(Long id : request.getIdAlunos()){
-
-            Aluno aluno = alunoRepository.findById(id).get();
-
-            cadastrarResponsavelNoAlunoService.cadastrar(responsavel, aluno);
-        }
-
-        permissaoRepository.save(permissao);
     }
 }

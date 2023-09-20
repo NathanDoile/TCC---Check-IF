@@ -1,4 +1,4 @@
-package br.edu.ifsul.sapucaia.check_if.controller.request;
+package br.edu.ifsul.sapucaia.check_if.controller.request.administrador;
 
 
 import lombok.Getter;

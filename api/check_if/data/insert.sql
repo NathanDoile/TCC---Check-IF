@@ -6,7 +6,7 @@ INSERT INTO administrador VALUES
 INSERT INTO portaria VALUES (null, 'portaria@checkif.com', '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true);
 
 INSERT INTO responsavel VALUES 
-(null, 'responsavel', 'responsavel@checkif.com', 51999999999, '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true, true, true);
+(null, 'responsavel', 'responsavel@checkif.com', 51999999999, '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true);
 
 INSERT INTO permissao VALUES 
 (null, 'ADMINISTRADOR', null, null, 1),

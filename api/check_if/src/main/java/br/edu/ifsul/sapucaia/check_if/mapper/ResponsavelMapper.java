@@ -1,6 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.mapper;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.CadastrarResponsavelRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.CadastrarResponsavelRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.security.controller.response.UsuarioResponse;
 

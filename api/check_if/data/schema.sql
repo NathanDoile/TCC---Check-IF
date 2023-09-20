@@ -40,8 +40,6 @@ nome VARCHAR(255) NOT NULL,
 email VARCHAR(100) NOT NULL,
 celular BIGINT UNSIGNED  NOT NULL,
 senha VARCHAR(255) NOT NULL,
-notificacao_whatsapp BOOLEAN NOT NULL,
-notificacao_email BOOLEAN NOT NULL,
 is_ativo BOOLEAN NOT NULL,
 PRIMARY KEY (id)
 );
@@ -106,6 +104,26 @@ PRIMARY KEY (id),
 FOREIGN KEY (id_responsavel) REFERENCES responsavel (id),
 FOREIGN KEY (id_administrador) REFERENCES administrador (id),
 FOREIGN KEY (id_portaria) REFERENCES portaria (id)
+);
+
+CREATE TABLE notificacao_whatsapp(
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    receber BOOLEAN NOT NULL,
+    id_aluno BIGINT UNSIGNED NOT NULL,
+    id_responsavel BIGINT UNSIGNED NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_aluno) REFERENCES aluno (id),
+    FOREIGN KEY(id_responsavel) REFERENCES responsavel (id)
+);
+
+CREATE TABLE notificacao_email(
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    receber BOOLEAN NOT NULL,
+    id_aluno BIGINT UNSIGNED NOT NULL,
+    id_responsavel BIGINT UNSIGNED NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_aluno) REFERENCES aluno (id),
+    FOREIGN KEY(id_responsavel) REFERENCES responsavel (id)
 );
 
 

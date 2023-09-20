@@ -1,6 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.service.administrador;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.AlterarSenhaAdministradorRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.AlterarSenhaRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
 import br.edu.ifsul.sapucaia.check_if.repository.AdministradorRepository;
 import br.edu.ifsul.sapucaia.check_if.security.service.UsuarioAutenticadoService;
@@ -30,7 +30,7 @@ public class AlterarSenhaAdministradorService {
     private ValidarNovaSenhaValidator validarNovaSenhaValidator;
 
     @Transactional
-    public void alterar(AlterarSenhaAdministradorRequest request) {
+    public void alterar(AlterarSenhaRequest request) {
 
         Administrador administrador = usuarioAutenticadoService.getAdministrador();
 

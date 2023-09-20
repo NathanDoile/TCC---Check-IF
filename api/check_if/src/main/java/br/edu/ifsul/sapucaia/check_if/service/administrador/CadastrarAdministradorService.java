@@ -1,6 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.service.administrador;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.CadastrarAdministradorRequest;
+import br.edu.ifsul.sapucaia.check_if.controller.request.administrador.CadastrarAdministradorRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
 import br.edu.ifsul.sapucaia.check_if.repository.AdministradorRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.PermissaoRepository;

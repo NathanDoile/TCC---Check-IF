@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.validation.constraints.NotBlank;
 
 @Getter
-public class AlterarSenhaAdministradorRequest {
+public class AlterarSenhaRequest {
 
     @NotBlank
     private String senhaAtual;

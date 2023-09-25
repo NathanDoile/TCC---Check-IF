@@ -2,6 +2,7 @@ package br.edu.ifsul.sapucaia.check_if.repository;
 
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;
+import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.domain.SaidaAntecipada;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,6 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     boolean existsByMatricula(String matricula);
 
     Aluno findByMatricula(String matriculaAluno);
+
+    List<Aluno> findAllByResponsaveis(Responsavel responsavel);
 }

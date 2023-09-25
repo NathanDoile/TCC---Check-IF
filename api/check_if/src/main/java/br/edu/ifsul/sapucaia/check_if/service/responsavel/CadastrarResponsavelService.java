@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.ResponsavelMapper.toEntity;
 
@@ -61,7 +62,7 @@ public class CadastrarResponsavelService {
         }
 
         Responsavel responsavel = toEntity(request);
-        responsavel.setSenha(passwordEncoder.encode(responsavel.getCelular().toString()));
+        responsavel.setSenha(passwordEncoder.encode(responsavel.getEmail()));
         responsavel.setAtivo(true);
         responsavel.setAlunos(new ArrayList<>());
         responsavel.setPermissoes(new ArrayList<>());
@@ -73,6 +74,10 @@ public class CadastrarResponsavelService {
         for(Long id : request.getIdAlunos()){
 
             Aluno aluno = alunoRepository.findById(id).get();
+
+            List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+
+            aluno.setResponsaveis(responsaveis);
 
             responsavel.adicionarAluno(aluno);
 

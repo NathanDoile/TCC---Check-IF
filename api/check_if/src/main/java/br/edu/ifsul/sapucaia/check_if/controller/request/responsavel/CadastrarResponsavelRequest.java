@@ -1,6 +1,9 @@
 package br.edu.ifsul.sapucaia.check_if.controller.request.responsavel;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,6 +13,9 @@ import java.util.List;
 
 
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CadastrarResponsavelRequest {
 
     @NotBlank
@@ -19,7 +25,6 @@ public class CadastrarResponsavelRequest {
     @Email
     private String email;
 
-    @NotNull
     private Long celular;
 
     @NotNull

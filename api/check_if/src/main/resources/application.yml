@@ -7,6 +7,18 @@ spring:
     hibernate:
       ddl-auto: validate
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: checkif.tcc@gmail.com
+    password: wlcreidcqnqdtfvj
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+
 server:
   error:
     include-message: always

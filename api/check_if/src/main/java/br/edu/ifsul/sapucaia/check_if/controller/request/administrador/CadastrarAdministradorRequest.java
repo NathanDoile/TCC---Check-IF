@@ -9,13 +9,14 @@ import javax.validation.constraints.NotBlank;
 @Getter
 public class CadastrarAdministradorRequest {
 
-    @NotBlank
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String nome;
 
-    @NotBlank
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String siape;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
+    @Email(message = "não é um endereço válido.")
     private String email;
 }

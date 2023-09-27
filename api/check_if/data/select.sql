@@ -11,3 +11,4 @@ SELECT * FROM saida_antecipada;
 SELECT * FROM permissao;
 SELECT * FROM notificacao_email;
 SELECT * FROM notificacao_whatsapp;
+SELECT * FROM email;

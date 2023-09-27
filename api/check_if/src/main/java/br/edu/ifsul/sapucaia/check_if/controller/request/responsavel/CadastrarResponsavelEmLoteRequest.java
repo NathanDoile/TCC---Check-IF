@@ -6,5 +6,7 @@ import lombok.Getter;
 @Getter
 public class CadastrarResponsavelEmLoteRequest {
 
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+
     private Workbook arquivo;
 }

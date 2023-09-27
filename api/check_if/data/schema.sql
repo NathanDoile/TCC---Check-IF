@@ -126,6 +126,18 @@ CREATE TABLE notificacao_email(
     FOREIGN KEY(id_responsavel) REFERENCES responsavel (id)
 );
 
+CREATE TABLE email(
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    remetente VARCHAR(255) NOT NULL,
+    email_de VARCHAR(255) NOT NULL,
+    email_para VARCHAR(255) NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
+    mensagem VARCHAR(1000) NOT NULL,
+    enviado_em TIMESTAMP NOT NULL,
+    status_email VARCHAR(7) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 
 
 

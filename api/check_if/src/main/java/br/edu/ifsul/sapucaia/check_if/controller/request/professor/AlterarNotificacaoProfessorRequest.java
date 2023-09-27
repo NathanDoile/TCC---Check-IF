@@ -8,9 +8,11 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class AlterarNotificacaoProfessorRequest {
 
-    @NotNull
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     public Long id;
 
-    @NotBlank
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     public String tipoNotificacao;
 }

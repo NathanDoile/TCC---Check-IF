@@ -13,15 +13,17 @@ import java.time.LocalTime;
 @Getter @Setter
 public class SolicitarSaidaAntecipadaRequest {
 
-    @NotNull
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private LocalDate dataAutorizada;
 
-    @NotNull
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private LocalTime horaAutorizada;
 
-    @NotBlank
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String motivo;
 
-    @NotNull
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private Long idAluno;
 }

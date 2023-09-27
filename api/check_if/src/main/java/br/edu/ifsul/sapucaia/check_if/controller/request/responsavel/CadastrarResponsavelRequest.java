@@ -18,17 +18,19 @@ import java.util.List;
 @NoArgsConstructor
 public class CadastrarResponsavelRequest {
 
-    @NotBlank
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String nome;
 
-    @NotBlank
-    @Email
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
+    @Email(message = "não é um endereço válido.")
     private String email;
 
     private Long celular;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
+    @NotEmpty(message = "deve haver pelo menos um.")
     private List<Long> idAlunos;
 
 }

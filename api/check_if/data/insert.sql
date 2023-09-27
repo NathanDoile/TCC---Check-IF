@@ -25,8 +25,8 @@ INSERT INTO chegada_atrasada VALUES
 (null, '2023-09-04 11:02:04', 'Despertador não tocou', 'Empreendedorismo', 2, 1, null);
 
 INSERT INTO saida_antecipada VALUES
-(null, null, "2023-09-07 12:00:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-07 11:45:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-07 12:00:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-08 11:45:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-07 11:45:00", "Simone de Souza Doile", "SAIU", null, "Tem que trabalhar.", 1, 1, null);
+(null, null, "2023-09-20 12:00:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
+(null, null, "2023-09-20 11:45:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
+(null, null, "2023-09-20 12:00:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
+(null, null, "2023-09-20 11:45:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
+(null, null, "2023-09-20 11:45:00", "Simone de Souza Doile", "SAIU", null, "Tem que trabalhar.", 1, 1, null);

@@ -8,15 +8,17 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class RegistrarChegadaAtrasadaRequest {
 
-    @NotBlank
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String motivo;
 
-    @NotBlank
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String disciplina;
 
-    @NotBlank
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String matriculaAluno;
 
-    @NotNull
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private Long idProfessor;
 }

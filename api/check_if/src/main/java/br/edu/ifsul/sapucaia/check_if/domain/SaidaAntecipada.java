@@ -46,6 +46,4 @@ public class SaidaAntecipada {
     @ManyToOne
     @JoinColumn(name = "id_administrador")
     private Administrador administrador;
-
-
 }

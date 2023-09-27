@@ -7,9 +7,11 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class ConfirmarSaidaAntecipadaRequest {
 
-    @NotNull
+    public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
+
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     public Long id;
 
-    @NotNull
+    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     public boolean saiu;
 }

@@ -1,6 +1,7 @@
 package br.edu.ifsul.sapucaia.check_if.security.service;
 
 import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
+import br.edu.ifsul.sapucaia.check_if.domain.Professor;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.repository.EmailRepository;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
@@ -78,5 +79,17 @@ public class EnviarEmailService {
         finally {
             emailRepository.save(email);
         }
+    }
+
+    @Transactional
+    public void enviarProfessor(EnviarEmailRequest request, Professor professor) {
+
+        Email email = toEntity(request);
+        email.setRemetente(professor.getNome());
+        email.setEmailDe(requireNonNull(env.getProperty(PATH_ENVIRONMENT_EMAIL)));
+        email.setEmailPara(professor.getEmail());
+        email.setEnviadoEm(now());
+
+        enviar(email);
     }
 }

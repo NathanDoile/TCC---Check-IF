@@ -2,11 +2,9 @@ package br.edu.ifsul.sapucaia.check_if.service.saidaantecipada;
 
 import br.edu.ifsul.sapucaia.check_if.controller.request.saidaantecipada.CadastrarSaidaAntecipadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.SaidaAntecipadaResponse;
-import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
-import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
-import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
-import br.edu.ifsul.sapucaia.check_if.domain.SaidaAntecipada;
+import br.edu.ifsul.sapucaia.check_if.domain.*;
 import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
+import br.edu.ifsul.sapucaia.check_if.repository.NotificacaoEmailRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.SaidaAntecipadaRepository;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
@@ -46,6 +44,9 @@ public class CadastrarSaidaAntecipadaService {
     @Autowired
     private EnviarEmailService enviarEmailService;
 
+    @Autowired
+    private NotificacaoEmailRepository notificacaoEmailRepository;
+
     @Transactional
     public SaidaAntecipadaResponse cadastrar(CadastrarSaidaAntecipadaRequest request) {
 
@@ -74,7 +75,12 @@ public class CadastrarSaidaAntecipadaService {
 
         for(Responsavel responsavel : responsaveis){
 
-            enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+            NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
+
+            if(notificacaoEmail.isReceber()){
+
+                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+            }
         }
 
         return toResponse(saidaAntecipada, aluno);

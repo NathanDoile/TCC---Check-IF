@@ -36,7 +36,7 @@ public class ResponsavelController {
         cadastrarResponsavelService.cadastrar(request);
     }
 
-    @Secured("ROLE_ADMINISTRADOR")
+    @Secured("ROLE_RESPONSAVEL")
     @PutMapping("/alterar-notificacao")
     @ResponseStatus(OK)
     public void alterarNotificacao(@Valid @RequestBody AlterarNotificacaoResponsavelRequest request){

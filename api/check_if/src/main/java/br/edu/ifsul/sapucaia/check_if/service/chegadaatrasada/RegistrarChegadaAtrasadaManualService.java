@@ -3,10 +3,7 @@ package br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada;
 import br.edu.ifsul.sapucaia.check_if.controller.request.chegadaatrasada.RegistrarChegadaAtrasadaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaResponse;
 import br.edu.ifsul.sapucaia.check_if.domain.*;
-import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
-import br.edu.ifsul.sapucaia.check_if.repository.ChegadaAtrasadaRepository;
-import br.edu.ifsul.sapucaia.check_if.repository.ProfessorRepository;
-import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
+import br.edu.ifsul.sapucaia.check_if.repository.*;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
 import br.edu.ifsul.sapucaia.check_if.security.service.EnviarEmailService;
 import br.edu.ifsul.sapucaia.check_if.security.service.UsuarioAutenticadoService;
@@ -50,6 +47,9 @@ public class RegistrarChegadaAtrasadaManualService {
     @Autowired
     private EnviarEmailService enviarEmailService;
 
+    @Autowired
+    private NotificacaoEmailRepository notificacaoEmailRepository;
+
     @Transactional
     public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request) {
 
@@ -78,7 +78,23 @@ public class RegistrarChegadaAtrasadaManualService {
 
         for(Responsavel responsavel : responsaveis){
 
-            enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+            NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
+
+            if(notificacaoEmail.isReceber()){
+
+                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+            }
+        }
+
+        if(professor.isNotificacaoEmail()){
+
+            EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
+                    .builder()
+                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                    .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
+                    .build();
+
+            enviarEmailService.enviarProfessor(enviarEmailRequestProfessor, professor);
         }
 
         return toResponse(chegadaAtrasada);
@@ -90,7 +106,19 @@ public class RegistrarChegadaAtrasadaManualService {
                 "Informamos que o aluno " + chegadaAtrasada.getAluno().getNome() + " registrou uma chegada atrasada no " +
                 "dia " + chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
                 chegadaAtrasada.getDataHora().toLocalTime().format(ofPattern("HH:mm:ss")) + ", na disciplina " + chegadaAtrasada.getDisciplina()
-                + ".\n\n" +
+                + " e alegou o seguinte motivo: '" + chegadaAtrasada.getMotivo() + "'.\n\n" +
+                "Atenciosamente,\n" +
+                "Check-IF";
+    }
+
+    private String mensagemChegadaAtrasadaProfessor(ChegadaAtrasada chegadaAtrasada) {
+
+        return "Prezado(a),\n\n" +
+                "Informamos que o aluno " + chegadaAtrasada.getAluno().getNome() + ", da turma " + chegadaAtrasada.getAluno().getTurma() + ", " +
+                "registrou uma chegada atrasada no " +
+                "dia " + chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
+                chegadaAtrasada.getDataHora().toLocalTime().format(ofPattern("HH:mm:ss")) + ", na disciplina " + chegadaAtrasada.getDisciplina()
+                + " e alegou o seguinte motivo: '" + chegadaAtrasada.getMotivo() + "'.\n\n" +
                 "Atenciosamente,\n" +
                 "Check-IF";
     }

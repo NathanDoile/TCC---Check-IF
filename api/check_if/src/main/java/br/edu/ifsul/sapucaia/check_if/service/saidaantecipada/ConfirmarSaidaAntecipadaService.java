@@ -2,9 +2,11 @@ package br.edu.ifsul.sapucaia.check_if.service.saidaantecipada;
 
 import br.edu.ifsul.sapucaia.check_if.controller.request.saidaantecipada.ConfirmarSaidaAntecipadaRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
+import br.edu.ifsul.sapucaia.check_if.domain.NotificacaoEmail;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.domain.SaidaAntecipada;
 import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
+import br.edu.ifsul.sapucaia.check_if.repository.NotificacaoEmailRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.SaidaAntecipadaRepository;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
@@ -38,6 +40,9 @@ public class ConfirmarSaidaAntecipadaService {
 
     @Autowired
     private EnviarEmailService enviarEmailService;
+
+    @Autowired
+    private NotificacaoEmailRepository notificacaoEmailRepository;
 
     @Transactional
     public void confirmar(ConfirmarSaidaAntecipadaRequest request) {
@@ -73,7 +78,12 @@ public class ConfirmarSaidaAntecipadaService {
 
             for(Responsavel responsavel : responsaveis){
 
-                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+                NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
+
+                if(notificacaoEmail.isReceber()){
+
+                    enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+                }
             }
         }
     }

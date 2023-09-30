@@ -9,6 +9,7 @@ import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.NotificacaoEmailRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.NotificacaoWhatsappRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
+import br.edu.ifsul.sapucaia.check_if.security.service.UsuarioAutenticadoService;
 import br.edu.ifsul.sapucaia.check_if.service.notificacaoemail.ValidaNotificacaoEmailService;
 import br.edu.ifsul.sapucaia.check_if.service.notificaowhatsapp.ValidaNotificacaoWhatsappService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
@@ -51,14 +52,16 @@ public class AlterarNotificacaoResponsavelService {
     @Autowired
     private ValidaNotificacaoWhatsappService validaNotificacaoWhatsappService;
 
+    @Autowired
+    private UsuarioAutenticadoService usuarioAutenticadoService;
+
     @Transactional
     public void alterar(AlterarNotificacaoResponsavelRequest request) {
 
         validaAlunoService.porId(request.getIdAluno());
-        validaResponsavelService.porId(request.getIdResponsavel());
         validaTipoNotificacaoValidator.validar(request.getTipoNotificacao());
 
-        Responsavel responsavel = responsavelRepository.findById(request.getIdResponsavel()).get();
+        Responsavel responsavel = usuarioAutenticadoService.getResponsavel();
 
         Aluno aluno = alunoRepository.findById(request.getIdAluno()).get();
 

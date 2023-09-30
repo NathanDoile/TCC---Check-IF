@@ -11,9 +11,6 @@ public class AlterarNotificacaoResponsavelRequest {
     public static final String MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO = "é um campo obrigatório";
 
     @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
-    private Long idResponsavel;
-
-    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private Long idAluno;
 
     @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)

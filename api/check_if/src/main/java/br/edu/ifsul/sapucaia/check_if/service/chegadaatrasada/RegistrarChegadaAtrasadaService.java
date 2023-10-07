@@ -7,11 +7,13 @@ import br.edu.ifsul.sapucaia.check_if.repository.*;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
 import br.edu.ifsul.sapucaia.check_if.security.service.EnviarEmailService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
+import br.edu.ifsul.sapucaia.check_if.validator.ValidaIpValidator;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toEntity;
@@ -46,11 +48,18 @@ public class RegistrarChegadaAtrasadaService {
     @Autowired
     private NotificacaoEmailRepository notificacaoEmailRepository;
 
+    @Autowired
+    private NotificacaoWhatsappRepository notificacaoWhatsappRepository;
+
+    @Autowired
+    private ValidaIpValidator validaIpValidator;
+
     @Transactional
-    public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request) {
+    public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) {
 
         validaAlunoService.porMatricula(request.getMatriculaAluno());
         validaProfessorService.porId(request.getIdProfessor());
+        validaIpValidator.validar(requestServlet);
 
         Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
 
@@ -78,6 +87,13 @@ public class RegistrarChegadaAtrasadaService {
             if(notificacaoEmail.isReceber()){
 
                 enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+            }
+
+            NotificacaoWhatsapp notificacaoWhatsapp = notificacaoWhatsappRepository.findByAlunoAndResponsavel(aluno, responsavel);
+
+            if(notificacaoWhatsapp.isReceber()){
+
+
             }
         }
 

@@ -5,14 +5,19 @@ import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaRespons
 import br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada.ObterChegadasAtrasadasService;
 import br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada.RegistrarChegadaAtrasadaManualService;
 import br.edu.ifsul.sapucaia.check_if.service.chegadaatrasada.RegistrarChegadaAtrasadaService;
+import br.edu.ifsul.sapucaia.check_if.validator.ValidaIpValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import java.util.Map;
+
+import static org.springframework.boot.Banner.Mode.LOG;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -45,7 +50,7 @@ public class ChegadaAtrasadaController {
 
     @PostMapping("/registrar/cracha/publico")
     @ResponseStatus(CREATED)
-    public ChegadaAtrasadaResponse registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request){
-        return registrarChegadaAtrasadaService.registrar(request);
+    public void registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet){
+        registrarChegadaAtrasadaService.registrar(request, requestServlet);
     }
 }

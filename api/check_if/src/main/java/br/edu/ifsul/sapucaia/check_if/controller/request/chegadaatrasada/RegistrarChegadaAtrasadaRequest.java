@@ -2,6 +2,7 @@ package br.edu.ifsul.sapucaia.check_if.controller.request.chegadaatrasada;
 
 import lombok.Getter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 

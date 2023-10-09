@@ -41,6 +41,9 @@ email VARCHAR(100) NOT NULL,
 celular BIGINT UNSIGNED  NOT NULL,
 senha VARCHAR(255) NOT NULL,
 is_ativo BOOLEAN NOT NULL,
+token_resetar_senha VARCHAR(255) NULL,
+data_envio_token TIMESTAMP NULL,
+tentativas_resetar_senha INT NULL,
 PRIMARY KEY (id)
 );
 
@@ -51,6 +54,9 @@ email VARCHAR(100) NOT NULL,
 siape VARCHAR(100) NOT NULL,
 senha VARCHAR(255) NOT NULL,
 is_ativo BOOLEAN NOT NULL,
+token_resetar_senha VARCHAR(255) NULL,
+data_envio_token TIMESTAMP NULL,
+tentativas_resetar_senha INT NULL,
 PRIMARY KEY (id)
 );
 

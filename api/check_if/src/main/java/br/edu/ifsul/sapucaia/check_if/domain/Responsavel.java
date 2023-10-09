@@ -6,6 +6,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static javax.persistence.CascadeType.PERSIST;
@@ -30,6 +31,12 @@ public class Responsavel {
     private String senha;
 
     private boolean isAtivo;
+
+    private String tokenResetarSenha;
+
+    private LocalDateTime dataEnvioToken;
+
+    private Integer tentativasResetarSenha;
 
     @OneToMany(mappedBy = "responsavel")
     private List<SaidaAntecipada> saidasAntecipadas;

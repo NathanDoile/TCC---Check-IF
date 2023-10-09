@@ -3,7 +3,9 @@ package br.edu.ifsul.sapucaia.check_if.security.service;
 import br.edu.ifsul.sapucaia.check_if.domain.Administrador;
 import br.edu.ifsul.sapucaia.check_if.domain.Professor;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
+import br.edu.ifsul.sapucaia.check_if.repository.AdministradorRepository;
 import br.edu.ifsul.sapucaia.check_if.repository.EmailRepository;
+import br.edu.ifsul.sapucaia.check_if.repository.ResponsavelRepository;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
 import br.edu.ifsul.sapucaia.check_if.security.domain.Email;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,12 @@ public class EnviarEmailService {
 
     @Autowired
     private EmailRepository emailRepository;
+
+    @Autowired
+    private AdministradorRepository administradorRepository;
+
+    @Autowired
+    private ResponsavelRepository responsavelRepository;
 
     @Transactional
     public void enviarResponsavel(EnviarEmailRequest request, Responsavel responsavel) {
@@ -89,6 +97,31 @@ public class EnviarEmailService {
         email.setEmailDe(requireNonNull(env.getProperty(PATH_ENVIRONMENT_EMAIL)));
         email.setEmailPara(professor.getEmail());
         email.setEnviadoEm(now());
+
+        enviar(email);
+    }
+
+    @Transactional
+    public void enviarPorEsqueceuSuaSenha(String emailTo, String mensagemPadraoEsqueceuSuaSenhaParaEmail, String conteudo) {
+
+        Email email = new Email();
+        email.setTitulo(mensagemPadraoEsqueceuSuaSenhaParaEmail);
+        email.setMensagem(conteudo);
+        email.setEmailDe(requireNonNull(env.getProperty(PATH_ENVIRONMENT_EMAIL)));
+        email.setEmailPara(emailTo);
+        email.setEnviadoEm(now());
+
+        if(administradorRepository.existsByEmail(emailTo)){
+
+            Administrador administrador = administradorRepository.findByEmail(emailTo);
+
+            email.setRemetente(administrador.getNome());
+        }else{
+
+            Responsavel responsavel = responsavelRepository.findByEmail(emailTo);
+
+            email.setRemetente(responsavel.getNome());
+        }
 
         enviar(email);
     }

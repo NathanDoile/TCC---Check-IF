@@ -1,16 +1,11 @@
 package br.edu.ifsul.sapucaia.check_if.controller;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.AlterarNotificacaoResponsavelRequest;
-import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.CadastrarResponsavelEmLoteRequest;
-import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.CadastrarResponsavelRequest;
-import br.edu.ifsul.sapucaia.check_if.service.responsavel.AlterarNotificacaoResponsavelService;
-import br.edu.ifsul.sapucaia.check_if.service.responsavel.CadastrarResponsavelEmLoteService;
-import br.edu.ifsul.sapucaia.check_if.service.responsavel.CadastrarResponsavelService;
+import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.*;
+import br.edu.ifsul.sapucaia.check_if.service.responsavel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -28,6 +23,12 @@ public class ResponsavelController {
 
     @Autowired
     private CadastrarResponsavelEmLoteService cadastrarResponsavelEmLoteService;
+
+    @Autowired
+    private AlterarResponsavelService alterarResponsavelService;
+
+    @Autowired
+    private AlterarSenhaResponsavelService alterarSenhaResponsavelService;
 
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping
@@ -48,5 +49,20 @@ public class ResponsavelController {
     @ResponseStatus(CREATED)
     public void cadastrarEmLote(@Valid @RequestBody CadastrarResponsavelEmLoteRequest request) throws Exception {
         cadastrarResponsavelEmLoteService.cadastrar(request);
+    }
+
+    @Secured("ROLE_RESPONSAVEL")
+    @PutMapping
+    @ResponseStatus(OK)
+    public void alterar(@Valid @RequestBody AlterarResponsavelRequest request){
+        alterarResponsavelService.alterar(request);
+    }
+
+
+    @Secured("ROLE_RESPONSAVEL")
+    @PutMapping("/senha")
+    @ResponseStatus(OK)
+    public void alterarSenha(@Valid @RequestBody AlterarSenhaResponsavelRequest request){
+        alterarSenhaResponsavelService.alterar(request);
     }
 }

@@ -1,0 +1,78 @@
+@font-face {
+    font-family: Codec Pro-Light;
+    src: url(../../../assets/Font/CodecPro-Light.otf);
+}
+
+@font-face {
+    font-family: Codec Pro-Bold;
+    src: url(../../../assets/Font/CodecPro-Bold.otf);
+}
+
+@font-face {
+    font-family: Codec Pro-Regular;
+    src: url(../../../assets/Font/CodecPro-Regular.otf);
+}
+
+.section-tela-inicial{
+    width: 100vw;
+    height: 100vh;
+}
+
+.tela-inicial{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -35px;
+}
+
+.titulo-tela-inicial{
+    font-family: Codec Pro-Light;
+    font-size: 28.1px;
+    color:#746666;
+    letter-spacing: 1px;
+    padding-bottom: 20px;
+}
+
+.descricao-botao-tela-inicial{
+    font-family: Codec Pro-Light;
+    font-size: 14.5px;
+    color:#746666;
+    padding-bottom: 8px;
+}
+
+.botao-tela-inicial{
+    font-family: Codec Pro-Bold;
+    font-size: 18.1px;
+    color: #ffffff;
+    background-color: #42BF9C;
+    width: 191.1px;
+    height: 42.8px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.barra-esquerda-tela-inicial{
+    width: 134.1px;
+}
+
+.barra-direita-tela-inicial{
+    width: 134.1px;
+}
+
+.ou-central-tela-inicial{
+    font-family: Codec Pro-Regular;
+    color: #746666;
+    font-size: 15.4px;
+}
+
+.ou-barras-tela-inicial{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}

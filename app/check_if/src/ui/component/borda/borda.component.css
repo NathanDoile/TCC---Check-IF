@@ -1,0 +1,18 @@
+.borda-superior{
+    top: -53px;
+    left: -90px;
+    rotate: 180deg;
+    width: 369.4px;
+    height: 230px;
+    position: absolute;
+    z-index: 3;
+}
+
+.borda-inferior{
+    width: 209.4px;
+    height: 170px;
+    position: absolute;
+    z-index: 3;
+    right: 0px;
+    bottom: 0px;
+}

@@ -84,12 +84,11 @@
 			<version>21.11</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>com.twilio.sdk</groupId>-->
-<!--			<artifactId>twilio</artifactId>-->
-<!--			<version>7.36.1</version>-->
-<!--			<scope>compile</scope>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-barcode</artifactId>
+			<version>23.9</version>
+		</dependency>
     </dependencies>
 
 	<build>

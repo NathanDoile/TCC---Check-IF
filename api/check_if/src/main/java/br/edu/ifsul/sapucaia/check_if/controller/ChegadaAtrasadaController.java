@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -46,7 +50,7 @@ public class ChegadaAtrasadaController {
 
     @PostMapping("/registrar/cracha/publico")
     @ResponseStatus(CREATED)
-    public ChegadaAtrasadaResponse registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet){
-        return registrarChegadaAtrasadaService.registrar(request, requestServlet);
+    public void registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
+        registrarChegadaAtrasadaService.registrar(request, requestServlet);
     }
 }

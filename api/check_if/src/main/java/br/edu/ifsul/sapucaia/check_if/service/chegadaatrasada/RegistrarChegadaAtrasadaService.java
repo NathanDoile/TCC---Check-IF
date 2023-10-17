@@ -9,15 +9,22 @@ import br.edu.ifsul.sapucaia.check_if.security.service.EnviarEmailService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
 import br.edu.ifsul.sapucaia.check_if.validator.ValidaIpValidator;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaProfessorService;
+import com.aspose.barcode.barcoderecognition.BarCodeReader;
+import com.aspose.barcode.barcoderecognition.BarCodeResult;
+import com.aspose.barcode.barcoderecognition.DecodeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.List;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toEntity;
 import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toResponse;
+import static com.aspose.barcode.barcoderecognition.DecodeType.CODE_39_STANDARD;
 import static java.time.LocalDateTime.now;
 import static java.time.format.DateTimeFormatter.ofPattern;
 
@@ -55,60 +62,72 @@ public class RegistrarChegadaAtrasadaService {
     private ValidaIpValidator validaIpValidator;
 
     @Transactional
-    public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) {
+    public void registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
 
-        validaAlunoService.porMatricula(request.getMatriculaAluno());
-        validaProfessorService.porId(request.getIdProfessor());
-        validaIpValidator.validar(requestServlet);
+        BufferedImage img = ImageIO.read(new File("cracha.jpg"));
 
-        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
+        BarCodeReader reader = new BarCodeReader(img);
 
-        Professor professor = professorRepository.findById(request.getIdProfessor()).get();
-
-        ChegadaAtrasada chegadaAtrasada = toEntity(request);
-        chegadaAtrasada.setDataHora(now());
-        chegadaAtrasada.setAluno(aluno);
-        chegadaAtrasada.setProfessor(professor);
-
-        chegadaAtrasadaRepository.save(chegadaAtrasada);
-
-        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
-
-        EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
-                .builder()
-                .titulo("Chegada Atrasada do aluno " + aluno.getNome())
-                .mensagem(mensagemChegadaAtrasada(chegadaAtrasada))
-                .build();
-
-        for(Responsavel responsavel : responsaveis){
-
-            NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
-
-            if(notificacaoEmail.isReceber()){
-
-                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
-            }
-
-            NotificacaoWhatsapp notificacaoWhatsapp = notificacaoWhatsappRepository.findByAlunoAndResponsavel(aluno, responsavel);
-
-            if(notificacaoWhatsapp.isReceber()){
-
-
-            }
+        for(BarCodeResult result : reader.readBarCodes()){
+            System.out.println("CONTEÚDO: " + result.getCodeText().replace(
+                    "Recognized by Aspose Barcode Reader evaluation version. Only Code39Standard can be recognized without " +
+                            "restrictions. Please buy license to use Aspose Barcode Reader without watermarks.", "")
+                    .replace("<FNC1>", ""));
+            System.out.println("TIPO DE SIMBOLOGIA: " + result.getCodeType());
         }
 
-        if(professor.isNotificacaoEmail()){
-
-            EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
-                    .builder()
-                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
-                    .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
-                    .build();
-
-            enviarEmailService.enviarProfessor(enviarEmailRequestProfessor, professor);
-        }
-
-        return toResponse(chegadaAtrasada);
+//        validaAlunoService.porMatricula(request.getMatriculaAluno());
+//        validaProfessorService.porId(request.getIdProfessor());
+//        validaIpValidator.validar(requestServlet);
+//
+//        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
+//
+//        Professor professor = professorRepository.findById(request.getIdProfessor()).get();
+//
+//        ChegadaAtrasada chegadaAtrasada = toEntity(request);
+//        chegadaAtrasada.setDataHora(now());
+//        chegadaAtrasada.setAluno(aluno);
+//        chegadaAtrasada.setProfessor(professor);
+//
+//        chegadaAtrasadaRepository.save(chegadaAtrasada);
+//
+//        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+//
+//        EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
+//                .builder()
+//                .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+//                .mensagem(mensagemChegadaAtrasada(chegadaAtrasada))
+//                .build();
+//
+//        for(Responsavel responsavel : responsaveis){
+//
+//            NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
+//
+//            if(notificacaoEmail.isReceber()){
+//
+//                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+//            }
+//
+//            NotificacaoWhatsapp notificacaoWhatsapp = notificacaoWhatsappRepository.findByAlunoAndResponsavel(aluno, responsavel);
+//
+//            if(notificacaoWhatsapp.isReceber()){
+//
+//
+//            }
+//        }
+//
+//        if(professor.isNotificacaoEmail()){
+//
+//            EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
+//                    .builder()
+//                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+//                    .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
+//                    .build();
+//
+//            enviarEmailService.enviarProfessor(enviarEmailRequestProfessor, professor);
+//        }
+//
+//        return toResponse(chegadaAtrasada);
     }
 
     private String mensagemChegadaAtrasada(ChegadaAtrasada chegadaAtrasada) {

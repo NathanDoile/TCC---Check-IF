@@ -1,0 +1,1 @@
+export { useLerCracha } from './ler-cracha/ler-cracha.hook';

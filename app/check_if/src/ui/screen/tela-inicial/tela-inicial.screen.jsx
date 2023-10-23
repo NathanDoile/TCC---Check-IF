@@ -1,6 +1,6 @@
 import './tela-inicial.css';
 import barra from '../../../assets/images/Barra-Home.svg';
-import { Borda, LogoInicial } from '../../component';
+import { Borda, LogoInicial, Botao } from '../../component';
 import { useNavigate } from 'react-router-dom';
 
 export function TelaInicial(){
@@ -28,21 +28,21 @@ export function TelaInicial(){
 
                 <h2 className = 'descricao-botao-tela-inicial'>Registre sua chegada atrasada aqui!</h2>
 
-                <button className = 'botao-tela-inicial' onClick={botaoRegistrarChegada}>Registrar</button>
+                <Botao onClick={botaoRegistrarChegada} cor="verde">Registrar</Botao>
 
                 <div className = "ou-barras-tela-inicial">
 
-                    <img src={barra} className = 'barra-esquerda-tela-inicial'/>
+                    <img src={barra} className = 'barra-esquerda-tela-inicial' alt="barra" />
 
                     <p className = 'ou-central-tela-inicial'>Ou</p>
 
-                    <img src={barra} className = 'barra-direita-tela-inicial'/>
+                    <img src={barra} className = 'barra-direita-tela-inicial' alt="barra" />
 
                 </div>
 
                 <h2 className = 'descricao-botao-tela-inicial'>Se você for usuário, realize seu login aqui!</h2>
 
-                <button className = 'botao-tela-inicial' onClick={botaoLogin}>Login</button>
+                <Botao onClick={botaoLogin} cor="verde">Login</Botao>
 
             </main>
             

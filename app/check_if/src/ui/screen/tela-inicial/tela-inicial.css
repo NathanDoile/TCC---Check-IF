@@ -1,18 +1,3 @@
-@font-face {
-    font-family: Codec Pro-Light;
-    src: url(../../../assets/Font/CodecPro-Light.otf);
-}
-
-@font-face {
-    font-family: Codec Pro-Bold;
-    src: url(../../../assets/Font/CodecPro-Bold.otf);
-}
-
-@font-face {
-    font-family: Codec Pro-Regular;
-    src: url(../../../assets/Font/CodecPro-Regular.otf);
-}
-
 .section-tela-inicial{
     width: 100vw;
     height: 100vh;
@@ -41,18 +26,6 @@
     font-size: 14.5px;
     color:#746666;
     padding-bottom: 8px;
-}
-
-.botao-tela-inicial{
-    font-family: Codec Pro-Bold;
-    font-size: 18.1px;
-    color: #ffffff;
-    background-color: #42BF9C;
-    width: 191.1px;
-    height: 42.8px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
 }
 
 .barra-esquerda-tela-inicial{

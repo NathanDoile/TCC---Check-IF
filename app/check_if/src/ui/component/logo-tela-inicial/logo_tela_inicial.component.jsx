@@ -5,6 +5,6 @@ export function LogoInicial(){
 
     return(
 
-        <img src={logo} className = 'logo-tela-inicial'/>
+        <img src={logo} className = 'logo-tela-inicial' alt="CHECK-IF" />
     )
 }

@@ -1,51 +1,51 @@
-.section-tela-inicial{
-    width: 100vw;
-    height: 100vh;
+.section-tela-inicial {
+  width: 100vw;
+  height: 100vh;
 }
 
-.tela-inicial{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    top: -35px;
+.tela-inicial {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: -35px;
 }
 
-.titulo-tela-inicial{
-    font-family: Codec Pro-Light;
-    font-size: 28.1px;
-    color:#746666;
-    letter-spacing: 1px;
-    padding-bottom: 20px;
+.titulo-tela-inicial {
+  font-family: Codec Pro-Light;
+  font-size: 28.1px;
+  color: #746666;
+  letter-spacing: 1px;
+  padding-bottom: 20px;
 }
 
-.descricao-botao-tela-inicial{
-    font-family: Codec Pro-Light;
-    font-size: 14.5px;
-    color:#746666;
-    padding-bottom: 8px;
+.descricao-botao-tela-inicial {
+  font-family: Codec Pro-Light;
+  font-size: 14.5px;
+  color: #746666;
+  padding-bottom: 8px;
 }
 
-.barra-esquerda-tela-inicial{
-    width: 134.1px;
+.barra-esquerda-tela-inicial {
+  width: 134.1px;
 }
 
-.barra-direita-tela-inicial{
-    width: 134.1px;
+.barra-direita-tela-inicial {
+  width: 134.1px;
 }
 
-.ou-central-tela-inicial{
-    font-family: Codec Pro-Regular;
-    color: #746666;
-    font-size: 15.4px;
+.ou-central-tela-inicial {
+  font-family: Codec Pro-Regular;
+  color: #746666;
+  font-size: 15.4px;
 }
 
-.ou-barras-tela-inicial{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 25px;
-    padding-bottom: 25px;
+.ou-barras-tela-inicial {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }

@@ -1,97 +1,66 @@
-.section-registrar-chegada{
-    width: 100vw;
-    height: 100vh;
+.section-registrar-chegada {
+  width: 100vw;
+  height: 100vh;
 }
 
-.main-registrar-chegada{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.main-registrar-chegada {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.titulo-registrar-chegada{
-    font-family: Codec Pro-Light;
-    font-size: 28.1px;
-    color:#746666;
-    letter-spacing: 1px;
-    padding-bottom: 20px;
+.titulo-registrar-chegada {
+  font-family: Codec Pro-Light;
+  font-size: 28.1px;
+  color: #746666;
+  letter-spacing: 1px;
+  padding-bottom: 20px;
 }
 
-.icone-camera{
-    max-height: 100%;
-    position: absolute;
-    left: 0px;
+.icone-camera {
+  max-height: 100%;
+  position: absolute;
+  left: 0px;
 }
 
-.legenda-botao-camera{
-    position: absolute;
-    left: 30%;
+.legenda-botao-camera {
+  position: absolute;
+  left: 30%;
 }
 
-.container-botao-camera{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+.container-botao-camera {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
-.container-botao-camera > p{
-    margin: 0;
-    color: red;
+.form-registrar-chegada-atrasada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin: 25px;
 }
 
-.form-registrar-chegada-atrasada{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    margin: 25px;
+.form-span-inputs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
 }
 
-.form-span-inputs{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 100px;
-}
-
-.label-input{
-    color: #746666;
-    font-size: 15px;
-    font-family: Codec Pro-Regular;
-    display: flex;
-    flex-direction: column;
-}
-
-.label-input > span{
-    display: flex;
-    flex-direction: row;
-}
-
-.caixa-input{
-    border: 0;
-    background-color: #D9D9D9;
-    border-radius: 25px;
-    color: #746666;
-    font-size: 12px;
-    width: 100px;
-}
-
-.input-obrigatorio{
-    color: red;
-}
-
-.modal-camera{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    gap: 10px;
+.modal-camera {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  gap: 10px;
 }

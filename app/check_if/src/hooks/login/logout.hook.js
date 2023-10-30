@@ -11,8 +11,8 @@ export function useLogoutHook() {
   async function logout() {
     try {
       await logoutApi();
-  //    setUser(null);
-  //    setAdmin(null);
+      //    setUser(null);
+      //    setAdmin(null);
     } catch (error) {
       setError(error.response.data.message);
     }

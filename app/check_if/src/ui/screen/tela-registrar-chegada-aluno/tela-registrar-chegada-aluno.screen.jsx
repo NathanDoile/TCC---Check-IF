@@ -75,7 +75,7 @@ export function TelaRegistrarChegadaAluno() {
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-
+    
     setImgSrc(imageSrc);
   }, [webcamRef]);
 

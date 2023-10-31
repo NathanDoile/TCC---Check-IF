@@ -64,7 +64,7 @@ public class RegistrarChegadaAtrasadaService {
     @Transactional
     public void registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
 
-        BufferedImage img = ImageIO.read(new File("cracha.jpg"));
+        BufferedImage img = ImageIO.read(new File("cracha.jpeg"));
 
         BarCodeReader reader = new BarCodeReader(img);
 

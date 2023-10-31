@@ -10,5 +10,5 @@ import java.io.File;
 public class LerCrachaRequest {
 
     @NotNull
-    private byte fotoCracha;
+    private String fotoCracha;
 }

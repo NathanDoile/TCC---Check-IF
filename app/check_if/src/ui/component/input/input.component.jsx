@@ -24,7 +24,7 @@ export function Input({
         ]);
       }
     }
-  }, [opcoes]);
+  }, [opcoes, values]);
 
   return (
     <>

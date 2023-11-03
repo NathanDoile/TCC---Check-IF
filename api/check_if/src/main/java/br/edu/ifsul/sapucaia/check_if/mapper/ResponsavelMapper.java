@@ -12,6 +12,7 @@ public class ResponsavelMapper {
                 .builder()
                 .nome(responsavel.getNome())
                 .email(responsavel.getEmail())
+                .permissao(responsavel.getPermissoes().get(0).getFuncao().toString())
                 .build();
     }
 

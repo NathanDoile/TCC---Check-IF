@@ -12,6 +12,7 @@ public class AdministradorMapper {
                 .builder()
                 .nome(administrador.getNome())
                 .email(administrador.getEmail())
+                .permissao(administrador.getPermissoes().get(0).getFuncao().toString())
                 .build();
     }
 

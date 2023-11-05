@@ -55,7 +55,7 @@ export function Input({
             <input
               type={type}
               name={name}
-              className="caixa-input"
+              className={`caixa-input`}
               onChange={handleChange}
             />
           </label>

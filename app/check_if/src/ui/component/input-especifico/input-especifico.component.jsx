@@ -13,6 +13,7 @@ export function InputEspecifico({imagem, alt, type, name, placeholder, isRequire
                     className="texto-input"
                     required={isRequired}
                     onChange={handleChange}
+                    autoComplete='off'
                 />
             </div>
         </>

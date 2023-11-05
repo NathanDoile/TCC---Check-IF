@@ -28,7 +28,6 @@ public class ValidaValidadeTokenService {
     @Autowired
     private ResponsavelRepository responsavelRepository;
 
-    @Transactional
     public void validarAdministrador(Administrador administrador) {
 
         long diferenca = Duration.between(administrador.getDataEnvioToken(), now()).getSeconds();
@@ -43,7 +42,6 @@ public class ValidaValidadeTokenService {
         }
     }
 
-    @Transactional
     public void validarResponsavel(Responsavel responsavel) {
 
         long diferenca = Duration.between(responsavel.getDataEnvioToken(), now()).getSeconds();

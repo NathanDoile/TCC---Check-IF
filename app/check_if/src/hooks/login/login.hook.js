@@ -1,5 +1,5 @@
 import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logarApi } from "../../api";
 import useGlobalUsuario from "../../context/usuario/usuario.context";
 import { toast } from "react-toastify";
@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export function useLogin() {
   const [, setUsuario] = useGlobalUsuario();
   const [error, setError] = useState(false);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function fazerLogin(email, senha) {
     try {
@@ -15,7 +15,7 @@ export function useLogin() {
 
       setUsuario(response);
 
-      //navigate("/home");
+      navigate("/home");
     } catch (error) {
 
       setError(true);

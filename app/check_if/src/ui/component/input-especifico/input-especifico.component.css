@@ -1,0 +1,31 @@
+.input-login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    color: #746666;
+    width: 360px;
+    height: 56px;
+    border-radius: 24px;
+}
+
+.imagem-input {
+    max-width: 54px;
+    max-height: 54px;
+}
+
+.texto-input {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    width: 85%;
+    font-size: 20px;
+    font-family: Codec Pro-Regular;
+    color: #746666;
+}
+
+.texto-input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}

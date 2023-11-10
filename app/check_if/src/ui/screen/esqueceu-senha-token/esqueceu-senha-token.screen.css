@@ -1,0 +1,39 @@
+.section-tela-esqueceu-senha-token{
+    width: 100vw;
+    height: 100vh;
+}
+
+.tela-esqueceu-senha-token{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.legenda-tela-esqueceu-senha-token{
+    font-family: Codec Pro-Light;
+    font-size: 17.1px;
+    color: #746666;
+    letter-spacing: 1px;
+}
+
+.legenda-reenviar-codigo{
+    font-family: Codec Pro-Light;
+    font-size: 15.1px;
+    color: #e4ae4f;
+    letter-spacing: 1px;
+    padding-bottom: 50px;
+}
+
+.legenda-reenviar-codigo:hover{
+    cursor: pointer;
+    color: #746666;
+}
+
+.tela-esqueceu-senha-token > span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

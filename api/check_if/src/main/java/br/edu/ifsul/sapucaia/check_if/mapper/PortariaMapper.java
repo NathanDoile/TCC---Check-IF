@@ -11,6 +11,7 @@ public class PortariaMapper {
         return UsuarioResponse
                 .builder()
                 .email(portaria.getEmail())
+                .permissao(portaria.getPermissoes().get(0).getFuncao().toString())
                 .build();
     }
 }

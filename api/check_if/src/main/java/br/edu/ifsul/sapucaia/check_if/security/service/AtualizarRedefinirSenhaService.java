@@ -13,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import static java.time.LocalDateTime.now;
+import static java.util.Objects.isNull;
 import static net.bytebuddy.utility.RandomString.make;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 public class AtualizarRedefinirSenhaService {
@@ -69,7 +72,6 @@ public class AtualizarRedefinirSenhaService {
                 MENSAGEM_PADRAO_ESQUECEU_SUA_SENHA_PARA_EMAIL, conteudo);
     }
 
-    @Transactional
     public void atualizaSenha(AtualizarMinhaSenhaRequest request) {
 
         String token = request.getToken();
@@ -93,6 +95,10 @@ public class AtualizarRedefinirSenhaService {
         }else{
 
             Responsavel responsavel = responsavelRepository.findByEmail(email);
+
+            if(isNull(responsavel)){
+                throw new ResponseStatusException(NOT_FOUND, "E-mail não encontradono nosso sistema.");
+            }
 
             validarTentativasService.validarResponsavel(responsavel);
 

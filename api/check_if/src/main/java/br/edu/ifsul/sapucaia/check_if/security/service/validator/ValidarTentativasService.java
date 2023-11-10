@@ -23,7 +23,6 @@ public class ValidarTentativasService {
     @Autowired
     private ResponsavelRepository responsavelRepository;
 
-    @Transactional
     public void validarAdministrador(Administrador administrador) {
 
         if(administrador.getTentativasResetarSenha() >= 3){
@@ -36,7 +35,6 @@ public class ValidarTentativasService {
         }
     }
 
-    @Transactional
     public void validarResponsavel(Responsavel responsavel) {
 
         if(responsavel.getTentativasResetarSenha() >= 3){

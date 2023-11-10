@@ -22,7 +22,6 @@ public class ValidarTokenService {
     @Autowired
     private ResponsavelRepository responsavelRepository;
 
-    @Transactional
     public void validarAdministrador(Administrador administrador, String token) {
 
         if(!administrador.getTokenResetarSenha().equals(token)) {
@@ -35,13 +34,12 @@ public class ValidarTokenService {
         }
     }
 
-    @Transactional
     public void validarResponsavel(Responsavel responsavel, String token) {
 
         if(!responsavel.getTokenResetarSenha().equals(token)) {
 
             responsavel.setTentativasResetarSenha(responsavel.getTentativasResetarSenha() + 1);
-
+            System.out.println(responsavel.getTentativasResetarSenha());
             responsavelRepository.save(responsavel);
 
             throw new ResponseStatusException(BAD_REQUEST, MENSAGEM_PADRAO_TOKEN_INVALIDO);

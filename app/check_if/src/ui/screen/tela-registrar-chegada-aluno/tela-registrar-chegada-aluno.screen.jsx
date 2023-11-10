@@ -83,7 +83,6 @@ export function TelaRegistrarChegadaAluno() {
     try {
       //const response = await lerCracha(atob(imgSrc.substring(23)));
       const response = await lerCracha(imgSrc.substring(23));
-      console.log(response);
 
       setCapturarCodigoBarras(false);
 
@@ -92,7 +91,6 @@ export function TelaRegistrarChegadaAluno() {
         matricula: response.matricula,
       }));
     } catch (error) {
-      console.log(error);
       setImgSrc(null);
     }
   }

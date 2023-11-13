@@ -31,14 +31,14 @@ public class LerCrachaService {
             fos.close();
         }
 
-        BufferedImage img = read(new File("cracha.jpeg"));
+        BufferedImage img = read(new File("barcode (1).png"));
 
-        BarCodeReader reader = new BarCodeReader(img, CODE_128);
+        BarCodeReader reader = new BarCodeReader(img);
 
         String matricula = null;
 
         for(BarCodeResult result : reader.readBarCodes()){
-            System.out.println("C" + result.getCodeText());
+
             matricula = result.getCodeText().replace(
                             "Recognized by Aspose Barcode Reader evaluation version. Only Code39Standard can be recognized without " +
                                     "restrictions. Please buy license to use Aspose Barcode Reader without watermarks.", "")
@@ -49,7 +49,7 @@ public class LerCrachaService {
             throw new ResponseStatusException(BAD_REQUEST, "Nenhum código de barras encontrado!");
         }
         else{
-
+            System.out.println(matricula);
             return CrachaResponse
                     .builder()
                     .matricula(matricula)

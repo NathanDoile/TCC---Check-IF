@@ -8,7 +8,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor @NoArgsConstructor
 @Getter
-public class CrachaResponse {
+public class ProfessorResponse {
 
-    private String matricula;
+    private Long id;
+
+    private String nome;
+
+    private String siape;
+
+    private String email;
 }

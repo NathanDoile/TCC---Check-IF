@@ -16,9 +16,9 @@ public class ChegadaAtrasadaResponse {
 
     private Long id;
 
-    private LocalDate data;
+    private String data;
 
-    private LocalTime hora;
+    private String hora;
 
     private String nome;
 
@@ -29,4 +29,6 @@ public class ChegadaAtrasadaResponse {
     private String disciplina;
 
     private String motivo;
+
+    private String turma;
 }

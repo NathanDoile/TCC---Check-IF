@@ -18,7 +18,7 @@ public class ValidaProfessorService {
 
         if(!professorRepository.existsById(idProfessor)){
 
-            throw new ResponseStatusException(NOT_FOUND, "Professor não exncontrado.");
+            throw new ResponseStatusException(NOT_FOUND, "Professor não encontrado.");
         }
     }
 }

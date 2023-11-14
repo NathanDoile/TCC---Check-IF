@@ -62,72 +62,60 @@ public class RegistrarChegadaAtrasadaService {
     private ValidaIpValidator validaIpValidator;
 
     @Transactional
-    public void registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
+    public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
 
-        BufferedImage img = ImageIO.read(new File("cracha.jpeg"));
+        validaAlunoService.porMatricula(request.getMatriculaAluno());
+        validaProfessorService.porId(request.getIdProfessor());
+        validaIpValidator.validar(requestServlet);
 
-        BarCodeReader reader = new BarCodeReader(img);
+        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
 
-        for(BarCodeResult result : reader.readBarCodes()){
-            System.out.println("CONTEÚDO: " + result.getCodeText().replace(
-                    "Recognized by Aspose Barcode Reader evaluation version. Only Code39Standard can be recognized without " +
-                            "restrictions. Please buy license to use Aspose Barcode Reader without watermarks.", "")
-                    .replace("<FNC1>", ""));
-            System.out.println("TIPO DE SIMBOLOGIA: " + result.getCodeType());
+        Professor professor = professorRepository.findById(request.getIdProfessor()).get();
+
+        ChegadaAtrasada chegadaAtrasada = toEntity(request);
+        chegadaAtrasada.setDataHora(now());
+        chegadaAtrasada.setAluno(aluno);
+        chegadaAtrasada.setProfessor(professor);
+
+        chegadaAtrasadaRepository.save(chegadaAtrasada);
+
+        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+
+        EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
+                .builder()
+                .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                .mensagem(mensagemChegadaAtrasada(chegadaAtrasada))
+                .build();
+
+        for(Responsavel responsavel : responsaveis){
+
+            NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
+
+            if(notificacaoEmail.isReceber()){
+
+                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
+            }
+
+            NotificacaoWhatsapp notificacaoWhatsapp = notificacaoWhatsappRepository.findByAlunoAndResponsavel(aluno, responsavel);
+
+            if(notificacaoWhatsapp.isReceber()){
+
+
+            }
         }
 
-//        validaAlunoService.porMatricula(request.getMatriculaAluno());
-//        validaProfessorService.porId(request.getIdProfessor());
-//        validaIpValidator.validar(requestServlet);
-//
-//        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
-//
-//        Professor professor = professorRepository.findById(request.getIdProfessor()).get();
-//
-//        ChegadaAtrasada chegadaAtrasada = toEntity(request);
-//        chegadaAtrasada.setDataHora(now());
-//        chegadaAtrasada.setAluno(aluno);
-//        chegadaAtrasada.setProfessor(professor);
-//
-//        chegadaAtrasadaRepository.save(chegadaAtrasada);
-//
-//        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
-//
-//        EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
-//                .builder()
-//                .titulo("Chegada Atrasada do aluno " + aluno.getNome())
-//                .mensagem(mensagemChegadaAtrasada(chegadaAtrasada))
-//                .build();
-//
-//        for(Responsavel responsavel : responsaveis){
-//
-//            NotificacaoEmail notificacaoEmail = notificacaoEmailRepository.findByAlunoAndResponsavel(aluno, responsavel);
-//
-//            if(notificacaoEmail.isReceber()){
-//
-//                enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
-//            }
-//
-//            NotificacaoWhatsapp notificacaoWhatsapp = notificacaoWhatsappRepository.findByAlunoAndResponsavel(aluno, responsavel);
-//
-//            if(notificacaoWhatsapp.isReceber()){
-//
-//
-//            }
-//        }
-//
-//        if(professor.isNotificacaoEmail()){
-//
-//            EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
-//                    .builder()
-//                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
-//                    .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
-//                    .build();
-//
-//            enviarEmailService.enviarProfessor(enviarEmailRequestProfessor, professor);
-//        }
-//
-//        return toResponse(chegadaAtrasada);
+        if(professor.isNotificacaoEmail()){
+
+            EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
+                    .builder()
+                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                    .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
+                    .build();
+
+            enviarEmailService.enviarProfessor(enviarEmailRequestProfessor, professor);
+        }
+
+        return toResponse(chegadaAtrasada);
     }
 
     private String mensagemChegadaAtrasada(ChegadaAtrasada chegadaAtrasada) {

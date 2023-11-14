@@ -50,7 +50,7 @@ public class ChegadaAtrasadaController {
 
     @PostMapping("/registrar/cracha/publico")
     @ResponseStatus(CREATED)
-    public void registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
-        registrarChegadaAtrasadaService.registrar(request, requestServlet);
+    public ChegadaAtrasadaResponse registrar(@Valid @RequestBody RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
+        return registrarChegadaAtrasadaService.registrar(request, requestServlet);
     }
 }

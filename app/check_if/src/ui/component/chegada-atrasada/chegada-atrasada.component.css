@@ -1,0 +1,48 @@
+.div-chegada-atrasada{
+    width: 96vw;
+    height: 7vh;
+    border-radius: 25px;
+    background-color: #FAF1DF;
+    color: #746666;
+    font-size: 16,1px;
+    font-family: Codec Pro-Regular;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.chegada-atrasada-nome{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chegada-atrasada-turma{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chegada-atrasada-matricula{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chegada-atrasada-data{
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chegada-atrasada-hora{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

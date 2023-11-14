@@ -10,6 +10,7 @@ export function Input({
   opcoes,
   values,
   type,
+  grande
 }) {
   const [options, setOptions] = useState([]);
 
@@ -55,7 +56,7 @@ export function Input({
             <input
               type={type}
               name={name}
-              className={`caixa-input`}
+              className={grande ? `caixa-input caixa-input-grande`  : `caixa-input`}
               onChange={handleChange}
             />
           </label>

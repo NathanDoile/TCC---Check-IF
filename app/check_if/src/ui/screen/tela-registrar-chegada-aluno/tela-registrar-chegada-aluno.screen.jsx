@@ -9,8 +9,8 @@ import {
 import cameraIcone from "../../../assets/images/Camera-branco.svg";
 import { toast } from "react-toastify";
 import Webcam from "react-webcam";
-import { useRef, useCallback, useState } from "react";
-import { useLerCracha } from "../../../hooks";
+import { useRef, useCallback, useState, useEffect } from "react";
+import { useLerCracha, useObterProfessores } from "../../../hooks";
 
 export function TelaRegistrarChegadaAluno() {
   const { lerCracha } = useLerCracha();
@@ -30,8 +30,13 @@ export function TelaRegistrarChegadaAluno() {
 
   const [imgSrc, setImgSrc] = useState(null);
 
-  const [professores] = useState(["Selecione", "Roberto", "Lourenço"]);
-  const [idsProfessores] = useState([0, 1, 2]);
+  const { obterProfessores } = useObterProfessores();
+
+  const [professores, setProfessores] = useState([]);
+
+  const [nomesProfessores, setNomesProfessores] = useState([]);
+
+  const [idsProfessores, setIdsProfessores] = useState([]);
 
   const motivos = [
     "Selecione",
@@ -75,14 +80,13 @@ export function TelaRegistrarChegadaAluno() {
 
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    
+
     setImgSrc(imageSrc);
   }, [webcamRef]);
 
   async function concluirLerCracha() {
     try {
       const response = await lerCracha(imgSrc.substring(23));
-      console.log(response);
 
       setCapturarCodigoBarras(false);
 
@@ -91,10 +95,39 @@ export function TelaRegistrarChegadaAluno() {
         matricula: response.matricula,
       }));
     } catch (error) {
-      console.log(error);
       setImgSrc(null);
     }
   }
+
+  useEffect(() => {
+
+    async function obter() {
+
+      setProfessores([]);
+  
+      const response = await obterProfessores();
+  
+      response.forEach(professor => {
+        setProfessores((oldProfessores) => ([...oldProfessores, professor]));
+      });
+    }
+    
+    obter()
+  
+  }, []);
+
+  useEffect(() => {
+
+    setNomesProfessores([]);
+    setIdsProfessores([]);
+
+    professores.forEach(professor => {
+      setNomesProfessores((oldNomesProfessores) => ([...oldNomesProfessores, professor.nome]));
+      setIdsProfessores((oldIdsProfessores) => ([...oldIdsProfessores, professor.id]));
+    })
+  }, [professores])
+
+  console.log(professores)
 
   return (
     <section className="section-registrar-chegada">
@@ -134,7 +167,7 @@ export function TelaRegistrarChegadaAluno() {
                   isObrigatorio={true}
                   name={"professor"}
                   handleChange={handleChange}
-                  opcoes={professores}
+                  opcoes={nomesProfessores}
                   values={idsProfessores}
                 />
 

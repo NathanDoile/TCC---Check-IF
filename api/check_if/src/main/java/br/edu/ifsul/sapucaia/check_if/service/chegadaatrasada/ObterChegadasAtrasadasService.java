@@ -33,7 +33,7 @@ public class ObterChegadasAtrasadasService {
         LocalDateTime inicioData = LocalDateTime.of(date, LocalTime.MIN);
         LocalDateTime fimData = LocalDateTime.of(date, LocalTime.MAX);
 
-        Page<ChegadaAtrasada> chegadasAtrasadas = chegadaAtrasadaRepository.findByDataHoraBetween(inicioData,
+        Page<ChegadaAtrasada> chegadasAtrasadas = chegadaAtrasadaRepository.findByDataHoraBetweenOrderByDataHoraDesc(inicioData,
                 fimData, pageable);
 
         return chegadasAtrasadas.map(ChegadasAtrasadasMapper::toResponse);

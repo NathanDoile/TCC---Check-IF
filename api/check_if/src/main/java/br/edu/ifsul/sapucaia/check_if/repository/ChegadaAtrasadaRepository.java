@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ChegadaAtrasadaRepository extends JpaRepository<ChegadaAtrasada, Long> {
-    Page<ChegadaAtrasada> findByDataHoraBetween(LocalDateTime inicioData, LocalDateTime fimData, Pageable pageable);
+    Page<ChegadaAtrasada> findByDataHoraBetweenOrderByDataHoraDesc(LocalDateTime inicioData, LocalDateTime fimData, Pageable pageable);
 
     List<ChegadaAtrasada> findAllByDataHoraBetweenAndAlunoOrderByDataHora(LocalDateTime inicioPeriodo, LocalDateTime fimPeriodo, Aluno aluno);
 }

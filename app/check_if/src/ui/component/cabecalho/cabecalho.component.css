@@ -1,7 +1,6 @@
 .cabecalho{
     width: 100vw;
     height: 12.5vh;
-    position: fixed;
     background-color: #34AB89;
     display: flex;
     flex-direction: row;

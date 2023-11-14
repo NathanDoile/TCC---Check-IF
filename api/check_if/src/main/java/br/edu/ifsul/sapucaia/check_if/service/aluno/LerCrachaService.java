@@ -24,14 +24,15 @@ public class LerCrachaService {
 
         byte[] imageBytes = parseBase64Binary(request.getFotoCracha());
 
-        FileOutputStream fos = new FileOutputStream("cracha.jpeg");
+        FileOutputStream fos = new FileOutputStream("cracha.jpg");
         try{
             fos.write(imageBytes);
         }finally {
             fos.close();
         }
 
-        BufferedImage img = read(new File("barcode (1).png"));
+        BufferedImage img = read(new File("Sample 11-14-2023 09.29_2(2).jpg"));
+        //BufferedImage img = read(new File("cracha.jpg"));
 
         BarCodeReader reader = new BarCodeReader(img);
 

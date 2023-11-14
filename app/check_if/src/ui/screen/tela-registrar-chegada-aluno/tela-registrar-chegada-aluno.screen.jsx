@@ -44,7 +44,6 @@ export function TelaRegistrarChegadaAluno() {
     "Problema no trânsito",
     "Outro",
   ];
-  const valuesMotivos = [...motivos];
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -107,9 +106,7 @@ export function TelaRegistrarChegadaAluno() {
   
       const response = await obterProfessores();
   
-      response.forEach(professor => {
-        setProfessores((oldProfessores) => ([...oldProfessores, professor]));
-      });
+      setProfessores(response);
     }
     
     obter()
@@ -126,8 +123,6 @@ export function TelaRegistrarChegadaAluno() {
       setIdsProfessores((oldIdsProfessores) => ([...oldIdsProfessores, professor.id]));
     })
   }, [professores])
-
-  console.log(professores)
 
   return (
     <section className="section-registrar-chegada">
@@ -187,7 +182,7 @@ export function TelaRegistrarChegadaAluno() {
                   name={"motivo"}
                   handleChange={handleChange}
                   opcoes={motivos}
-                  values={valuesMotivos}
+                  values={motivos}
                 />
 
                 {outroMotivo ? (

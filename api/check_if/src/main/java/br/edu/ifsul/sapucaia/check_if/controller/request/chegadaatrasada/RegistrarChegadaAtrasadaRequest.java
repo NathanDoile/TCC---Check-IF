@@ -14,7 +14,6 @@ public class RegistrarChegadaAtrasadaRequest {
     @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String motivo;
 
-    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private String disciplina;
 
     @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)

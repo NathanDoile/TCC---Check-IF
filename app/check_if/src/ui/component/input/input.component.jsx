@@ -39,7 +39,8 @@ export function Input({
               ) : null}
             </span>
 
-            <select name={name} className="caixa-input" onChange={handleChange}>
+            <select name={name} className="caixa-input" onChange={handleChange} required={isObrigatorio}>
+              <option value={0}>Selecione</option>
               {options}
             </select>
           </label>
@@ -58,6 +59,7 @@ export function Input({
               name={name}
               className={grande ? `caixa-input caixa-input-grande`  : `caixa-input`}
               onChange={handleChange}
+              required={isObrigatorio}
             />
           </label>
         </>

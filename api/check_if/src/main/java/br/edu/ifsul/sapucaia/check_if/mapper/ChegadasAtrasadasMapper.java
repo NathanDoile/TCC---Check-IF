@@ -4,6 +4,8 @@ import br.edu.ifsul.sapucaia.check_if.controller.request.chegadaatrasada.Registr
 import br.edu.ifsul.sapucaia.check_if.controller.response.ChegadaAtrasadaResponse;
 import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;
 
+import static java.time.format.DateTimeFormatter.ofPattern;
+
 public class ChegadasAtrasadasMapper {
 
     public static ChegadaAtrasadaResponse toResponse(ChegadaAtrasada chegadaAtrasada) {
@@ -11,13 +13,14 @@ public class ChegadasAtrasadasMapper {
         return ChegadaAtrasadaResponse
                 .builder()
                 .id(chegadaAtrasada.getId())
-                .data(chegadaAtrasada.getDataHora().toLocalDate())
-                .hora(chegadaAtrasada.getDataHora().toLocalTime())
+                .data(chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")).toString())
+                .hora(chegadaAtrasada.getDataHora().toLocalTime().toString())
                 .nome(chegadaAtrasada.getAluno().getNome())
                 .matricula(chegadaAtrasada.getAluno().getMatricula())
                 .professor(chegadaAtrasada.getProfessor().getNome())
                 .disciplina(chegadaAtrasada.getDisciplina())
                 .motivo(chegadaAtrasada.getMotivo())
+                .turma(chegadaAtrasada.getAluno().getTurma())
                 .build();
     }
 

@@ -96,12 +96,13 @@
 
 .barra-lateral{
     position: fixed;
+    z-index: 5;
     bottom: 0;
     left: 0;
     height: 87.5vh;
     background-color: #42BF9C;
     width: 25vw;
-    transition: left 1s;
+    transition: left 0.75s;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

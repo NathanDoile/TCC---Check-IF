@@ -5,7 +5,8 @@ import {
   TelaEsqueceuSenha,
   TelaHome,
   TelaEsqueceuSenhaToken,
-  TelaEsqueceuSenhaAlterar
+  TelaEsqueceuSenhaAlterar,
+  TelaRegistrarChegadaAdministrador
 } from "../ui/screen/";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -38,5 +39,9 @@ export const router = createBrowserRouter([
   {
     path: "/esqueceu-senha/alterar",
     element: <TelaEsqueceuSenhaAlterar />
+  },
+  {
+    path: "/administrador/registrar-chegada",
+    element: <TelaRegistrarChegadaAdministrador />
   }
 ]);

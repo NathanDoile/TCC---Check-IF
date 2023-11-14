@@ -81,7 +81,6 @@ export function TelaRegistrarChegadaAluno() {
 
   async function concluirLerCracha() {
     try {
-      //const response = await lerCracha(atob(imgSrc.substring(23)));
       const response = await lerCracha(imgSrc.substring(23));
       console.log(response);
 

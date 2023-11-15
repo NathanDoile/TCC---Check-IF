@@ -17,3 +17,5 @@ export { gerarRelatorioAlunoApi } from './gerar-relatorio-aluno/gerar-relatorio-
 export { alterarSenhaPortariaApi } from './alterar-senha-portaria/alterar-senha-portaria.api';
 export { alterarNotificacaoProfessorApi } from './alterar-notificacao-professor/alterar-notificacao-professor.api';
 export { buscarTodosProfessorApi } from './buscar-todos-professor/buscar-todos-professor.api';
+export { cadastrarResponsavelApi } from "./cadastrar-responsavel/cadastrar-responsavel.api";
+

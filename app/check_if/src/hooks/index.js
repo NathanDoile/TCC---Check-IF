@@ -7,5 +7,6 @@ export { useObterChegadasAtrasadas } from "./chegadas-atrasadas/obter-chegadas-a
 export { useObterProfessores } from "./obter-professores/obter-professores.hook";
 export { useRegistrarChegadaManual } from "./registrar-chegada/registrar-chegada-manual.hook";
 export { useRegistrarChegadaAtrasadaCracha } from "./registrar-chegada/registrar-chegada-cracha.hook";
-export { useRegistrarSaidaAntecipada } from './registrar-saida/registrar-saida-antecipada.hook';
-export { useCadastrarAdministrador } from './cadastrar-administrador/cadastrar-administrador.hook';
+export { useRegistrarSaidaAntecipada } from "./registrar-saida/registrar-saida-antecipada.hook";
+export { useCadastrarAdministrador } from "./cadastrar-administrador/cadastrar-administrador.hook";
+export { useCadastrarResponsavel } from "./cadastrar-responsavel/cadastrar-responsavel.hook";

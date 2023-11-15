@@ -8,7 +8,9 @@ import {
   TelaEsqueceuSenhaAlterar,
   TelaRegistrarChegadaAdministrador,
   TelaRegistrarSaidaAntecipada,
-  TelaCadastrarAdministrador
+  TelaCadastrarAdministrador,
+  TelaCadastrarResponsavel,
+  TelaCadastrarResponsavelLote,
 } from "../ui/screen/";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -52,6 +54,14 @@ export const router = createBrowserRouter([
   },
   {
     path: "/cadastrar-administrador",
-    element: <TelaCadastrarAdministrador />
-  }
+    element: <TelaCadastrarAdministrador />,
+  },
+  {
+    path: "/cadastrar-responsavel",
+    element: <TelaCadastrarResponsavel />,
+  },
+  {
+    path: "/cadastrar-responsavel/lote",
+    element: <TelaCadastrarResponsavelLote />,
+  },
 ]);

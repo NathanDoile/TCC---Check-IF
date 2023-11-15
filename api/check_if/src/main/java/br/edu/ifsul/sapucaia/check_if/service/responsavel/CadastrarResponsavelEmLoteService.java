@@ -116,7 +116,7 @@ public class CadastrarResponsavelEmLoteService {
                                 .nome(nomeResponsavel)
                                 .email(email)
                                 .celular(celular)
-                                .idAlunos(of(aluno.getId()))
+                                .matricula(aluno.getMatricula())
                                 .build();
 
                         cadastrarResponsavelService.cadastrar(cadastrarResponsavelRequest);
@@ -154,7 +154,7 @@ public class CadastrarResponsavelEmLoteService {
                                 .nome(nomeResponsavel)
                                 .email(email)
                                 .celular(celular)
-                                .idAlunos(of(aluno.getId()))
+                                .matricula(aluno.getMatricula())
                                 .build();
 
                         cadastrarResponsavelService.cadastrar(cadastrarResponsavelRequest);

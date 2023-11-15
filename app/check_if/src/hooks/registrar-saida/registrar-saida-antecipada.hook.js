@@ -2,23 +2,30 @@ import { registrarSaidaAntecipadaApi } from "../../api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export function useRegistrarSaidaAntecipada(){
+export function useRegistrarSaidaAntecipada() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  async function registrarSaidaAntecipada(
+    nomeResponsavel,
+    grauParentesco,
+    motivo,
+    matriculaAluno
+  ) {
+    try {
+      await registrarSaidaAntecipadaApi(
+        nomeResponsavel,
+        grauParentesco,
+        motivo,
+        matriculaAluno
+      );
 
-    async function registrarSaidaAntecipada(nomeResponsavel, grauParentesco, motivo, matriculaAluno){
+      toast.success("Saída antecipada registrada com sucesso!");
 
-        try{
-            await registrarSaidaAntecipadaApi(nomeResponsavel, grauParentesco, motivo, matriculaAluno);
-
-            toast.success("Saída antecipada registrada com sucesso!")
-
-            navigate("/home");
-        }
-        catch(error){
-            toast.error(error);
-        }
+      navigate("/home");
+    } catch (error) {
+      toast.error(error);
     }
+  }
 
-    return {registrarSaidaAntecipada}
+  return { registrarSaidaAntecipada };
 }

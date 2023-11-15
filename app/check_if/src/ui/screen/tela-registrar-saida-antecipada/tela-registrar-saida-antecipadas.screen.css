@@ -1,24 +1,24 @@
-.main-registrar-saida-antecipada{
-    width: 100vw;
-    height: 87.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center ;
+.main-registrar-saida-antecipada {
+  width: 100vw;
+  height: 87.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-registrar-saida-antecipada{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+.form-registrar-saida-antecipada {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
-.inputs-registrar-saida-antecipada{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
+.inputs-registrar-saida-antecipada {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
 }

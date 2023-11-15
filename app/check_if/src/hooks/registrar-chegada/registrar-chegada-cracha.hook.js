@@ -1,31 +1,31 @@
-import { registrarChegadaManualApi } from "../../api";
+import { registrarChegadaAtrasadaCrachaApi } from "../../api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-export function useRegistrarChegadaManual() {
+export function useRegistrarChegadaAtrasadaCracha() {
   const navigate = useNavigate();
 
-  async function registrarChegadaManual(
+  async function registrarChegadaAtrasadaCracha(
     motivo,
     disciplina,
     matriculaAluno,
     idProfessor
   ) {
     try {
-      await registrarChegadaManualApi(
+      await registrarChegadaAtrasadaCrachaApi(
         motivo,
         disciplina,
         matriculaAluno,
         idProfessor
       );
 
-      toast.success("Chegada atrasada registrada com sucesso!");
+      toast.success("Registro realizado com sucesso!");
 
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       toast.error(error);
     }
   }
 
-  return { registrarChegadaManual };
+  return { registrarChegadaAtrasadaCracha };
 }

@@ -4,7 +4,7 @@ import {
   LogoInicial,
   TituloTelasIniciais,
   Botao,
-  InputEspecifico
+  InputEspecifico,
 } from "../../component";
 import { useState } from "react";
 import usuario from "../../../assets/images/User-marrom.svg";
@@ -52,19 +52,30 @@ export function TelaLogin() {
         <TituloTelasIniciais>Faça seu login</TituloTelasIniciais>
 
         <form className="form-login" onSubmit={onSubmit}>
-
-          <InputEspecifico imagem={usuario} alt="usuário" type="email" name="email" placeholder="Usuário"
-            isRequired={true} handleChange={handleChange} />
+          <InputEspecifico
+            imagem={usuario}
+            alt="usuário"
+            type="email"
+            name="email"
+            placeholder="Usuário"
+            isRequired={true}
+            handleChange={handleChange}
+          />
 
           <span className="input-senha">
-            
-            <InputEspecifico imagem={cadeado} alt="cadeado" type="password" name="senha" placeholder="Senha"
-              isRequired={true} handleChange={handleChange} />
+            <InputEspecifico
+              imagem={cadeado}
+              alt="cadeado"
+              type="password"
+              name="senha"
+              placeholder="Senha"
+              isRequired={true}
+              handleChange={handleChange}
+            />
 
             <p className="esqueceu-senha" onClick={esqueceuSenha}>
               Esqueceu sua senha?
             </p>
-            
           </span>
 
           <Botao cor="amarelo">Logar</Botao>

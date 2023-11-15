@@ -1,49 +1,49 @@
-.section-tela-esqueceu-senha-alterar{
-    width: 100vw;
-    height: 100vh;
+.section-tela-esqueceu-senha-alterar {
+  width: 100vw;
+  height: 100vh;
 }
 
-.tela-esqueceu-senha-alterar{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.tela-esqueceu-senha-alterar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.input-senha-alterar{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #d9d9d9;
-    color: #746666;
-    width: 360px;
-    height: 42px;
-    border-radius: 24px;
+.input-senha-alterar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #d9d9d9;
+  color: #746666;
+  width: 360px;
+  height: 42px;
+  border-radius: 24px;
 }
 
 .imagem-input {
-    max-width: 54px;
-    max-height: 40px;
+  max-width: 54px;
+  max-height: 40px;
 }
 
 .texto-input {
-    background-color: transparent;
-    border: 0;
-    height: 100%;
-    width: 85%;
-    font-size: 20px;
-    font-family: Codec Pro-Regular;
-    color: #746666;
+  background-color: transparent;
+  border: 0;
+  height: 100%;
+  width: 85%;
+  font-size: 20px;
+  font-family: Codec Pro-Regular;
+  color: #746666;
 }
 
-.form-alterar-senha{
-    color: #746666;
-    font-size: 22.1px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.form-alterar-senha {
+  color: #746666;
+  font-size: 22.1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }

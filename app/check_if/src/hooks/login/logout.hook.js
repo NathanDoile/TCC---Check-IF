@@ -10,7 +10,7 @@ export function useLogoutHook() {
   async function logout() {
     try {
       await logoutApi();
-      
+
       localStorage.clear();
 
       navigate("/");

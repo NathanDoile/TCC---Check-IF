@@ -18,7 +18,7 @@ INSERT INTO aluno VALUES
 (null, 'Emily Aparecida da Silveira Eberhardt', '078630INFQ', '4I', '2004-12-30', true),
 (null, 'Bianca Ramos Alves', '078510INFQ', '4I', '2005-03-07', true);
 
-INSERT INTO professor VALUES (null, 'Fábio Lemes', '1A2B3C', 'fabio@ifsul.edu.br', 51999999999, true, true, true);
+INSERT INTO professor VALUES (null, 'Fábio Lemes', '1A2B3C', 'emilyeberhardt.ssnfq@academico.ifsul.edu.br', 51999999999, true, true, true);
 
 INSERT INTO chegada_atrasada VALUES 
 (null, '2023-09-05 11:02:04', 'Não queria vir para a escola', 'Empreendedorismo', 1, 1, null), 

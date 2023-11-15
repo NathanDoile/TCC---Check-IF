@@ -10,7 +10,7 @@ export function Input({
   opcoes,
   values,
   type,
-  grande
+  grande,
 }) {
   const [options, setOptions] = useState([]);
 
@@ -39,7 +39,12 @@ export function Input({
               ) : null}
             </span>
 
-            <select name={name} className="caixa-input" onChange={handleChange} required={isObrigatorio}>
+            <select
+              name={name}
+              className="caixa-input"
+              onChange={handleChange}
+              required={isObrigatorio}
+            >
               <option value={0}>Selecione</option>
               {options}
             </select>
@@ -57,7 +62,9 @@ export function Input({
             <input
               type={type}
               name={name}
-              className={grande ? `caixa-input caixa-input-grande`  : `caixa-input`}
+              className={
+                grande ? `caixa-input caixa-input-grande` : `caixa-input`
+              }
               onChange={handleChange}
               required={isObrigatorio}
             />

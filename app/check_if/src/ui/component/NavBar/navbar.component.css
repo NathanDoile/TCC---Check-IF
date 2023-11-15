@@ -1,21 +1,21 @@
-.barra-navegacoes{
-    width: 100vw;
-    height: 5vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: #746666;
-    font-size: 20px;
-    position: absolute;
-    bottom: 0;
+.barra-navegacoes {
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #746666;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
 }
 
-.botao-navegar:hover{
-    cursor: pointer;
+.botao-navegar:hover {
+  cursor: pointer;
 }
 
-.pagina-atual{
-    color: #E4AE4F;
+.pagina-atual {
+  color: #e4ae4f;
 }

@@ -1,13 +1,13 @@
 import { axiosInstance } from "../base/axiosInstance";
 
-export async function registrarChegadaManualApi(
+export async function registrarChegadaAtrasadaCrachaApi(
   motivo,
   disciplina,
   matriculaAluno,
   idProfessor
 ) {
   try {
-    await axiosInstance.post("/chegadas-atrasadas/registrar/manual", {
+    await axiosInstance.post("/chegadas-atrasadas/registrar/cracha/publico", {
       motivo,
       disciplina,
       matriculaAluno,

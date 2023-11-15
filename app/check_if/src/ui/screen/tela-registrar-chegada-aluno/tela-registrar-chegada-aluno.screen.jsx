@@ -10,10 +10,17 @@ import cameraIcone from "../../../assets/images/Camera-branco.svg";
 import { toast } from "react-toastify";
 import Webcam from "react-webcam";
 import { useRef, useCallback, useState, useEffect } from "react";
-import { useLerCracha, useObterProfessores } from "../../../hooks";
+import {
+  useLerCracha,
+  useObterProfessores,
+  useRegistrarChegadaAtrasadaCracha,
+} from "../../../hooks";
 
 export function TelaRegistrarChegadaAluno() {
   const { lerCracha } = useLerCracha();
+
+  const { registrarChegadaAtrasadaCracha } =
+    useRegistrarChegadaAtrasadaCracha();
 
   const [formInput, setFormInput] = useState({
     professor: 0,
@@ -69,11 +76,17 @@ export function TelaRegistrarChegadaAluno() {
     if (
       formInput.professor === 0 ||
       formInput.motivo === "Selecione" ||
-      formInput.matricula === ""
+      formInput.matricula === "" ||
+      formInput.motivo === ""
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
-      toast.success("OK!");
+      registrarChegadaAtrasadaCracha(
+        formInput.motivo,
+        formInput.disciplina,
+        formInput.matricula,
+        formInput.professor
+      );
     }
   }
 
@@ -99,30 +112,32 @@ export function TelaRegistrarChegadaAluno() {
   }
 
   useEffect(() => {
-
     async function obter() {
-
       setProfessores([]);
-  
+
       const response = await obterProfessores();
-  
+
       setProfessores(response);
     }
-    
-    obter()
-  
+
+    obter();
   }, []);
 
   useEffect(() => {
-
     setNomesProfessores([]);
     setIdsProfessores([]);
 
-    professores.forEach(professor => {
-      setNomesProfessores((oldNomesProfessores) => ([...oldNomesProfessores, professor.nome]));
-      setIdsProfessores((oldIdsProfessores) => ([...oldIdsProfessores, professor.id]));
-    })
-  }, [professores])
+    professores.forEach((professor) => {
+      setNomesProfessores((oldNomesProfessores) => [
+        ...oldNomesProfessores,
+        professor.nome,
+      ]);
+      setIdsProfessores((oldIdsProfessores) => [
+        ...oldIdsProfessores,
+        professor.id,
+      ]);
+    });
+  }, [professores]);
 
   return (
     <section className="section-registrar-chegada">
@@ -146,7 +161,11 @@ export function TelaRegistrarChegadaAluno() {
                 }}
               >
                 <img className="icone-camera" src={cameraIcone} alt="câmera" />
-                <p className="legenda-botao-camera">Ler crachá</p>
+                <p className="legenda-botao-camera">
+                  {formInput.matricula === ""
+                    ? "Ler crachá"
+                    : formInput.matricula}
+                </p>
               </Botao>
               <span className="input-obrigatorio">*</span>
             </span>

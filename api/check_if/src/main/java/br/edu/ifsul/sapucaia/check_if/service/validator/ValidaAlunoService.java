@@ -23,7 +23,7 @@ public class ValidaAlunoService {
 
     public void porMatricula(String matricula) {
 
-        if(!alunoRepository.existsByMatricula(matricula)){
+        if(!alunoRepository.existsByMatriculaContaining(matricula)){
             throw new ResponseStatusException(NOT_FOUND, "Aluno não encontrado.");
         }
     }

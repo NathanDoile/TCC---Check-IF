@@ -1,19 +1,16 @@
 import { obterChegadasAtrasadasApi } from "../../api";
 import { toast } from "react-toastify";
 
-export function useObterChegadasAtrasadas(){
+export function useObterChegadasAtrasadas() {
+  async function obterChegadasAtrasadas(data, page) {
+    try {
+      const response = await obterChegadasAtrasadasApi(data, page);
 
-    async function obterChegadasAtrasadas(data, page) {
-        try {
-
-            const response = await obterChegadasAtrasadasApi(data, page);
-
-            return response.data;
-        } 
-        catch (error) {
-            toast.error(error);
-        }
+      return response.data;
+    } catch (error) {
+      toast.error(error);
     }
+  }
 
-    return { obterChegadasAtrasadas };
+  return { obterChegadasAtrasadas };
 }

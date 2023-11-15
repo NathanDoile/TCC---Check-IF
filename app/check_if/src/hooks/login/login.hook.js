@@ -17,7 +17,6 @@ export function useLogin() {
 
       navigate("/home");
     } catch (error) {
-
       setError(true);
 
       toast.error(`${error}`);

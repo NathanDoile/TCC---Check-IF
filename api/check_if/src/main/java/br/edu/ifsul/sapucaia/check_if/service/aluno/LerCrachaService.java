@@ -5,6 +5,7 @@ import br.edu.ifsul.sapucaia.check_if.controller.response.CrachaResponse;
 import com.aspose.barcode.barcoderecognition.BarCodeReader;
 import com.aspose.barcode.barcoderecognition.BarCodeResult;
 import com.aspose.barcode.barcoderecognition.DecodeType;
+import com.aspose.imaging.RasterImage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,7 +32,17 @@ public class LerCrachaService {
             fos.close();
         }
 
-        BufferedImage img = read(new File("Sample 11-14-2023 09.29_2(2).jpg"));
+        RasterImage image = (RasterImage) com.aspose.imaging.Image.load("cracha.jpg");
+
+        if (!image.isCached()) {
+            image.cacheData();
+        }
+
+        image.adjustContrast(60);
+
+        image.save();
+
+        BufferedImage img = read(new File("cracha.jpg"));
         //BufferedImage img = read(new File("cracha.jpg"));
 
         BarCodeReader reader = new BarCodeReader(img);

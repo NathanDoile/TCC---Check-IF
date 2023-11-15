@@ -1,28 +1,28 @@
 .section-tela-esqueceu-senha {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .tela-esqueceu-senha {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .legenda-tela-esqueceu-senha {
-    font-family: Codec Pro-Light;
-    font-size: 17.1px;
-    color: #746666;
-    letter-spacing: 1px;
-    padding-bottom: 50px;
+  font-family: Codec Pro-Light;
+  font-size: 17.1px;
+  color: #746666;
+  letter-spacing: 1px;
+  padding-bottom: 50px;
 }
 
 .form-esqueceu-senha {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }

@@ -64,11 +64,14 @@ public class RegistrarChegadaAtrasadaService {
     @Transactional
     public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
 
-        validaAlunoService.porMatricula(request.getMatriculaAluno());
-        validaProfessorService.porId(request.getIdProfessor());
-        validaIpValidator.validar(requestServlet);
+        String matricula = request.getMatriculaAluno().replace("*", "");
+        System.out.println(matricula);
 
-        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
+        validaAlunoService.porMatricula(matricula);
+        validaProfessorService.porId(request.getIdProfessor());
+        //validaIpValidator.validar(requestServlet);
+
+        Aluno aluno = alunoRepository.findByMatriculaContaining(matricula);
 
         Professor professor = professorRepository.findById(request.getIdProfessor()).get();
 

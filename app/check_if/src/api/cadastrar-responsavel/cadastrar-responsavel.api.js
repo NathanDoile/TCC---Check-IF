@@ -1,11 +1,12 @@
 import { axiosInstance } from "../base/axiosInstance";
 
-export async function cadastrarAdministradorApi(nome, siape, email) {
+export async function cadastrarResponsavelApi(nome, email, celular, matricula) {
   try {
-    await axiosInstance.post("/administradores", {
+    await axiosInstance.post("/responsaveis", {
       nome,
-      siape,
       email,
+      celular,
+      matricula,
     });
   } catch (error) {
     throw error?.response?.data?.message;

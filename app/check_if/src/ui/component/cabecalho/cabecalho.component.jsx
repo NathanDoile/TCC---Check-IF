@@ -8,7 +8,7 @@ import home from "../../../assets/images/Home-branco.svg";
 import vincular from "../../../assets/images/Vincular-branco.svg";
 import notificacao from "../../../assets/images/Notificacao-branco.svg";
 import editar from "../../../assets/images/Editar-branco.svg";
-import usuarioCadastro from '../../../assets/images/User-branco.svg';
+import usuarioCadastro from "../../../assets/images/User-branco.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogoutHook } from "../../../hooks/login/logout.hook";
@@ -122,19 +122,48 @@ export function Cabecalho() {
                 Vincular aluno
               </button>
 
-              <button className="botao-acao" onClick={() => {setCadastrarUsuario(!cadastrarUsuario)}}>
-                <img src={usuarioCadastro} alt="Usuário" className="icone-acao" />
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  setCadastrarUsuario(!cadastrarUsuario);
+                }}
+              >
+                <img
+                  src={usuarioCadastro}
+                  alt="Usuário"
+                  className="icone-acao"
+                />
                 Cadastrar usuário
               </button>
 
-              {cadastrarUsuario
-                ?
-                  <span className="botoes-acao-cadastro-usuario">
-                    <button className="botao-acao-cadastro-usuario" onClick={() => {navigate("/cadastrar-administrador")}}>Administrador</button>
-                    <button className="botao-acao-cadastro-usuario">Responsável</button>
-                    <button className="botao-acao-cadastro-usuario">Responsável em lote</button>
-                  </span>
-                : null}
+              {cadastrarUsuario ? (
+                <span className="botoes-acao-cadastro-usuario">
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/cadastrar-administrador");
+                    }}
+                  >
+                    Administrador
+                  </button>
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/cadastrar-responsavel");
+                    }}
+                  >
+                    Responsável
+                  </button>
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/cadastrar-responsavel/lote");
+                    }}
+                  >
+                    Responsável em lote
+                  </button>
+                </span>
+              ) : null}
 
               <button className="botao-acao">
                 <img

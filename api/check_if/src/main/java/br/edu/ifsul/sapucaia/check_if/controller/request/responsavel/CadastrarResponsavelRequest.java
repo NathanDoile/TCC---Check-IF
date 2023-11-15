@@ -29,8 +29,7 @@ public class CadastrarResponsavelRequest {
 
     private Long celular;
 
-    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
-    @NotEmpty(message = "deve haver pelo menos um.")
-    private List<Long> idAlunos;
+    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
+    private String matricula;
 
 }

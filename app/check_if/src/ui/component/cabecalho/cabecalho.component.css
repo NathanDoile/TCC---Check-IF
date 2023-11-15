@@ -154,7 +154,7 @@
   max-height: 40px;
 }
 
-.botoes-acao-cadastro-usuario{
+.botoes-acao-cadastro-usuario {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -163,16 +163,16 @@
   margin-left: 80px;
 }
 
-.botao-acao-cadastro-usuario{
+.botao-acao-cadastro-usuario {
   border: 0;
-  background-color: #FFFFFF;
-  color: #34AB89;
+  background-color: #ffffff;
+  color: #34ab89;
   border-radius: 25px;
   width: 140px;
   display: flex;
   justify-content: flex-start;
 }
 
-.botao-acao-cadastro-usuario:hover{
+.botao-acao-cadastro-usuario:hover {
   cursor: pointer;
 }

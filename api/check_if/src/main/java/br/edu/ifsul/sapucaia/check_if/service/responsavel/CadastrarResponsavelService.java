@@ -76,10 +76,7 @@ public class CadastrarResponsavelService {
 
         validarResponsavelService.porCelular(request.getCelular());
 
-        for(Long id : request.getIdAlunos()){
-
-            validaAlunoService.porId(id);
-        }
+        validaAlunoService.porMatricula(request.getMatricula());
 
         Responsavel responsavel = toEntity(request);
         responsavel.setSenha(passwordEncoder.encode(responsavel.getEmail()));
@@ -91,20 +88,18 @@ public class CadastrarResponsavelService {
 
         adicionarPermissaoResponsavelService.adicionar(responsavel);
 
-        for(Long id : request.getIdAlunos()){
+        Aluno aluno = alunoRepository.findByMatricula(request.getMatricula());
 
-            Aluno aluno = alunoRepository.findById(id).get();
+        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
 
-            List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+        aluno.setResponsaveis(responsaveis);
 
-            aluno.setResponsaveis(responsaveis);
+        responsavel.adicionarAluno(aluno);
 
-            responsavel.adicionarAluno(aluno);
+        adicionarNotificacaoEmailService.adicionar(responsavel, aluno);
 
-            adicionarNotificacaoEmailService.adicionar(responsavel, aluno);
+        adicionarNotificacaoWhatsappService.adicionar(responsavel, aluno);
 
-            adicionarNotificacaoWhatsappService.adicionar(responsavel, aluno);
-        }
 
         responsavelRepository.save(responsavel);
 

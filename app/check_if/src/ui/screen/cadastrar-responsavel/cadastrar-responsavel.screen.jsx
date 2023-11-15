@@ -1,16 +1,17 @@
-import "./cadastrar-administrador.screen.css";
+import "./cadastrar-responsavel.screen.css";
 import { Cabecalho, TituloTelasIniciais, Input, Botao } from "../../component";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useCadastrarAdministrador } from "../../../hooks";
+import { useCadastrarResponsavel } from "../../../hooks";
 
-export function TelaCadastrarAdministrador() {
-  const { cadastrarAdministrador } = useCadastrarAdministrador();
+export function TelaCadastrarResponsavel() {
+  const { cadastrarResponsavel } = useCadastrarResponsavel();
 
   const [formInput, setFormInput] = useState({
     nome: "",
-    siape: "",
     email: "",
+    celular: "",
+    aluno: "",
   });
 
   function handleChange(event) {
@@ -24,15 +25,16 @@ export function TelaCadastrarAdministrador() {
 
     if (
       formInput.nome === "" ||
-      formInput.siape === "" ||
-      formInput.email === ""
+      formInput.email === "" ||
+      formInput.aluno === ""
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
-      await cadastrarAdministrador(
+      await cadastrarResponsavel(
         formInput.nome,
-        formInput.siape,
-        formInput.email
+        formInput.email,
+        formInput.celular,
+        formInput.aluno
       );
     }
   }
@@ -41,10 +43,10 @@ export function TelaCadastrarAdministrador() {
     <>
       <Cabecalho />
 
-      <main className="main-cadastrar-adm">
-        <TituloTelasIniciais>Cadastrar administrador</TituloTelasIniciais>
+      <main className="main-cadastrar-responsavel">
+        <TituloTelasIniciais>Cadastrar responsável</TituloTelasIniciais>
 
-        <form className="form-cadastrar-adm" onSubmit={cadastrar}>
+        <form className="form-cadastrar-responsavel" onSubmit={cadastrar}>
           <Input
             legenda="Nome completo"
             isObrigatorio
@@ -55,18 +57,26 @@ export function TelaCadastrarAdministrador() {
           />
 
           <Input
-            legenda="Siape"
+            legenda="E-mail"
             isObrigatorio
-            name="siape"
+            name="email"
             handleChange={handleChange}
             type="text"
             grande
           />
 
           <Input
-            legenda="E-mail"
+            legenda="Celular"
+            name="celular"
+            handleChange={handleChange}
+            type="text"
+            grande
+          />
+
+          <Input
+            legenda="Aluno"
             isObrigatorio
-            name="email"
+            name="aluno"
             handleChange={handleChange}
             type="text"
             grande

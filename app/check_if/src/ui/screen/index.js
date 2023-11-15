@@ -7,4 +7,6 @@ export { TelaEsqueceuSenhaToken } from "./esqueceu-senha-token/esqueceu-senha-to
 export { TelaEsqueceuSenhaAlterar } from "./esqueceu-senha-alterar/esqueceu-senha-alterar.screen";
 export { TelaRegistrarChegadaAdministrador } from "./tela-registrar-chegada-administrador/tela-registrar-chegada-administrador.screen";
 export { TelaRegistrarSaidaAntecipada } from "./tela-registrar-saida-antecipada/tela-registrar-saida-antecipadas.screen";
-export { TelaCadastrarAdministrador } from './cadastrar-administrador/cadastrar-administrador.screen';
+export { TelaCadastrarAdministrador } from "./cadastrar-administrador/cadastrar-administrador.screen";
+export { TelaCadastrarResponsavel } from "./cadastrar-responsavel/cadastrar-responsavel.screen";
+export { TelaCadastrarResponsavelLote } from "./cadastrar-responsavel-lote/cadastrar-responsavel-lote.screen";

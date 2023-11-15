@@ -7,5 +7,6 @@ export { obterChegadasAtrasadasApi } from "./chegadas-atrasadas/obter-chegadas-a
 export { obterProfessoresApi } from "./obter-professores/obter-professores.api";
 export { registrarChegadaManualApi } from "./registrar-chegada/registrar-chegada-manual.api";
 export { registrarChegadaAtrasadaCrachaApi } from "./registrar-chegada/registrar-chegada-cracha.api";
-export { registrarSaidaAntecipadaApi } from './registrar-saida/registrar-saida-antecipada.api';
-export { cadastrarAdministradorApi } from './cadastrar-administrador/cadastrar-administrador.api';
+export { registrarSaidaAntecipadaApi } from "./registrar-saida/registrar-saida-antecipada.api";
+export { cadastrarAdministradorApi } from "./cadastrar-administrador/cadastrar-administrador.api";
+export { cadastrarResponsavelApi } from "./cadastrar-responsavel/cadastrar-responsavel.api";

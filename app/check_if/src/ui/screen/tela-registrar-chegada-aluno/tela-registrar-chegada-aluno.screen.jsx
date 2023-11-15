@@ -45,12 +45,7 @@ export function TelaRegistrarChegadaAluno() {
 
   const [idsProfessores, setIdsProfessores] = useState([]);
 
-  const motivos = [
-    "Selecione",
-    "Despertador não tocou",
-    "Problema no trânsito",
-    "Outro",
-  ];
+  const motivos = ["Despertador não tocou", "Problema no trânsito", "Outro"];
 
   function handleChange(event) {
     const { name, value } = event.target;

@@ -18,4 +18,10 @@ export { alterarSenhaPortariaApi } from './alterar-senha-portaria/alterar-senha-
 export { alterarNotificacaoProfessorApi } from './alterar-notificacao-professor/alterar-notificacao-professor.api';
 export { buscarTodosProfessorApi } from './buscar-todos-professor/buscar-todos-professor.api';
 export { cadastrarResponsavelApi } from "./cadastrar-responsavel/cadastrar-responsavel.api";
-
+export { alterarNotificacaoResponsavelApi } from './alterar-notificacao-responsavel/alterar-notificacao-responsavel.api';
+export { cadastrarResponsavelLote } from './cadastrar-responsavel-lote/cadastrar-responsavel-lote.api';
+export { alterarResponsavelApi } from './alterar-responsavel/alterar-responsavel.api';
+export { alterarSenhaResponsavel } from './alterar-senha-responsavel/alterar-senha-responsavel.api';
+export { obterSaidasAntecipadas } from './obter-saidas-antecipadas/obter-saidas-antecipadas.api';
+export { solicitarSaidaAntecipada } from './solicitar-saida-amntecipada/solicitar-saida-antecipada.api';
+export { confirmarSaidaAntecipada } from './confirmar-saida-antecipada/confirmar-saida-antecipada.api';

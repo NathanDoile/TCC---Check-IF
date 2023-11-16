@@ -10,3 +10,7 @@ export { useRegistrarChegadaAtrasadaCracha } from "./registrar-chegada/registrar
 export { useRegistrarSaidaAntecipada } from "./registrar-saida/registrar-saida-antecipada.hook";
 export { useCadastrarAdministrador } from "./cadastrar-administrador/cadastrar-administrador.hook";
 export { useCadastrarResponsavel } from "./cadastrar-responsavel/cadastrar-responsavel.hook";
+export { useAlterarAdministrador } from './alterar-administrador/alterar-administrador.hook';
+export { useAlterarNotificacaoProfessor } from './alterar-notificacao-professor/alterar-notificacao-professor.hook';
+export { useAlterarNotificacaoResponsavel } from './alterar-notificacao-responsavel/alterar-notificacao-responsavel.hook';
+export { useAlterarResponsavel } from './alterar-responsavel/alterar-responsavel.hook';

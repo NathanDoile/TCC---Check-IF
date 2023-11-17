@@ -223,7 +223,7 @@ export function TelaRegistrarChegadaAluno() {
           ) : (
             <Webcam
               height={600}
-              width={600}
+              width={800}
               ref={webcamRef}
               screenshotFormat="image/jpeg"
               screenshotQuality={1}

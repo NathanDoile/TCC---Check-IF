@@ -23,9 +23,20 @@
   font-size: 20px;
   font-family: Codec Pro-Regular;
   color: #746666;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.texto-input-file{
+  display: none;
 }
 
 .texto-input:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
+}
+
+.nuvem-input:hover{
+  cursor: pointer;
 }

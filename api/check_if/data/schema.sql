@@ -38,7 +38,7 @@ CREATE TABLE responsavel (
 id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 nome VARCHAR(255) NOT NULL,
 email VARCHAR(100) NOT NULL,
-celular BIGINT UNSIGNED  NOT NULL,
+celular BIGINT UNSIGNED NULL,
 senha VARCHAR(255) NOT NULL,
 is_ativo BOOLEAN NOT NULL,
 token_resetar_senha VARCHAR(255) NULL,
@@ -143,11 +143,3 @@ CREATE TABLE email(
     status_email VARCHAR(7) NOT NULL,
     PRIMARY KEY (id)
 );
-
-
-
-
-
-
-
-

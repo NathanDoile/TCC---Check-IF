@@ -1,0 +1,53 @@
+.main-pesquisar-aluno {
+  width: 100vw;
+  height: 87.5vh;
+}
+
+.form-pesquisar-aluno-tela {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-pesquisar-tela-aluno {
+  border-radius: 25px;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  margin: 25px;
+}
+
+.input-pesquisar-aluno-tela {
+  border: 0;
+  height: 3vh;
+  width: 87vw;
+  background-color: transparent;
+  color: #746666;
+  padding-left: 15px;
+}
+
+.botao-pesquisar-tela-aluno {
+  border: 0;
+  background-color: transparent;
+}
+
+.lupa-icone {
+  max-height: 3vh;
+}
+
+.lupa-icone:hover {
+  cursor: pointer;
+}
+
+.lista-aluno {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  gap: 10px;
+  color: #746666;
+}

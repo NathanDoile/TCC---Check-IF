@@ -39,7 +39,7 @@ export function Cabecalho() {
     if (aluno === "") {
       toast.error("Preencha a barra de pesquisa para que realizar uma.");
     } else {
-      toast.success("OK");
+      navigate(`/pesquisar/${aluno}`);
     }
   }
 

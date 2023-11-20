@@ -10,3 +10,5 @@ export { TelaRegistrarSaidaAntecipada } from "./tela-registrar-saida-antecipada/
 export { TelaCadastrarAdministrador } from "./cadastrar-administrador/cadastrar-administrador.screen";
 export { TelaCadastrarResponsavel } from "./cadastrar-responsavel/cadastrar-responsavel.screen";
 export { TelaCadastrarResponsavelLote } from "./cadastrar-responsavel-lote/cadastrar-responsavel-lote.screen";
+export { TelaPesquisarAluno } from "./pesquisar-aluno/pesquisar-aluno.screen";
+export { TelaPerfilAluno } from "./perfil-aluno/perfil-aluno.screen";

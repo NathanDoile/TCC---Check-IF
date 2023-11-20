@@ -28,7 +28,7 @@
   align-items: center;
 }
 
-.texto-input-file{
+.texto-input-file {
   display: none;
 }
 
@@ -37,6 +37,6 @@
   outline: 0;
 }
 
-.nuvem-input:hover{
+.nuvem-input:hover {
   cursor: pointer;
 }

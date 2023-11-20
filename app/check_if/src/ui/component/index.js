@@ -7,3 +7,4 @@ export { InputEspecifico } from "./input-especifico/input-especifico.component";
 export { Cabecalho } from "./cabecalho/cabecalho.component";
 export { ChegadaAtrasada } from "./chegada-atrasada/chegada-atrasada.component";
 export { Navbar } from "./NavBar/navbar.component";
+export { Aluno } from "./aluno/aluno.component";

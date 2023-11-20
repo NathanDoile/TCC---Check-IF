@@ -1,0 +1,41 @@
+.div-aluno {
+  width: 96vw;
+  height: 7vh;
+  border-radius: 25px;
+  background-color: #faf1df;
+  color: #746666;
+  font-size: 16, 1px;
+  font-family: Codec Pro-Regular;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.aluno-nome {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aluno-turma {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aluno-matricula {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aluno-data-nascimento {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

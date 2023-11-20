@@ -9,21 +9,24 @@ export function InputEspecifico({
   placeholder,
   isRequired,
   handleChange,
-  file
+  file,
 }) {
-
   const inputRef = useRef(null);
 
-  function onClickNuvem(){
+  function onClickNuvem() {
     inputRef.current.click();
   }
-  
+
   return (
     <>
-      {type === "file"
-        ?
+      {type === "file" ? (
         <div className="input-login">
-          <img src={imagem} alt={alt} className="imagem-input nuvem-input" onClick={onClickNuvem} />
+          <img
+            src={imagem}
+            alt={alt}
+            className="imagem-input nuvem-input"
+            onClick={onClickNuvem}
+          />
           <input
             ref={inputRef}
             type={type}
@@ -32,9 +35,11 @@ export function InputEspecifico({
             onChange={handleChange}
             accept=".xslx, .xsl"
           />
-          <span className="texto-input">{file !== "" ? file : placeholder}</span>
+          <span className="texto-input">
+            {file !== "" ? file : placeholder}
+          </span>
         </div>
-        :
+      ) : (
         <div className="input-login">
           <img src={imagem} alt={alt} className="imagem-input" />
           <input
@@ -47,7 +52,7 @@ export function InputEspecifico({
             autoComplete="off"
           />
         </div>
-      }
+      )}
     </>
   );
 }

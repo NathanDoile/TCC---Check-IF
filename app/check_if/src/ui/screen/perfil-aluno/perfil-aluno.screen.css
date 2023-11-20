@@ -1,0 +1,70 @@
+.main-perfil-aluno {
+  width: 100vw;
+  height: 87.5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+}
+
+.dados-perfil-aluno {
+  color: #746666;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Codec Pro-Regular;
+}
+
+.imagem-usuario-perfil {
+  height: 16vh;
+}
+
+.div-relatorio {
+  background-color: #faf1df;
+  width: 30vw;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  color: #746666;
+  font-family: Codec Pro-Regular;
+}
+
+.imagem-calendario {
+  max-height: 6.25vh;
+}
+
+.titulo-relatorio {
+  color: #e4ae4f;
+}
+
+.div-form-relatorio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 150px;
+}
+
+.form-relatorio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #746666;
+}
+
+.input-relatorio {
+  border: 0;
+  border-radius: 25px;
+  background-color: #746666;
+  color: #ffffff;
+  width: 100px;
+  padding-left: 7px;
+}

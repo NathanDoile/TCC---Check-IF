@@ -8,6 +8,6 @@ export async function lerCrachaApi(fotoCracha) {
 
     return response.data;
   } catch (error) {
-    throw (error?.response?.data?.message);
+    throw error?.response?.data?.message;
   }
 }

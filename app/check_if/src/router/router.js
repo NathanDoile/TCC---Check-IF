@@ -11,6 +11,8 @@ import {
   TelaCadastrarAdministrador,
   TelaCadastrarResponsavel,
   TelaCadastrarResponsavelLote,
+  TelaPesquisarAluno,
+  TelaPerfilAluno,
 } from "../ui/screen/";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -63,5 +65,13 @@ export const router = createBrowserRouter([
   {
     path: "/cadastrar-responsavel/lote",
     element: <TelaCadastrarResponsavelLote />,
+  },
+  {
+    path: "/pesquisar/:texto",
+    element: <TelaPesquisarAluno />,
+  },
+  {
+    path: "/aluno/:id",
+    element: <TelaPerfilAluno />,
   },
 ]);

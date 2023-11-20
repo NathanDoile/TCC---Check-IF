@@ -81,6 +81,10 @@
   max-height: 3vh;
 }
 
+.lupa-icone:hover {
+  cursor: pointer;
+}
+
 .container-pesquisar-sair {
   display: flex;
   flex-direction: row;

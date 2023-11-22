@@ -17,6 +17,10 @@
   font-family: Codec Pro-Regular;
 }
 
+.dados-perfil-aluno-especifico{
+  font-size: 22px;
+}
+
 .imagem-usuario-perfil {
   height: 16vh;
 }

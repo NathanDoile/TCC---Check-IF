@@ -117,7 +117,7 @@ export function Cabecalho() {
                 Página Inicial
               </button>
 
-              <button className="botao-acao">
+              <button className="botao-acao" onClick={() => {navigate("/vincular")}}>
                 <img src={vincular} alt="Vincular" className="icone-acao" />
                 Vincular aluno
               </button>
@@ -165,7 +165,7 @@ export function Cabecalho() {
                 </span>
               ) : null}
 
-              <button className="botao-acao">
+              <button className="botao-acao" onClick={() => {navigate("/gerenciar-professores")}}>
                 <img
                   src={notificacao}
                   alt="Notificação"
@@ -174,7 +174,7 @@ export function Cabecalho() {
                 Gerenciar professores
               </button>
 
-              <button className="botao-acao">
+              <button className="botao-acao" onClick={() => {navigate("/editar-perfil")}}>
                 <img src={editar} alt="Editar" className="icone-acao" />
                 Alterar dados pessoais
               </button>

@@ -13,6 +13,10 @@ import {
   TelaCadastrarResponsavelLote,
   TelaPesquisarAluno,
   TelaPerfilAluno,
+  TelaGerenciarProfessores,
+  TelaEditarPerfil,
+  TelaAdicionarProfessor,
+  TelaVincularAlunoResponsavel
 } from "../ui/screen/";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -74,4 +78,20 @@ export const router = createBrowserRouter([
     path: "/aluno/:id",
     element: <TelaPerfilAluno />,
   },
+  {
+    path: "/gerenciar-professores",
+    element: <TelaGerenciarProfessores />
+  },
+  {
+    path: "/editar-perfil",
+    element: <TelaEditarPerfil />
+  },
+  {
+    path: "/adicionar-professor",
+    element: <TelaAdicionarProfessor />
+  },
+  {
+    path: "/vincular",
+    element: <TelaVincularAlunoResponsavel />
+  }
 ]);

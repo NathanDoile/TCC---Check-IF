@@ -12,3 +12,7 @@ export { TelaCadastrarResponsavel } from "./cadastrar-responsavel/cadastrar-resp
 export { TelaCadastrarResponsavelLote } from "./cadastrar-responsavel-lote/cadastrar-responsavel-lote.screen";
 export { TelaPesquisarAluno } from "./pesquisar-aluno/pesquisar-aluno.screen";
 export { TelaPerfilAluno } from "./perfil-aluno/perfil-aluno.screen";
+export { TelaGerenciarProfessores } from './gerenciar-professores/gerenciar-professores.screen';
+export { TelaEditarPerfil } from './editar-perfil/editar-perfil.screen';
+export { TelaAdicionarProfessor } from './adicionar-professor/adicionar-professor.screen';
+export { TelaVincularAlunoResponsavel } from './vincular-aluno-responsavel/vincular-aluno-responsavel.screen';

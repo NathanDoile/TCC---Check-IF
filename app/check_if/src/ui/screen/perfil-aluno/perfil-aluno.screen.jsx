@@ -19,7 +19,7 @@ export function TelaPerfilAluno() {
 
           <img className="imagem-usuario-perfil" src={usuario} alt="Usuário" />
 
-          <span>
+          <span className="dados-perfil-aluno-especifico">
             <p>
               <b>Matrícula:</b> 078790INFQ
             </p>

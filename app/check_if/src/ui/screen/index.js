@@ -16,3 +16,5 @@ export { TelaGerenciarProfessores } from './gerenciar-professores/gerenciar-prof
 export { TelaEditarPerfil } from './editar-perfil/editar-perfil.screen';
 export { TelaAdicionarProfessor } from './adicionar-professor/adicionar-professor.screen';
 export { TelaVincularAlunoResponsavel } from './vincular-aluno-responsavel/vincular-aluno-responsavel.screen';
+export { TelaAlterarSenhaPadrao } from './alterar-senha-padrao/alterar-senha-padrao.screen';
+export { TelaAlterarSenhaInicial } from './alterar-senha-inicial/alterar-senha-inicial.screen';

@@ -14,4 +14,6 @@ public class UsuarioResponse {
     private String email;
 
     private String permissao;
+
+    private String celular;
 }

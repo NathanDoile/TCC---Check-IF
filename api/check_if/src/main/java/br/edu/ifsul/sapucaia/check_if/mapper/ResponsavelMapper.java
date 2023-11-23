@@ -13,6 +13,7 @@ public class ResponsavelMapper {
                 .nome(responsavel.getNome())
                 .email(responsavel.getEmail())
                 .permissao(responsavel.getPermissoes().get(0).getFuncao().toString())
+                .celular(responsavel.getCelular().toString())
                 .build();
     }
 

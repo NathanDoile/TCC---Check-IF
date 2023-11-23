@@ -9,3 +9,5 @@ export { ChegadaAtrasada } from "./chegada-atrasada/chegada-atrasada.component";
 export { Navbar } from "./NavBar/navbar.component";
 export { Aluno } from "./aluno/aluno.component";
 export { Professor } from './professor/professor.component';
+export { InputSenha } from './input-senha/input-senha.component';
+export { SaidaAntecipada } from './saida-antecipada/saida-antecipada.screen';

@@ -1,0 +1,32 @@
+.container-input-senha{
+    color: var(--marrom);
+    font-family: Codec Pro-Regular;
+    font-size: 22px;
+}
+
+.input-senha-alterar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--input-fundo);
+    color: var(--marrom);
+    width: 360px;
+    height: 42px;
+    border-radius: 24px;
+}
+
+.imagem-input {
+    max-width: 54px;
+    max-height: 40px;
+}
+
+.texto-input {
+    background-color: transparent;
+    border: 0;
+    height: 100%;
+    width: 85%;
+    font-size: 20px;
+    font-family: Codec Pro-Regular;
+    color: var(--marrom);
+}

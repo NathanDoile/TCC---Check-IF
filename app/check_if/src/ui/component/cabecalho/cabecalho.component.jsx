@@ -67,7 +67,7 @@ export function Cabecalho() {
         />
 
         <div className="container-pesquisar-sair">
-          {usuario.permissao ? (
+          {usuario.permissao === "ADMINISTRADOR" ? (
             <form className="form-pesquisar" onSubmit={onSubmit}>
               Pesquise o aluno aqui
               <br />
@@ -215,7 +215,7 @@ export function Cabecalho() {
                 Página Inicial
               </button>
 
-              <button className="botao-acao" onClick={() => { navigate("/") }}>
+              <button className="botao-acao" onClick={() => { navigate("/solicitacoes") }}>
                 <img src={lupaBrancoImg} alt="Editar" className="icone-acao" />
                 Ver solicitações
               </button>

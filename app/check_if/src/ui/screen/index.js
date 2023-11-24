@@ -18,3 +18,4 @@ export { TelaAdicionarProfessor } from './adicionar-professor/adicionar-professo
 export { TelaVincularAlunoResponsavel } from './vincular-aluno-responsavel/vincular-aluno-responsavel.screen';
 export { TelaAlterarSenhaPadrao } from './alterar-senha-padrao/alterar-senha-padrao.screen';
 export { TelaAlterarSenhaInicial } from './alterar-senha-inicial/alterar-senha-inicial.screen';
+export { TelaVerSolicitacoes } from './ver-solicitacoes/ver-solicitacoes.screen';

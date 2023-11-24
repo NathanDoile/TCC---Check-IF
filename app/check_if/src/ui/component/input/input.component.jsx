@@ -41,7 +41,9 @@ export function Input({
 
             <select
               name={name}
-              className="caixa-input"
+              className={
+                grande ? `caixa-input caixa-input-grande` : `caixa-input`
+              }
               onChange={handleChange}
               required={isObrigatorio}
             >

@@ -18,7 +18,8 @@ import {
   TelaAdicionarProfessor,
   TelaVincularAlunoResponsavel,
   TelaAlterarSenhaPadrao,
-  TelaAlterarSenhaInicial
+  TelaAlterarSenhaInicial,
+  TelaVerSolicitacoes
 } from "../ui/screen/";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -101,7 +102,11 @@ export const router = createBrowserRouter([
     element: <TelaAlterarSenhaPadrao />
   },
   {
-    path: "alterar-senha-inicial",
+    path: "/alterar-senha-inicial",
     element: <TelaAlterarSenhaInicial />
+  },
+  {
+    path: "/solicitacoes",
+    element: <TelaVerSolicitacoes />
   }
 ]);

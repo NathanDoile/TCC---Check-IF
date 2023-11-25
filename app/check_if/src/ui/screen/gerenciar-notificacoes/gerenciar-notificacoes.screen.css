@@ -1,16 +1,16 @@
-.main-tela-alterar-senha-padrao {
+.main-gerenciar-notificacoes {
   width: 100vw;
   height: 87.5vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.form-alterar-senha-padrao {
+.container-notificacoes-responsavel {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 35px;
+  gap: 20px;
 }

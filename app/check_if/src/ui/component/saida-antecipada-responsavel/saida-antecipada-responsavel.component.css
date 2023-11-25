@@ -1,48 +1,48 @@
 .div-saida-antecipada-responsavel {
-    width: 96vw;
-    height: 7vh;
-    border-radius: 25px;
-    background-color: #faf1df;
-    color: #746666;
-    font-size: 16.1px;
-    font-family: Codec Pro-Regular;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 96vw;
+  height: 7vh;
+  border-radius: 25px;
+  background-color: #faf1df;
+  color: #746666;
+  font-size: 16.1px;
+  font-family: Codec Pro-Regular;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-responsavel-nome {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-responsavel-turma {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-responsavel-matricula {
-    width: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-responsavel-data {
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-responsavel-hora {
-    width: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

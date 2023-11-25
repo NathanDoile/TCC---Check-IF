@@ -1,33 +1,33 @@
-.main-tela-gerenciar-professores{
-    width: 100vw;
-    height: 87.5vh;
+.main-tela-gerenciar-professores {
+  width: 100vw;
+  height: 87.5vh;
 }
 
-.cabecalho-gerenciar-professores{
-    width: 100vw;
-    height: 12.5vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 20px;
-    font-size: 18px;
-    color: var(--marrom);
-    font-family: Codec Pro-Regular;
+.cabecalho-gerenciar-professores {
+  width: 100vw;
+  height: 12.5vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+  font-size: 18px;
+  color: var(--marrom);
+  font-family: Codec Pro-Regular;
 }
 
-.gerenciar-professores-adicionar-imagem{
-    max-width: 80px;
+.gerenciar-professores-adicionar-imagem {
+  max-width: 80px;
 }
 
-.gerenciar-professores-adicionar-imagem:hover{
-    cursor: pointer;
+.gerenciar-professores-adicionar-imagem:hover {
+  cursor: pointer;
 }
 
-.lista-professores{
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+.lista-professores {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }

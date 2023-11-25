@@ -1,33 +1,33 @@
 .main-tela-vincular {
-    width: 100vw;
-    height: 87.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 87.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-vincular {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }
 
 .ajuda-texto-vincular {
-    background-color: #d9d9d9;
-    width: 15vw;
-    height: 45vh;
-    position: fixed;
-    top: 20vh;
-    right: 3.5vw;
-    border-radius: 25px;
-    padding: 15px;
-    color: #746666;
-    font-size: 17px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  background-color: #d9d9d9;
+  width: 15vw;
+  height: 45vh;
+  position: fixed;
+  top: 20vh;
+  right: 3.5vw;
+  border-radius: 25px;
+  padding: 15px;
+  color: #746666;
+  font-size: 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

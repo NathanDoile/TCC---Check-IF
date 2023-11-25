@@ -1,23 +1,23 @@
-.main-alterar-senha-inicial{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.main-alterar-senha-inicial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.container-form-alterar-senha-inicial{
-    position: absolute;
-    top: 14vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container-form-alterar-senha-inicial {
+  position: absolute;
+  top: 14vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-alterar-senha-inicial{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 35px;
+.form-alterar-senha-inicial {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
 }

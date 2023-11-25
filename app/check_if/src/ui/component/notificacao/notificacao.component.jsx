@@ -1,11 +1,12 @@
-import "./professor.component.css";
+import "./notificacao.component.css";
 import iconeWhatsapp from "../../../assets/images/Whatsapp-marrom.svg";
 import iconeEmail from "../../../assets/images/Email-marrom.svg";
 import { useState } from "react";
 
-export function Professor({
+export function Notificacao({
   nome,
-  siape,
+  turma,
+  matricula,
   numero,
   email,
   notificacaoNumero,
@@ -23,35 +24,36 @@ export function Professor({
   }
 
   return (
-    <div className="div-professor">
-      <span className="professor-nome">{nome}</span>
-      <span className="professor-siape">{siape}</span>
-      <span className="professor-notificacoes">
-        <div className="dados-notificacao-professor">
+    <div className="div-notificacao">
+      <span className="notificacao-nome">{nome}</span>
+      <span className="notificacao-turma">{turma}</span>
+      <span className="notificacao-matricula">{matricula}</span>
+      <span className="notificacao-notificacoes">
+        <div className="dados-notificacao-notificacao">
           <img
             src={iconeWhatsapp}
             alt="WhatsApp"
-            className="icone-notificacao-professor"
+            className="icone-notificacao-notificacao"
           />
 
           <img
             src={iconeEmail}
             alt="E-mail"
-            className="icone-notificacao-professor"
+            className="icone-notificacao-notificacao"
           />
         </div>
 
-        <div className="dados-notificacao-professor dados-professor-especifico">
+        <div className="dados-notificacao-notificacao dados-notificacao-especifico">
           <span>{numero}</span>
 
           <span>{email}</span>
         </div>
 
-        <form className="dados-notificacao-professor dados-professor-especifico">
+        <form className="dados-notificacao-notificacao dados-notificacao-especifico">
           <label className="switch">
             <input
               type="checkbox"
-              className="input-professor-notificacao"
+              className="input-notificacao-notificacao"
               name="whatsapp"
               onChange={handleChange}
               checked={formInput.whatsapp}
@@ -62,7 +64,7 @@ export function Professor({
           <label className="switch">
             <input
               type="checkbox"
-              className="input-professor-notificacao"
+              className="input-notificacao-notificacao"
               name="email"
               onChange={handleChange}
               checked={formInput.email}

@@ -1,37 +1,48 @@
-import './alterar-senha-inicial.screen.css';
-import { Borda, LogoInicial, TituloTelasIniciais, InputSenha, Botao } from '../../component';
+import "./alterar-senha-inicial.screen.css";
+import {
+  Borda,
+  LogoInicial,
+  TituloTelasIniciais,
+  InputSenha,
+  Botao,
+} from "../../component";
 
 export function TelaAlterarSenhaInicial() {
+  return (
+    <>
+      <Borda posicao="superior" />
 
-    return (
-        <>
-            <Borda posicao="superior" />
+      <main className="main-alterar-senha-inicial">
+        <LogoInicial />
 
-            <main className='main-alterar-senha-inicial'>
+        <span className="container-form-alterar-senha-inicial">
+          <TituloTelasIniciais>Alterar senha</TituloTelasIniciais>
 
-                <LogoInicial />
+          <form className="form-alterar-senha-inicial">
+            <InputSenha
+              legenda="Senha atual"
+              name="senhaAtual"
+              handleChange={() => {}}
+            />
 
-                <span className='container-form-alterar-senha-inicial'>
+            <InputSenha
+              legenda="Nova senha"
+              name="novaSenha"
+              handleChange={() => {}}
+            />
 
-                    <TituloTelasIniciais>Alterar senha</TituloTelasIniciais>
+            <InputSenha
+              legenda="Confirmar nova senha"
+              name="confirmarNovaSenha"
+              handleChange={() => {}}
+            />
 
-                    <form className='form-alterar-senha-inicial'>
+            <Botao cor="laranja">Alterar</Botao>
+          </form>
+        </span>
+      </main>
 
-                        <InputSenha legenda="Senha atual" name="senhaAtual" handleChange={() => { }} />
-
-                        <InputSenha legenda="Nova senha" name="novaSenha" handleChange={() => { }} />
-
-                        <InputSenha legenda="Confirmar nova senha" name="confirmarNovaSenha" handleChange={() => { }} />
-
-                        <Botao cor="laranja">Alterar</Botao>
-
-                    </form>
-
-                </span>
-
-            </main>
-
-            <Borda posicao="inferior" />
-        </>
-    )
+      <Borda posicao="inferior" />
+    </>
+  );
 }

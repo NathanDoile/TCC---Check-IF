@@ -13,10 +13,10 @@
   src: url(./assets/Font/CodecPro-Regular.otf);
 }
 
-:root{
+:root {
   --marrom: #746666;
   --fundo-lista: #faf1df;
-  --marrom-placeholder: #AFA0A0;
+  --marrom-placeholder: #afa0a0;
   --fundo-input: #d9d9d9;
 }
 

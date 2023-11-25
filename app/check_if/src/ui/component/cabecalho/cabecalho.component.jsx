@@ -9,8 +9,8 @@ import vincular from "../../../assets/images/Vincular-branco.svg";
 import notificacao from "../../../assets/images/Notificacao-branco.svg";
 import editar from "../../../assets/images/Editar-branco.svg";
 import usuarioCadastro from "../../../assets/images/User-branco.svg";
-import cadeadoBrancoImg from '../../../assets/images/Cadeado-branco.svg';
-import lupaBrancoImg from '../../../assets/images/Lupa-branco.svg';
+import cadeadoBrancoImg from "../../../assets/images/Cadeado-branco.svg";
+import lupaBrancoImg from "../../../assets/images/Lupa-branco.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogoutHook } from "../../../hooks/login/logout.hook";
@@ -28,6 +28,8 @@ export function Cabecalho() {
   const [aluno, setAluno] = useState("");
 
   const [cadastrarUsuario, setCadastrarUsuario] = useState(false);
+
+  const [alterarDadosPessoais, setAlteraradosPessoais] = useState(false);
 
   function handleChange(event) {
     const { value } = event.target;
@@ -99,17 +101,19 @@ export function Cabecalho() {
         }
       >
         <span className="dados-perfil">
-          {usuario.permissao === "PORTARIA"
-            ? <p>Olá!</p>
-            : <p>Olá, {usuario.nome}!</p>}
+          {usuario.permissao === "PORTARIA" ? (
+            <p>Olá!</p>
+          ) : (
+            <p>Olá, {usuario.nome}!</p>
+          )}
 
           <img src={usuarioImg} alt="Usuário" className="dados-perfil-icone" />
 
           <p>{usuario.email}</p>
 
-          {usuario.permissao === "RESPONSAVEL"
-            ? <p>{usuario.celular}</p>
-            : null}
+          {usuario.permissao === "RESPONSAVEL" ? (
+            <p>{usuario.celular}</p>
+          ) : null}
         </span>
 
         <span className="acoes-perfil">
@@ -125,7 +129,12 @@ export function Cabecalho() {
                 Página Inicial
               </button>
 
-              <button className="botao-acao" onClick={() => { navigate("/vincular") }}>
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  navigate("/vincular");
+                }}
+              >
                 <img src={vincular} alt="Vincular" className="icone-acao" />
                 Vincular aluno
               </button>
@@ -173,7 +182,12 @@ export function Cabecalho() {
                 </span>
               ) : null}
 
-              <button className="botao-acao" onClick={() => { navigate("/gerenciar-professores") }}>
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  navigate("/gerenciar-professores");
+                }}
+              >
                 <img
                   src={notificacao}
                   alt="Notificação"
@@ -182,10 +196,36 @@ export function Cabecalho() {
                 Gerenciar professores
               </button>
 
-              <button className="botao-acao" onClick={() => { navigate("/editar-perfil") }}>
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  setAlteraradosPessoais(!alterarDadosPessoais);
+                }}
+              >
                 <img src={editar} alt="Editar" className="icone-acao" />
                 Alterar dados pessoais
               </button>
+
+              {alterarDadosPessoais ? (
+                <span className="botoes-acao-cadastro-usuario">
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/editar-perfil");
+                    }}
+                  >
+                    Informações do perfil
+                  </button>
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/alterar-senha");
+                    }}
+                  >
+                    Senha
+                  </button>
+                </span>
+              ) : null}
             </>
           ) : null}
 
@@ -197,7 +237,11 @@ export function Cabecalho() {
                   navigate("/alterar-senha");
                 }}
               >
-                <img src={cadeadoBrancoImg} alt="Cadeado" className="icone-acao" />
+                <img
+                  src={cadeadoBrancoImg}
+                  alt="Cadeado"
+                  className="icone-acao"
+                />
                 Alterar senha
               </button>
             </>
@@ -215,12 +259,22 @@ export function Cabecalho() {
                 Página Inicial
               </button>
 
-              <button className="botao-acao" onClick={() => { navigate("/solicitacoes") }}>
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  navigate("/solicitacoes");
+                }}
+              >
                 <img src={lupaBrancoImg} alt="Editar" className="icone-acao" />
                 Ver solicitações
               </button>
 
-              <button className="botao-acao" onClick={() => { navigate("/") }}>
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  navigate("/notificacoes");
+                }}
+              >
                 <img
                   src={notificacao}
                   alt="Notificação"
@@ -229,10 +283,36 @@ export function Cabecalho() {
                 Gerenciar notificações
               </button>
 
-              <button className="botao-acao" onClick={() => { navigate("/editar-perfil") }}>
+              <button
+                className="botao-acao"
+                onClick={() => {
+                  setAlteraradosPessoais(!alterarDadosPessoais);
+                }}
+              >
                 <img src={editar} alt="Editar" className="icone-acao" />
                 Alterar dados pessoais
               </button>
+
+              {alterarDadosPessoais ? (
+                <span className="botoes-acao-cadastro-usuario">
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/editar-perfil");
+                    }}
+                  >
+                    Informações do perfil
+                  </button>
+                  <button
+                    className="botao-acao-cadastro-usuario"
+                    onClick={() => {
+                      navigate("/alterar-senha");
+                    }}
+                  >
+                    Senha
+                  </button>
+                </span>
+              ) : null}
             </>
           ) : null}
         </span>

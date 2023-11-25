@@ -1,0 +1,25 @@
+.main-pagina-nao-encontrada {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-erro {
+  color: var(--marrom);
+  font-family: Codec Pro-Bold;
+  font-size: 150px;
+  margin: 0;
+}
+
+.container-sugestoes {
+  background-color: var(--fundo-lista);
+  color: var(--marrom);
+  padding: 20px;
+  border-radius: 25px;
+  font-family: Codec Pro-Regular;
+  margin-bottom: 35px;
+}

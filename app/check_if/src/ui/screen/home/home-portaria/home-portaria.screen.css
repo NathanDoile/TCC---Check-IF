@@ -1,18 +1,18 @@
 .main-home-portaria {
-    width: 100vw;
-    height: 87.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  width: 100vw;
+  height: 87.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .conteudo-saidas-antecipadas {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100vw;
-    gap: 10px;
-    color: #746666;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  gap: 10px;
+  color: #746666;
 }

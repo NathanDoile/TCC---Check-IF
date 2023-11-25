@@ -4,7 +4,7 @@ import {
   LogoInicial,
   TituloTelasIniciais,
   Botao,
-  InputSenha
+  InputSenha,
 } from "../../component";
 import olhoAberto from "../../../assets/images/OlhoAberto-marrom.svg";
 import olhoFechado from "../../../assets/images/OlhoFechado-marrom.svg";
@@ -59,10 +59,17 @@ export function TelaEsqueceuSenhaAlterar() {
         <TituloTelasIniciais>Escolha uma nova senha</TituloTelasIniciais>
 
         <form className="form-alterar-senha" onSubmit={onSubmit}>
+          <InputSenha
+            legenda="Nova senha"
+            name="senha"
+            handleChange={handleChange}
+          />
 
-          <InputSenha legenda="Nova senha" name="senha" handleChange={handleChange} />
-
-          <InputSenha legenda="Confirmar nova senha" name="confirmarSenha" handleChange={handleChange} />
+          <InputSenha
+            legenda="Confirmar nova senha"
+            name="confirmarSenha"
+            handleChange={handleChange}
+          />
 
           <Botao cor={"laranja"}>Alterar</Botao>
         </form>

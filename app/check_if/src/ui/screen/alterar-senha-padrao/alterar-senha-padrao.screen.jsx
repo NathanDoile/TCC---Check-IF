@@ -1,30 +1,41 @@
-import './alterar-senha-padrao.screen.css';
-import { Cabecalho, TituloTelasIniciais, InputSenha, Botao } from '../../component';
+import "./alterar-senha-padrao.screen.css";
+import {
+  Cabecalho,
+  TituloTelasIniciais,
+  InputSenha,
+  Botao,
+} from "../../component";
 
-export function TelaAlterarSenhaPadrao(){
+export function TelaAlterarSenhaPadrao() {
+  return (
+    <>
+      <Cabecalho />
 
-    return(
-        <>
+      <main className="main-tela-alterar-senha-padrao">
+        <TituloTelasIniciais>Alterar senha</TituloTelasIniciais>
 
-            <Cabecalho />
+        <form className="form-alterar-senha-padrao">
+          <InputSenha
+            legenda="Senha atual"
+            name="senhaAtual"
+            handleChange={() => {}}
+          />
 
-            <main className='main-tela-alterar-senha-padrao'>
+          <InputSenha
+            legenda="Nova senha"
+            name="novaSenha"
+            handleChange={() => {}}
+          />
 
-                <TituloTelasIniciais>Alterar senha</TituloTelasIniciais>
+          <InputSenha
+            legenda="Confirmar nova senha"
+            name="confirmarNovaSenha"
+            handleChange={() => {}}
+          />
 
-                <form className='form-alterar-senha-padrao'>
-
-                    <InputSenha legenda="Senha atual" name="senhaAtual" handleChange={() => {}} />
-
-                    <InputSenha legenda="Nova senha" name="novaSenha" handleChange={() => {}} />
-
-                    <InputSenha legenda="Confirmar nova senha" name="confirmarNovaSenha" handleChange={() => {}} />
-
-                    <Botao cor="laranja">Alterar</Botao>
-                </form>
-
-            </main>
-
-        </>
-    )
+          <Botao cor="laranja">Alterar</Botao>
+        </form>
+      </main>
+    </>
+  );
 }

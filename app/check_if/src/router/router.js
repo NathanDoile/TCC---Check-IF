@@ -19,7 +19,9 @@ import {
   TelaVincularAlunoResponsavel,
   TelaAlterarSenhaPadrao,
   TelaAlterarSenhaInicial,
-  TelaVerSolicitacoes
+  TelaVerSolicitacoes,
+  TelaGerenciarNotificacoes,
+  TelaPaginaNaoEncontrada,
 } from "../ui/screen/";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -83,30 +85,38 @@ export const router = createBrowserRouter([
   },
   {
     path: "/gerenciar-professores",
-    element: <TelaGerenciarProfessores />
+    element: <TelaGerenciarProfessores />,
   },
   {
     path: "/editar-perfil",
-    element: <TelaEditarPerfil />
+    element: <TelaEditarPerfil />,
   },
   {
     path: "/adicionar-professor",
-    element: <TelaAdicionarProfessor />
+    element: <TelaAdicionarProfessor />,
   },
   {
     path: "/vincular",
-    element: <TelaVincularAlunoResponsavel />
+    element: <TelaVincularAlunoResponsavel />,
   },
   {
     path: "/alterar-senha",
-    element: <TelaAlterarSenhaPadrao />
+    element: <TelaAlterarSenhaPadrao />,
   },
   {
     path: "/alterar-senha-inicial",
-    element: <TelaAlterarSenhaInicial />
+    element: <TelaAlterarSenhaInicial />,
   },
   {
     path: "/solicitacoes",
-    element: <TelaVerSolicitacoes />
-  }
+    element: <TelaVerSolicitacoes />,
+  },
+  {
+    path: "/notificacoes",
+    element: <TelaGerenciarNotificacoes />,
+  },
+  {
+    path: "*",
+    element: <TelaPaginaNaoEncontrada />,
+  },
 ]);

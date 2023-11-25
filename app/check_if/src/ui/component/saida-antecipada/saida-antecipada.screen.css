@@ -1,59 +1,59 @@
 .div-saida-antecipada {
-    width: 96vw;
-    height: 7vh;
-    border-radius: 25px;
-    background-color: #faf1df;
-    color: #746666;
-    font-size: 16.1px;
-    font-family: Codec Pro-Regular;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 96vw;
+  height: 7vh;
+  border-radius: 25px;
+  background-color: #faf1df;
+  color: #746666;
+  font-size: 16.1px;
+  font-family: Codec Pro-Regular;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-nome {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-turma {
-    width: 12%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-matricula {
-    width: 16%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 16%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-data {
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .saida-antecipada-hora {
-    width: 11%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 11%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.saida-antecipada-icones{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 80%;
+.saida-antecipada-icones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 80%;
 }
 
-.saida-antecipada-icones:hover{
-    cursor: pointer;
+.saida-antecipada-icones:hover {
+  cursor: pointer;
 }

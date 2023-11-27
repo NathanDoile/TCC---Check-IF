@@ -14,3 +14,13 @@ export { useAlterarAdministrador } from "./alterar-administrador/alterar-adminis
 export { useAlterarNotificacaoProfessor } from "./alterar-notificacao-professor/alterar-notificacao-professor.hook";
 export { useAlterarNotificacaoResponsavel } from "./alterar-notificacao-responsavel/alterar-notificacao-responsavel.hook";
 export { useAlterarResponsavel } from "./alterar-responsavel/alterar-responsavel.hook";
+export { useAlterarSenhaAdministrador } from './alterar-senha-administrador/alterar-senha-administrador.hook';
+export { useAlterarSenhaPortaria } from './alterar-senha-portaria/alterar-senha-portaria.hook';
+export { useAlterarSenhaResponsavel } from './alterar-senha-responsavel/alterar-senha-responsavel.hook';
+export { useCadastrarResponsavelLote } from './cadastrar-responsavel-lote/cadastrar-responsavel-lote.hook';
+export { useGerarRelatorioAluno } from './gerar-relatorio-aluno/gerar-relatorio-aluno.hook';
+export { useConfirmarSaidaAntecipada } from './confirmar-saida-antecipada/confirmar-saida-antecipada.hook';
+export { useObterAluno } from './obter-aluno/obter-aluno.hook';
+export { useObterSaidasAntecipadas } from './obter-saidas-antecipadas/obter-saidas-antecipadas.hook';
+export { usePesquisarAluno } from './pesquisar-aluno/pesquisar-aluno.hook';
+export { useSolicitarSaidaAntecipada } from './solicitar-saida-antecipada/solicitar-saida-antecipada.hook';

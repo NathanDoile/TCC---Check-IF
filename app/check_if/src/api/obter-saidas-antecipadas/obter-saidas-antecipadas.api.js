@@ -1,8 +1,8 @@
 import { axiosInstance } from "../base/axiosInstance";
 
-export async function obterSaidasAntecipadas() {
+export async function obterSaidasAntecipadasApi(page) {
   try {
-    const response = await axiosInstance.get("/saidas-antecipadas");
+    const response = await axiosInstance.get(`/saidas-antecipadas?page=${page}&size=${8}`);
 
     return response.data;
   } catch (error) {

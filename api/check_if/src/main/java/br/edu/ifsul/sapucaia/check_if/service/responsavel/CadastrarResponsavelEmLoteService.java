@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class CadastrarResponsavelEmLoteService {
     @Transactional
     public void cadastrar(CadastrarResponsavelEmLoteRequest request) throws Exception {
 
-        Workbook workbook = new Workbook("teste.xlsx");
+        Workbook workbook = new Workbook();
 
         WorksheetCollection collection  = workbook.getWorksheets();
 

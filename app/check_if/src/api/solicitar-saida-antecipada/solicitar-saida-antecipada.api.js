@@ -1,6 +1,6 @@
 import { axiosInstance } from "../base/axiosInstance";
 
-export async function solicitarSaidaAntecipada(
+export async function solicitarSaidaAntecipadaApi(
   dataAutorizada,
   horaAutorizada,
   motivo,

@@ -1,6 +1,6 @@
 import { axiosInstance } from "../base/axiosInstance";
 
-export async function alterarSenhaResponsavel(senhaAntiga, senhaNova) {
+export async function alterarSenhaResponsavelApi(senhaAntiga, senhaNova) {
   try {
     await axiosInstance.put("/responsaveis/senha", {
       senhaAntiga,

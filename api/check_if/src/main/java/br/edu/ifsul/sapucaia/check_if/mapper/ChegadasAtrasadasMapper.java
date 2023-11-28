@@ -13,7 +13,7 @@ public class ChegadasAtrasadasMapper {
         return ChegadaAtrasadaResponse
                 .builder()
                 .id(chegadaAtrasada.getId())
-                .data(chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")).toString())
+                .data(chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")))
                 .hora(chegadaAtrasada.getDataHora().toLocalTime().toString())
                 .nome(chegadaAtrasada.getAluno().getNome())
                 .matricula(chegadaAtrasada.getAluno().getMatricula())

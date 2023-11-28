@@ -15,6 +15,9 @@ import com.aspose.pdf.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -47,7 +50,7 @@ public class GerarRelatorioAlunoService {
     @Autowired
     private GerarRelatorioChegadaAtrasadaService gerarRelatorioChegadaAtrasadaService;
 
-    public void gerar(GerarRelatorioAlunoRequest request) {
+    public byte[] gerar(GerarRelatorioAlunoRequest request) throws IOException {
 
         validaAlunoService.porId(request.getId());
         validaMesAnoValidator.validarAno(request.getAno());
@@ -74,7 +77,7 @@ public class GerarRelatorioAlunoService {
                     LocalTime.MIN);
 
             fimPeriodo = LocalDateTime.of(
-                    now().withYear(request.getAno()).withMonth(request.getMes()).with(lastDayOfMonth()),
+                    now().withYear(request.getAno()).withMonth(12).with(lastDayOfMonth()),
                     LocalTime.MAX);
         }
 
@@ -90,6 +93,10 @@ public class GerarRelatorioAlunoService {
 
         gerarRelatorioChegadaAtrasadaService.gerar(doc, chegadasAtrasadas, aluno);
 
-        doc.save("Relatório " + aluno.getNome() + ".pdf");
+        doc.save("Relatório.pdf");
+
+        File file = new File("Relatório.pdf");
+
+        return Files.readAllBytes(file.toPath());
     }
 }

@@ -6,9 +6,9 @@ export async function gerarRelatorioAlunoApi(id, mes, ano) {
       id,
       mes,
       ano,
-    });
+    }, { responseType: 'blob' });
 
-    return response.data.relatorio;
+    return response.data;
   } catch (error) {
     throw error?.response?.data?.message;
   }

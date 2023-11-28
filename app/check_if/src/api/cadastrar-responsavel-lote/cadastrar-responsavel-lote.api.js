@@ -1,7 +1,7 @@
 import { axiosInstance } from "../base/axiosInstance";
 
 export async function cadastrarResponsavelLoteApi(arquivo) {
-  console.log(arquivo)
+  
   try {
     await axiosInstance.post("/responsaveis/lote", {
       arquivo,

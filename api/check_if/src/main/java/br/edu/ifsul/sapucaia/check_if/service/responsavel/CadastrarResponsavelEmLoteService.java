@@ -12,6 +12,7 @@ import com.aspose.cells.WorksheetCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.time.LocalDate;
@@ -37,9 +38,9 @@ public class CadastrarResponsavelEmLoteService {
     private CadastrarResponsavelService cadastrarResponsavelService;
 
     @Transactional
-    public void cadastrar(CadastrarResponsavelEmLoteRequest request) throws Exception {
+    public void cadastrar(MultipartFile arquivo) throws Exception {
 
-        Workbook workbook = new Workbook();
+        Workbook workbook = new Workbook(arquivo.getInputStream());
 
         WorksheetCollection collection  = workbook.getWorksheets();
 

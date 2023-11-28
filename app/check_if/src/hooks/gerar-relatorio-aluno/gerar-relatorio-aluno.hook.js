@@ -6,7 +6,8 @@ export function useGerarRelatorioAluno(){
     async function gerarRelatorioAluno(id, mes, ano){
 
         try{
-            const response = await gerarRelatorioAlunoApi(id, mes, ano);
+            
+            const response = await gerarRelatorioAlunoApi(id, Number(mes), Number(ano));
 
             return response;
         }

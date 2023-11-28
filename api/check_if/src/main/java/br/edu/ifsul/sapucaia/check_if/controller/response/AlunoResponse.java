@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -22,4 +23,6 @@ public class AlunoResponse {
     private String turma;
 
     private LocalDate dataNascimento;
+
+    private List<String> responsaveis;
 }

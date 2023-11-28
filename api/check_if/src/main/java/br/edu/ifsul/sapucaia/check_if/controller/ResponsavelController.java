@@ -5,6 +5,7 @@ import br.edu.ifsul.sapucaia.check_if.service.responsavel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -47,8 +48,8 @@ public class ResponsavelController {
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping("/lote")
     @ResponseStatus(CREATED)
-    public void cadastrarEmLote(@Valid @RequestBody CadastrarResponsavelEmLoteRequest request) throws Exception {
-        cadastrarResponsavelEmLoteService.cadastrar(request);
+    public void cadastrarEmLote(@RequestParam MultipartFile arquivo) throws Exception {
+        cadastrarResponsavelEmLoteService.cadastrar(arquivo);
     }
 
     @Secured("ROLE_RESPONSAVEL")

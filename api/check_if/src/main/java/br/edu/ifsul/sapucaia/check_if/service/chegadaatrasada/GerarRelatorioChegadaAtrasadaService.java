@@ -27,7 +27,7 @@ public class GerarRelatorioChegadaAtrasadaService {
 
         Table table = new Table();
 
-        table.setColumnWidths("80 80 60 60 60 80 80 60");
+        table.setColumnWidths("80 80 50 70 60 80 80 60");
 
         table.setBorder(new BorderInfo(All, 1F, getBlack()));
 

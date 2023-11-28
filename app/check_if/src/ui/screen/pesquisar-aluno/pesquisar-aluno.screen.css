@@ -29,6 +29,11 @@
   padding-left: 15px;
 }
 
+.input-pesquisar-aluno-tela:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
 .botao-pesquisar-tela-aluno {
   border: 0;
   background-color: transparent;

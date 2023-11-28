@@ -9,6 +9,7 @@ import br.edu.ifsul.sapucaia.check_if.service.aluno.GerarRelatorioAlunoService;
 import br.edu.ifsul.sapucaia.check_if.service.aluno.LerCrachaService;
 import br.edu.ifsul.sapucaia.check_if.service.aluno.ObterAlunoService;
 import br.edu.ifsul.sapucaia.check_if.service.aluno.PesquisarAlunoService;
+import com.aspose.pdf.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.springframework.http.HttpStatus.FOUND;
@@ -41,14 +43,14 @@ public class AlunoController {
 
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping("/pesquisar")
-    @ResponseStatus(FOUND)
+    @ResponseStatus(OK)
     public Page<PesquisarAlunoResponse> pesquisar(@RequestParam String texto, Pageable pageable){
         return pesquisarAlunoService.pesquisar(texto, pageable);
     }
 
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping("/{id}/obter")
-    @ResponseStatus(FOUND)
+    @ResponseStatus(OK)
     public AlunoResponse obter(@PathVariable Long id){
         return obterAlunoService.obter(id);
     }
@@ -56,14 +58,13 @@ public class AlunoController {
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping("/gerar-relatorio")
     @ResponseStatus(OK)
-    public void gerarRelatorio(@Valid @RequestBody GerarRelatorioAlunoRequest request){
-        gerarRelatorioAlunoService.gerar(request);
+    public byte[] gerarRelatorio(@Valid @RequestBody GerarRelatorioAlunoRequest request) throws IOException {
+        return gerarRelatorioAlunoService.gerar(request);
     }
 
     @PostMapping("/ler-cracha/publico")
     @ResponseStatus(OK)
-    public CrachaResponse lerCracha(/*@RequestPart("fotoCracha")MultipartFile request*/
-    @Valid @RequestBody LerCrachaRequest request) throws IOException {
+    public CrachaResponse lerCracha(@Valid @RequestBody LerCrachaRequest request) throws IOException {
         return lerCrachaService.ler(request);
     }
 }

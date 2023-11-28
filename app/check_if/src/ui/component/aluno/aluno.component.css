@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+.div-aluno:hover{
+  cursor: pointer;
+}
+
 .aluno-nome {
   width: 40%;
   display: flex;

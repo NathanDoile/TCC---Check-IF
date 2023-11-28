@@ -3,11 +3,73 @@ import { useParams } from "react-router-dom";
 import { Cabecalho, Botao } from "../../component";
 import usuario from "../../../assets/images/UserCirculo-marrom.svg";
 import calendario from "../../../assets/images/Calendario-marrom.svg";
+import { useObterAluno, useGerarRelatorioAluno } from '../../../hooks';
+import { useEffect, useState, useRef } from "react";
 
 export function TelaPerfilAluno() {
-  const { id } = useParams();
 
   const ano = new Date(Date.now()).toISOString().substring(0, 4);
+
+  const { id } = useParams();
+
+  const { obterAluno } = useObterAluno();
+
+  const { gerarRelatorioAluno } = useGerarRelatorioAluno();
+
+  const [aluno, setAluno] = useState();
+
+  const [formInput, setFormInput] = useState({
+    mes: "",
+    ano: ano
+  })
+
+  const [relatorio, setRelatorio] = useState();
+
+  const [relatorioUrl, setRelatorioUrl] = useState();
+
+  const relatorioRef = useRef(null);
+
+  function handleChange(event) {
+
+    const { name, value } = event.target;
+
+    setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: value }))
+  }
+
+  async function handleSubmit() {
+
+    const response = await gerarRelatorioAluno(aluno.id, formInput.mes, formInput.ano);
+
+    setRelatorio(response);
+  }
+
+  useEffect(() => {
+
+    async function obter() {
+      const response = await obterAluno(id);
+
+      setAluno(response);
+    }
+
+    obter()
+  }, [])
+
+  useEffect(() => {
+
+    if (relatorio) {
+
+      const relatorioLink = window.URL.createObjectURL(new Blob([relatorio], { type: "application/pdf" }));
+
+      setRelatorioUrl(relatorioLink);
+
+    }
+
+    if (relatorioUrl && relatorioRef) {
+      relatorioRef.current.click();
+    }
+
+
+  }, [relatorio])
 
   return (
     <>
@@ -15,24 +77,28 @@ export function TelaPerfilAluno() {
 
       <main className="main-perfil-aluno">
         <div className="dados-perfil-aluno">
-          <h1>Nathan de Souza Doile</h1>
+          <h1>{aluno?.nome}</h1>
 
           <img className="imagem-usuario-perfil" src={usuario} alt="Usuário" />
 
           <span className="dados-perfil-aluno-especifico">
             <p>
-              <b>Matrícula:</b> 078790INFQ
+              <b>Matrícula:</b> {aluno?.matricula}
             </p>
 
             <p>
-              <b>Turma:</b> 4K
+              <b>Turma:</b> {aluno?.turma}
             </p>
 
-            <p>
-              <b>Responsável:</b>
-              <br />
-              Simone de Souza Doile
-            </p>
+            {aluno?.responsaveis.length > 0
+              ?
+              <p>
+                <b>Responsável:</b>
+                <br />
+                {aluno?.responsaveis}
+              </p>
+              : null}
+
           </span>
         </div>
 
@@ -50,9 +116,6 @@ export function TelaPerfilAluno() {
 
             <form
               className="form-relatorio"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
             >
               <label>
                 Mês:
@@ -61,6 +124,8 @@ export function TelaPerfilAluno() {
                   min={0}
                   max={12}
                   className="input-relatorio"
+                  name="mes"
+                  onChange={handleChange}
                 />
               </label>
 
@@ -73,13 +138,19 @@ export function TelaPerfilAluno() {
                   className="input-relatorio"
                   defaultValue={ano}
                   required
+                  name="ano"
+                  onChange={handleChange}
                 />
               </label>
             </form>
           </span>
 
-          <Botao cor="laranja">Exportar</Botao>
+          <Botao cor="laranja" onClick={handleSubmit}>Exportar</Botao>
         </div>
+
+        {relatorioUrl
+          ? <a className="relatorio-gerado" href={relatorioUrl} download={`Relatório ${aluno.nome}`} ref={relatorioRef}></a>
+          : null}
       </main>
     </>
   );

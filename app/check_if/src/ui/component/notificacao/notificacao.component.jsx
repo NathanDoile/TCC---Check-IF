@@ -1,5 +1,5 @@
 import "./notificacao.component.css";
-import iconeWhatsapp from "../../../assets/images/Whatsapp-marrom.svg";
+import iconeTelegram from "../../../assets/images/telegram-marrom.svg";
 import iconeEmail from "../../../assets/images/Email-marrom.svg";
 import { useState } from "react";
 
@@ -31,7 +31,7 @@ export function Notificacao({
       <span className="notificacao-notificacoes">
         <div className="dados-notificacao-notificacao">
           <img
-            src={iconeWhatsapp}
+            src={iconeTelegram}
             alt="WhatsApp"
             className="icone-notificacao-notificacao"
           />

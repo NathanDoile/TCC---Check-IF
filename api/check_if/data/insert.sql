@@ -19,7 +19,11 @@ INSERT INTO aluno VALUES
 (null, 'Bianca Ramos Alves', '078510INFQ', '4I', '2005-03-07', true),
 (null, 'Evelyn Iglesias da Silva', '080320INFQ', '4K', '2004-06-14', true);
 
-INSERT INTO professor VALUES (null, 'Fábio Lemes', '1A2B3C', 'emilyeberhardt.ssnfq@academico.ifsul.edu.br', 51999999999, true, true, true);
+INSERT INTO professor VALUES 
+(null, 'Fábio Lemes', '1A2B3C', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999999, true, true, true),
+(null, 'Priscila Ligoski', '3324089', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999998, true, true, true),
+(null, 'Lourenço Basso', '4D5E6F', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999997, true, true, true),
+(null, 'Roberto Bowowski', '7G8H9I', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999996, true, true, true);
 
 INSERT INTO chegada_atrasada VALUES 
 (null, '2023-09-05 11:02:04', 'Não queria vir para a escola', 'Empreendedorismo', 1, 1, null),  	

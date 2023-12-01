@@ -4,7 +4,7 @@ export async function confirmarSaidaAntecipadaApi(id, saiu) {
   try {
     await axiosInstance.put("/saidas-antecipadas/confirmar", {
       id,
-      saiu,
+      saiu
     });
   } catch (error) {
     throw error?.response?.data?.message;

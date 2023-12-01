@@ -20,6 +20,7 @@ public class SaidaAntecipadaMapper {
                 .horaAutorizada(saidaAntecipada.getDataHoraAutorizada().toLocalTime())
                 .nome(aluno.getNome())
                 .turma(aluno.getTurma())
+                .matricula(aluno.getMatricula())
                 .build();
     }
 

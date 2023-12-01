@@ -36,7 +36,7 @@ public class SaidaAntecipadaController {
 
     @Secured("ROLE_PORTARIA")
     @GetMapping
-    @ResponseStatus(FOUND)
+    @ResponseStatus(OK)
     public Page<SaidaAntecipadaResponse> obterSaidasAntecipadas(Pageable pageable){
         return obterSaidasAntecipadasService.obter(pageable);
     }

@@ -6,4 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
     Professor findByChegadasAtrasadas(ChegadaAtrasada chegadaAtrasada);
+
+    boolean existsByEmail(String email);
+
+    boolean existsBySiape(String siape);
+
+    boolean existsByCelular(Long celular);
 }

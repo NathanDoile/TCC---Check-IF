@@ -5,9 +5,12 @@ import {
   Input,
   Botao,
 } from "../../../component";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useObterAlunoPorResponsavel, useSolicitarSaidaAntecipada } from "../../../../hooks";
+import { toast } from "react-toastify";
 
 export function TelaHomeResponsavel() {
+  
   const [formInput, setFormInput] = useState({
     aluno: 0,
     data: "",
@@ -16,6 +19,16 @@ export function TelaHomeResponsavel() {
   });
 
   const [outroMotivo, setOutroMotivo] = useState(false);
+
+  const [alunos, setAlunos] = useState([]);
+
+  const [idAlunos, setIdAlunos] = useState([]);
+
+  const [nomeAlunos, setNomeAlunos] = useState([]);
+
+  const { obterAlunosPorResponsavel } = useObterAlunoPorResponsavel();
+
+  const { solicitarSaidaAntecipada } = useSolicitarSaidaAntecipada();
 
   const motivos = [
     "Consulta médica",
@@ -44,6 +57,42 @@ export function TelaHomeResponsavel() {
     }
   }
 
+  async function handleSubmit(event){
+    event.preventDefault();
+    console.log(formInput)
+    if(formInput.aluno === "0" || formInput.data === "" || formInput.hora === "" || formInput.motivo === ""){
+      toast.error("Preencha todos os campos.");
+    }
+    else{
+      await solicitarSaidaAntecipada(formInput.data, formInput.hora, formInput.motivo, formInput.aluno);
+    }
+  }
+
+  useEffect(() => {
+
+    async function obterAlunos(){
+
+      const response = await obterAlunosPorResponsavel();
+      
+      setAlunos(response);
+    }
+    
+    obterAlunos();
+  }, []);  
+
+  useEffect(() => {
+
+    setIdAlunos([]);
+    setNomeAlunos([]);
+
+    alunos.forEach(aluno => {
+
+      setIdAlunos((oldIdAlunos) => [...oldIdAlunos, aluno.id]);
+      setNomeAlunos((oldNomeAlunos) => [...oldNomeAlunos, aluno.nome]);
+    })
+
+  }, [alunos]);
+
   return (
     <>
       <Cabecalho />
@@ -51,18 +100,15 @@ export function TelaHomeResponsavel() {
       <main className="main-home-responsavel">
         <TituloTelasIniciais>Solicite uma saída antecipada</TituloTelasIniciais>
 
-        <form className="form-saida-antecipada">
+        <form className="form-saida-antecipada" onSubmit={handleSubmit}>
           <Input
             isSelect
             legenda="Aluno"
             isObrigatorio
             name="aluno"
             handleChange={handleChange}
-            opcoes={[
-              "Nathan de Souza Doile",
-              "Emily Aparecida da Silveira Eberhardt",
-            ]}
-            values={[1, 2]}
+            opcoes={nomeAlunos}
+            values={idAlunos}
             grande
           />
 

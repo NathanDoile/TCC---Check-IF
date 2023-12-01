@@ -21,4 +21,29 @@ public class ValidaProfessorService {
             throw new ResponseStatusException(NOT_FOUND, "Professor não encontrado.");
         }
     }
+
+    public void porEmail(String email) {
+
+        if(professorRepository.existsByEmail(email)){
+
+            throw new ResponseStatusException(NOT_FOUND, "E-mail já cadastrado.");
+        }
+    }
+
+
+    public void porSiape(String siape) {
+
+        if(professorRepository.existsBySiape(siape)){
+
+            throw new ResponseStatusException(NOT_FOUND, "Siape já cadastrado.");
+        }
+    }
+
+    public void porCelular(Long celular) {
+
+        if(professorRepository.existsByCelular(celular)){
+
+            throw new ResponseStatusException(NOT_FOUND, "Celular já cadastrado.");
+        }
+    }
 }

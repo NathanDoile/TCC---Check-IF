@@ -4,6 +4,8 @@ import br.edu.ifsul.sapucaia.check_if.controller.response.ProfessorResponse;
 import br.edu.ifsul.sapucaia.check_if.domain.Professor;
 import br.edu.ifsul.sapucaia.check_if.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import br.edu.ifsul.sapucaia.check_if.mapper.ProfessorMapper;
 
@@ -17,13 +19,10 @@ public class BuscarTodosProfessorService {
     private ProfessorRepository professorRepository;
 
 
-    public List<ProfessorResponse> buscar() {
+    public Page<ProfessorResponse> buscar(Pageable pageable) {
 
-        List<Professor> professores = professorRepository.findAll();
+        Page<Professor> professores = professorRepository.findAll(pageable);
 
-        return professores
-                .stream()
-                .map(ProfessorMapper::toResponse)
-                .toList();
+        return professores.map(ProfessorMapper::toResponse);
     }
 }

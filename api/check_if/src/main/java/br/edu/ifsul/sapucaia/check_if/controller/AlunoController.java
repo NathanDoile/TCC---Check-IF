@@ -5,10 +5,7 @@ import br.edu.ifsul.sapucaia.check_if.controller.request.aluno.LerCrachaRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.AlunoResponse;
 import br.edu.ifsul.sapucaia.check_if.controller.response.CrachaResponse;
 import br.edu.ifsul.sapucaia.check_if.controller.response.PesquisarAlunoResponse;
-import br.edu.ifsul.sapucaia.check_if.service.aluno.GerarRelatorioAlunoService;
-import br.edu.ifsul.sapucaia.check_if.service.aluno.LerCrachaService;
-import br.edu.ifsul.sapucaia.check_if.service.aluno.ObterAlunoService;
-import br.edu.ifsul.sapucaia.check_if.service.aluno.PesquisarAlunoService;
+import br.edu.ifsul.sapucaia.check_if.service.aluno.*;
 import com.aspose.pdf.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +18,7 @@ import javax.validation.Valid;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.FOUND;
 import static org.springframework.http.HttpStatus.OK;
@@ -40,6 +38,9 @@ public class AlunoController {
 
     @Autowired
     private LerCrachaService lerCrachaService;
+
+    @Autowired
+    private ObterPorResponsavelService obterPorResponsavelService;
 
     @Secured("ROLE_ADMINISTRADOR")
     @GetMapping("/pesquisar")
@@ -66,5 +67,12 @@ public class AlunoController {
     @ResponseStatus(OK)
     public CrachaResponse lerCracha(@Valid @RequestBody LerCrachaRequest request) throws IOException {
         return lerCrachaService.ler(request);
+    }
+
+    @Secured("ROLE_RESPONSAVEL")
+    @GetMapping("/obter/responsavel")
+    @ResponseStatus(OK)
+    public List<AlunoResponse> obterPorResponsavel(){
+        return obterPorResponsavelService.obter();
     }
 }

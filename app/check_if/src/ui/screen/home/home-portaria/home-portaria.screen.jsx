@@ -5,8 +5,59 @@ import {
   Navbar,
   SaidaAntecipada,
 } from "../../../component";
+import { useObterSaidasAntecipadas } from "../../../../hooks";
+import { useState, useEffect } from "react";
 
 export function TelaHomePortaria() {
+
+  const { obterSaidasAntecipadas } = useObterSaidasAntecipadas();
+
+  const [saidasAntecipadas, setSaidasAntecipadas] = useState([]);
+
+  const [saidasAntecipadasTag, setSaidasAntecipadasTag] = useState([]);
+
+  const [pagina, setPagina] = useState(0);
+
+  const [numeroPaginas, setNumeroPaginas] = useState();
+
+  const [recarregar, setRecarregar] = useState(false);
+  
+  useEffect(() => {
+
+    async function obterSaidas() {
+      
+      const response = await obterSaidasAntecipadas(pagina);
+      
+      const saidas = response.content;
+      setNumeroPaginas(response.totalPages);
+      setSaidasAntecipadas([...saidas]);
+    }
+
+    obterSaidas();
+
+  }, [pagina, recarregar])
+
+  useEffect(() => {
+    
+    setSaidasAntecipadasTag([]);
+
+    saidasAntecipadas.forEach(saidaAntecipada => {
+
+      setSaidasAntecipadasTag((oldSaidasAntecipadasTag) => ([...oldSaidasAntecipadasTag,
+        <SaidaAntecipada
+          nome={saidaAntecipada.nome}
+          turma={saidaAntecipada.turma}
+          matricula={saidaAntecipada.matricula}
+          data={saidaAntecipada.dataAutorizada}
+          hora={saidaAntecipada.horaAutorizada}
+          id={saidaAntecipada.id}
+          recarregar={() => {setRecarregar(!recarregar)}}
+        />
+      ]))
+    });
+
+  }, [saidasAntecipadas])
+
   return (
     <>
       <Cabecalho />
@@ -17,24 +68,10 @@ export function TelaHomePortaria() {
         </TituloTelasIniciais>
 
         <div className="conteudo-saidas-antecipadas">
-          <SaidaAntecipada
-            nome="Nathan de Souza Doile"
-            turma="4K"
-            matricula="078790INFQ"
-            data="23/11/2023"
-            hora="11:45"
-          />
-
-          <SaidaAntecipada
-            nome="Emily Aparecida da Silveira Eberhardt"
-            turma="4I"
-            matricula="078630INFQ"
-            data="23/11/2023"
-            hora="11:45"
-          />
+          {saidasAntecipadasTag.length > 0 ? saidasAntecipadas : <TituloTelasIniciais>Nenhuma saída antecipada para o dia de hoje</TituloTelasIniciais>}
         </div>
 
-        <Navbar paginaAtual={0} numeroPaginas={1} alterarPagina={() => {}} />
+        <Navbar paginaAtual={pagina} numeroPaginas={numeroPaginas} alterarPagina={setPagina} />
       </main>
     </>
   );

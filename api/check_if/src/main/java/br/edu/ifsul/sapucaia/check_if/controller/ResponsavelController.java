@@ -31,6 +31,9 @@ public class ResponsavelController {
     @Autowired
     private AlterarSenhaResponsavelService alterarSenhaResponsavelService;
 
+    @Autowired
+    private VincularResponsavelService vincularResponsavelService;
+
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping
     @ResponseStatus(CREATED)
@@ -65,5 +68,12 @@ public class ResponsavelController {
     @ResponseStatus(OK)
     public void alterarSenha(@Valid @RequestBody AlterarSenhaResponsavelRequest request){
         alterarSenhaResponsavelService.alterar(request);
+    }
+
+    @Secured("ROLE_ADMINISTRADOR")
+    @PutMapping("/vincular")
+    @ResponseStatus(OK)
+    public void vincular(@Valid @RequestBody VincularResponsavelRequest request){
+        vincularResponsavelService.vincular(request);
     }
 }

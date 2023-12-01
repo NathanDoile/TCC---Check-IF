@@ -17,4 +17,10 @@ public class ProfessorResponse {
     private String siape;
 
     private String email;
+
+    private Long celular;
+
+    private boolean notificacaoWhatsapp;
+
+    private boolean notificacaoEmail;
 }

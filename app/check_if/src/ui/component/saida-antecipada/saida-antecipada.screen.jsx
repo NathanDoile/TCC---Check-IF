@@ -1,8 +1,18 @@
 import "./saida-antecipada.screen.css";
 import confirmarSaidaImg from "../../../assets/images/Confirmar.svg";
 import cancelarSaidaImg from "../../../assets/images/Cancelar.svg";
+import { useConfirmarSaidaAntecipada } from "../../../hooks";
 
-export function SaidaAntecipada({ nome, turma, matricula, data, hora }) {
+export function SaidaAntecipada({ nome, turma, matricula, data, hora, id, recarregar }) {
+
+  const { confirmarSaidaAntecipada } = useConfirmarSaidaAntecipada();
+
+  async function confirmar(saiu){
+    await confirmarSaidaAntecipada(id, saiu);
+
+    recarregar();
+  }
+
   return (
     <div className="div-saida-antecipada">
       <span className="saida-antecipada-nome">{nome}</span>
@@ -14,11 +24,13 @@ export function SaidaAntecipada({ nome, turma, matricula, data, hora }) {
         className="saida-antecipada-icones"
         src={confirmarSaidaImg}
         alt="Confirmar"
+        onClick={() => {confirmar(true)}}
       />
       <img
         className="saida-antecipada-icones"
         src={cancelarSaidaImg}
         alt="Cancelar"
+        onClick={() => {confirmar(false)}}
       />
     </div>
   );

@@ -7,6 +7,8 @@ export function useConfirmarSaidaAntecipada(){
 
         try{
             await confirmarSaidaAntecipadaApi(id, saiu);
+
+            toast.success("Saída antecipada resolvida.")
         }
         catch(error){
             toast.error(error);

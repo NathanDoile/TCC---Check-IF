@@ -2,6 +2,8 @@ import "./professor.component.css";
 import iconeTelegram from "../../../assets/images/telegram-marrom.svg";
 import iconeEmail from "../../../assets/images/Email-marrom.svg";
 import { useState } from "react";
+import { useAlterarNotificacaoProfessor } from '../../../hooks';
+import { toast } from "react-toastify";
 
 export function Professor({
   nome,
@@ -10,16 +12,32 @@ export function Professor({
   email,
   notificacaoNumero,
   notificacaoEmail,
+  id
 }) {
+
   const [formInput, setFormInput] = useState({
     whatsapp: notificacaoNumero,
     email: notificacaoEmail,
   });
 
-  function handleChange(event) {
+  const { alterarNotificacaoProfessor } = useAlterarNotificacaoProfessor();
+
+  async function handleChange(event) {
+
     const { name, checked } = event.target;
 
-    setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: checked }));
+    try{
+  
+      await alterarNotificacaoProfessor(id, name);
+
+      setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: checked }));
+
+    }
+    catch(error){
+
+      toast.error(error);
+    }
+
   }
 
   return (

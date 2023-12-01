@@ -2,25 +2,39 @@ import "./notificacao.component.css";
 import iconeTelegram from "../../../assets/images/telegram-marrom.svg";
 import iconeEmail from "../../../assets/images/Email-marrom.svg";
 import { useState } from "react";
+import { useAlterarNotificacaoResponsavel } from "../../../hooks";
+import { toast } from "react-toastify";
 
 export function Notificacao({
+  id,
   nome,
   turma,
   matricula,
   numero,
   email,
   notificacaoNumero,
-  notificacaoEmail,
+  notificacaoEmail
 }) {
   const [formInput, setFormInput] = useState({
     whatsapp: notificacaoNumero,
     email: notificacaoEmail,
   });
 
-  function handleChange(event) {
+  const { alterarNotificacaoResponsavel } = useAlterarNotificacaoResponsavel();
+
+  async function handleChange(event) {
     const { name, checked } = event.target;
 
-    setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: checked }));
+    try{
+
+      await alterarNotificacaoResponsavel(id, name);
+
+      setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: checked }));
+    }
+    catch(error){
+      toast.error(error);
+    }
+
   }
 
   return (

@@ -24,3 +24,5 @@ export { useObterAluno } from './obter-aluno/obter-aluno.hook';
 export { useObterSaidasAntecipadas } from './obter-saidas-antecipadas/obter-saidas-antecipadas.hook';
 export { usePesquisarAluno } from './pesquisar-aluno/pesquisar-aluno.hook';
 export { useSolicitarSaidaAntecipada } from './solicitar-saida-antecipada/solicitar-saida-antecipada.hook';
+export { useObterAlunoPorResponsavel } from './obter-alunos-por-responsavel/obter-alunos-por-responsavel.hook';
+export { useCadastrarProfessor } from './cadastrar-professor/cadastrar-professor.hook';

@@ -1,9 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.controller.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class AlunoResponse {
 
     private Long id;
@@ -25,4 +23,8 @@ public class AlunoResponse {
     private LocalDate dataNascimento;
 
     private List<String> responsaveis;
+
+    private boolean notificacaoWhatsapp;
+
+    private boolean notificacaoEmail;
 }

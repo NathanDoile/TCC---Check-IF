@@ -7,7 +7,7 @@ export function useObterSaidasAntecipadas(){
 
         try{
             const response = await obterSaidasAntecipadasApi(page);
-
+            
             return response;
         }
         catch(error){

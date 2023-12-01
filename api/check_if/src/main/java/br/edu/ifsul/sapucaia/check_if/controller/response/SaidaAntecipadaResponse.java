@@ -23,4 +23,6 @@ public class SaidaAntecipadaResponse {
     private String nome;
 
     private String turma;
+
+    private String matricula;
 }

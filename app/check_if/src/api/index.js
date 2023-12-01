@@ -24,3 +24,5 @@ export { alterarSenhaResponsavelApi } from "./alterar-senha-responsavel/alterar-
 export { obterSaidasAntecipadasApi } from "./obter-saidas-antecipadas/obter-saidas-antecipadas.api";
 export { solicitarSaidaAntecipadaApi } from "./solicitar-saida-antecipada/solicitar-saida-antecipada.api";
 export { confirmarSaidaAntecipadaApi } from "./confirmar-saida-antecipada/confirmar-saida-antecipada.api";
+export { obterAlunosPorResponsavelApi } from "./obter-alunos-por-responsavel/obter-alunos-por-responsavel.api";
+export { cadastrarProfessorApi } from './cadastrar-professor/cadastrar-professor.api';

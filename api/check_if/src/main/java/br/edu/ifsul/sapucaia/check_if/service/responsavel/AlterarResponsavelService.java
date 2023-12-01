@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Objects;
 
 @Service
 public class AlterarResponsavelService {
@@ -26,10 +27,15 @@ public class AlterarResponsavelService {
     @Transactional
     public void alterar(AlterarResponsavelRequest request) {
 
-        validaResponsavelService.porCelular(request.getCelular());
-        validaResponsavelService.porEmail(request.getEmail());
-
         Responsavel responsavel = usuarioAutenticadoService.getResponsavel();
+
+        if(!Objects.equals(responsavel.getCelular(), request.getCelular())){
+            validaResponsavelService.porCelular(request.getCelular());
+        }
+
+        if(!responsavel.getEmail().equalsIgnoreCase(request.getEmail())){
+            validaResponsavelService.porEmail(request.getEmail());
+        }
 
         responsavel.setNome(request.getNome());
         responsavel.setEmail(request.getEmail());

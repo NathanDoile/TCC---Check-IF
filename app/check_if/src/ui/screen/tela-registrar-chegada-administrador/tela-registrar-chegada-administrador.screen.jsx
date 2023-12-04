@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 import { useRegistrarChegadaManual } from "../../../hooks";
 
 export function TelaRegistrarChegadaAdministrador() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const { obterProfessores } = useObterProfessores();
 
   const { registrarChegadaManual } = useRegistrarChegadaManual();
@@ -56,12 +59,17 @@ export function TelaRegistrarChegadaAdministrador() {
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
+
+      setCarregando(true);
+
       await registrarChegadaManual(
         formInput.motivo,
         formInput.disciplina,
         formInput.matricula,
         formInput.professor
       );
+
+      setCarregando(false);
     }
   }
 
@@ -161,7 +169,7 @@ export function TelaRegistrarChegadaAdministrador() {
           </span>
 
           <span className="botao-form-registrar-chegada-adm">
-            <Botao cor={"laranja"}>Registrar</Botao>
+            <Botao cor={"laranja"} carregando={carregando}>Registrar</Botao>
           </span>
         </form>
       </main>

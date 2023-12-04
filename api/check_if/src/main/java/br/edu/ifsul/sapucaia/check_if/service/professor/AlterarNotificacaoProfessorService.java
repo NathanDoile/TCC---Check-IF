@@ -16,9 +16,6 @@ public class AlterarNotificacaoProfessorService {
     private ValidaProfessorService validaProfessorService;
 
     @Autowired
-    private ValidaTipoNotificacaoValidator validaTipoNotificacaoValidator;
-
-    @Autowired
     private ProfessorRepository professorRepository;
 
     @Transactional
@@ -26,18 +23,9 @@ public class AlterarNotificacaoProfessorService {
 
         validaProfessorService.porId(request.getId());
 
-        validaTipoNotificacaoValidator.validar(request.getTipoNotificacao());
-
         Professor professor = professorRepository.findById(request.getId()).get();
 
-        if(request.getTipoNotificacao().equalsIgnoreCase("EMAIL")){
-
-            professor.setNotificacaoEmail(!professor.isNotificacaoEmail());
-        }
-        else{
-
-            professor.setNotificacaoWhatsapp(!professor.isNotificacaoWhatsapp());
-        }
+        professor.setNotificacaoEmail(!professor.isNotificacaoEmail());
 
         professorRepository.save(professor);
     }

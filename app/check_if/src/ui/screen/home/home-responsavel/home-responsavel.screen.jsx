@@ -10,6 +10,8 @@ import { useObterAlunoPorResponsavel, useSolicitarSaidaAntecipada } from "../../
 import { toast } from "react-toastify";
 
 export function TelaHomeResponsavel() {
+
+  const [carregando, setCarregando] = useState(false);
   
   const [formInput, setFormInput] = useState({
     aluno: 0,
@@ -59,12 +61,17 @@ export function TelaHomeResponsavel() {
 
   async function handleSubmit(event){
     event.preventDefault();
-    console.log(formInput)
+    
     if(formInput.aluno === "0" || formInput.data === "" || formInput.hora === "" || formInput.motivo === ""){
       toast.error("Preencha todos os campos.");
     }
     else{
+
+      setCarregando(true);
+
       await solicitarSaidaAntecipada(formInput.data, formInput.hora, formInput.motivo, formInput.aluno);
+
+      setCarregando(false);
     }
   }
 
@@ -154,7 +161,7 @@ export function TelaHomeResponsavel() {
             ) : null}
           </span>
 
-          <Botao>Solicitar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Solicitar</Botao>
         </form>
       </main>
     </>

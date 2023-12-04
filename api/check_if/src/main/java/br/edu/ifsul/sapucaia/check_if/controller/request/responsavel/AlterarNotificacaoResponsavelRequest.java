@@ -12,7 +12,4 @@ public class AlterarNotificacaoResponsavelRequest {
 
     @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private Long idAluno;
-
-    @NotBlank(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
-    private String tipoNotificacao;
 }

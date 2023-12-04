@@ -49,9 +49,6 @@ public class Responsavel {
     private List<Permissao> permissoes;
 
     @OneToMany(mappedBy = "responsavel", cascade = PERSIST)
-    private List<NotificacaoWhatsapp> notificacoesWhatsapp;
-
-    @OneToMany(mappedBy = "responsavel", cascade = PERSIST)
     private List<NotificacaoEmail> notificacoesEmail;
 
     public void adicionarPermissao(Permissao permissao){
@@ -67,10 +64,5 @@ public class Responsavel {
     public void adicionarNotificaoEmail(NotificacaoEmail notificacaoEmail){
         this.notificacoesEmail.add(notificacaoEmail);
         notificacaoEmail.setResponsavel(this);
-    }
-
-    public void adicionarNotificacaoWhatsapp(NotificacaoWhatsapp notificacaoWhatsapp){
-        this.notificacoesWhatsapp.add(notificacaoWhatsapp);
-        notificacaoWhatsapp.setResponsavel(this);
     }
 }

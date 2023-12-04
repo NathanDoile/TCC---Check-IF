@@ -27,8 +27,6 @@ public class Professor {
 
     private Long celular;
 
-    private boolean notificacaoWhatsapp;
-
     private boolean notificacaoEmail;
 
     private boolean isAtivo;

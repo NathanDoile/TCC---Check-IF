@@ -26,3 +26,6 @@ export { usePesquisarAluno } from './pesquisar-aluno/pesquisar-aluno.hook';
 export { useSolicitarSaidaAntecipada } from './solicitar-saida-antecipada/solicitar-saida-antecipada.hook';
 export { useObterAlunoPorResponsavel } from './obter-alunos-por-responsavel/obter-alunos-por-responsavel.hook';
 export { useCadastrarProfessor } from './cadastrar-professor/cadastrar-professor.hook';
+export { useVincularResponsavelAluno } from './vincular-responsavel-aluno/vincular-responsavel-aluno.hook';
+export { useVerSaidasAntecipadas } from './ver-saidas-antecipadas/ver-saidas-antecipadas.hook';
+export { useObterProfessoresPaginado } from './obter-professores-paginado/obter-professores-paginado.hook';

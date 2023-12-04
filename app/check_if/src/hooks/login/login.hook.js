@@ -13,9 +13,19 @@ export function useLogin() {
     try {
       const response = await logarApi(email, senha);
 
-      setUsuario(response);
+      const { primeiroAcesso, ...dados } = response;
 
-      navigate("/home");
+      setUsuario(dados);
+
+      if(primeiroAcesso){
+
+        navigate("/alterar-senha-inicial")
+      }
+      else{
+  
+        navigate("/home");
+      }
+
     } catch (error) {
       setError(true);
 

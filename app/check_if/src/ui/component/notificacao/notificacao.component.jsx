@@ -4,6 +4,7 @@ import iconeEmail from "../../../assets/images/Email-marrom.svg";
 import { useState } from "react";
 import { useAlterarNotificacaoResponsavel } from "../../../hooks";
 import { toast } from "react-toastify";
+import loading from '../../../assets/images/loading.svg';
 
 export function Notificacao({
   id,
@@ -15,6 +16,9 @@ export function Notificacao({
   notificacaoNumero,
   notificacaoEmail
 }) {
+
+  const [carregando, setCarregando] = useState(false);
+
   const [formInput, setFormInput] = useState({
     whatsapp: notificacaoNumero,
     email: notificacaoEmail,
@@ -27,12 +31,18 @@ export function Notificacao({
 
     try{
 
+      setCarregando(true);
+
       await alterarNotificacaoResponsavel(id, name);
+
+      setCarregando(false);
 
       setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: checked }));
     }
     catch(error){
       toast.error(error);
+
+      setCarregando(false);
     }
 
   }
@@ -44,36 +54,22 @@ export function Notificacao({
       <span className="notificacao-matricula">{matricula}</span>
       <span className="notificacao-notificacoes">
         <div className="dados-notificacao-notificacao">
-          <img
-            src={iconeTelegram}
-            alt="WhatsApp"
-            className="icone-notificacao-notificacao"
-          />
 
           <img
             src={iconeEmail}
             alt="E-mail"
             className="icone-notificacao-notificacao"
           />
+
         </div>
 
         <div className="dados-notificacao-notificacao dados-notificacao-especifico">
-          <span>{numero}</span>
 
           <span>{email}</span>
+
         </div>
 
         <form className="dados-notificacao-notificacao dados-notificacao-especifico">
-          <label className="switch">
-            <input
-              type="checkbox"
-              className="input-notificacao-notificacao"
-              name="whatsapp"
-              onChange={handleChange}
-              checked={formInput.whatsapp}
-            />
-            <span className="slider round"></span>
-          </label>
 
           <label className="switch">
             <input
@@ -85,8 +81,10 @@ export function Notificacao({
             />
             <span className="slider round"></span>
           </label>
+          
         </form>
       </span>
+      {carregando ? <img src={loading} className="loading-lista" /> : null}
     </div>
   );
 }

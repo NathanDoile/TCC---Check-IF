@@ -14,6 +14,9 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export function TelaLogin() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const { fazerLogin } = useLogin();
   const navigate = useNavigate();
 
@@ -34,7 +37,12 @@ export function TelaLogin() {
     if (formInput.email === "" || formInput.senha === "") {
       toast.error("Preencha todos os campos!");
     } else {
+
+      setCarregando(true);
+
       await fazerLogin(formInput.email, formInput.senha);
+
+      setCarregando(false);
     }
   }
 
@@ -78,7 +86,7 @@ export function TelaLogin() {
             </p>
           </span>
 
-          <Botao cor="amarelo">Logar</Botao>
+          <Botao cor="amarelo" carregando={carregando}>Logar</Botao>
         </form>
       </main>
 

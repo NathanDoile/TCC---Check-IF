@@ -43,7 +43,6 @@ public class LerCrachaService {
         image.save();
 
         BufferedImage img = read(new File("cracha.jpg"));
-        //BufferedImage img = read(new File("cracha.jpg"));
 
         BarCodeReader reader = new BarCodeReader(img);
 
@@ -61,7 +60,7 @@ public class LerCrachaService {
             throw new ResponseStatusException(BAD_REQUEST, "Nenhum código de barras encontrado!");
         }
         else{
-            System.out.println(matricula);
+
             return CrachaResponse
                     .builder()
                     .matricula(matricula)

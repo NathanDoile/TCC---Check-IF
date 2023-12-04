@@ -115,3 +115,28 @@
 .slider.round:before {
   border-radius: 50%;
 }
+
+.loading-lista{
+  max-height: 30px;
+  animation: rodar 1.5s linear infinite;
+  position: absolute;
+  right: 20px;
+}
+
+@keyframes rodar {
+  0%{
+    rotate: 0deg;
+  }
+  25%{
+    rotate: 90deg;
+  }
+  50%{
+    rotate: 180deg;
+  }
+  75%{
+    rotate: 270deg;
+  }
+  100%{
+    rotate: 360deg;
+  }
+}

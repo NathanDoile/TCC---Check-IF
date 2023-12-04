@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import { useRegistrarSaidaAntecipada } from "../../../hooks";
 
 export function TelaRegistrarSaidaAntecipada() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const { registrarSaidaAntecipada } = useRegistrarSaidaAntecipada();
 
   const [formInput, setFormInput] = useState({
@@ -55,12 +58,17 @@ export function TelaRegistrarSaidaAntecipada() {
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
+
+      setCarregando(true);
+
       await registrarSaidaAntecipada(
         formInput.responsavel,
         formInput.grauParentesco,
         formInput.motivo,
         formInput.matricula
       );
+
+      setCarregando(false);
     }
   }
 
@@ -124,7 +132,7 @@ export function TelaRegistrarSaidaAntecipada() {
             ) : null}
           </span>
 
-          <Botao cor="laranja">Registrar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Registrar</Botao>
         </form>
       </main>
     </>

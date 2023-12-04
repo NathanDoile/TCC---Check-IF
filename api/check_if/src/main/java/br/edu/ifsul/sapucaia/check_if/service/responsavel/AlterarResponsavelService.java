@@ -29,7 +29,7 @@ public class AlterarResponsavelService {
 
         Responsavel responsavel = usuarioAutenticadoService.getResponsavel();
 
-        if(!Objects.equals(responsavel.getCelular(), request.getCelular())){
+        if(!Objects.equals(responsavel.getCelular(), request.getCelular()) && request.getCelular() != null && request.getCelular() <= 0){
             validaResponsavelService.porCelular(request.getCelular());
         }
 

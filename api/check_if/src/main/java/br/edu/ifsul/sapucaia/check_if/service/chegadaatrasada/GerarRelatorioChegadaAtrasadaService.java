@@ -61,7 +61,7 @@ public class GerarRelatorioChegadaAtrasadaService {
             linha.getCells().add(aluno.getNome());
             linha.getCells().add(aluno.getMatricula());
             linha.getCells().add(aluno.getTurma());
-            linha.getCells().add(chegadaAtrasada.getDataHora().toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString());
+            linha.getCells().add(chegadaAtrasada.getDataHora().toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             linha.getCells().add(chegadaAtrasada.getDataHora().toLocalTime().toString());
             linha.getCells().add("CHEGADA ATRASADA");
             linha.getCells().add(professor.getNome());

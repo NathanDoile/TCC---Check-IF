@@ -25,7 +25,7 @@ public class AlterarAdministradorService {
 
         Administrador administrador = usuarioAutenticadoService.getAdministrador();
 
-        if(administradorRepository.existsByEmailAndIdNot(request.getEmail(), administrador.getId())){
+        if(administradorRepository.existsByEmailAndIdNotAndIsAtivo(request.getEmail(), administrador.getId(), true)){
             throw new ResponseStatusException(CONFLICT, "E-mail já vinculado a outro usuário.");
         }
 

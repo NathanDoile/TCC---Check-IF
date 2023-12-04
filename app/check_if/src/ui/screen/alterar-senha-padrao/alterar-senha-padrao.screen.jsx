@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 
 export function TelaAlterarSenhaPadrao() {
 
+  const [carregando, setCarregando] = useState(false);
+
   const [usuario] = useGlobalUsuario();
 
   const { alterarSenhaAdministrador } = useAlterarSenhaAdministrador();
@@ -44,15 +46,27 @@ export function TelaAlterarSenhaPadrao() {
 
       if(usuario.permissao === "ADMINISTRADOR"){
 
+        setCarregando(true);
+
         await alterarSenhaAdministrador(formInput.senhaAtual, formInput.novaSenha);
+
+        setCarregando(false);
       }
       else if(usuario.permissao === "RESPONSAVEL"){
 
+        setCarregando(true);
+
         await alterarSenhaResponsavel(formInput.senhaAtual, formInput.novaSenha);
+
+        setCarregando(false);
       }
       else{
 
+        setCarregando(true);
+
         await alterarSenhaPortaria(formInput.senhaAtual, formInput.novaSenha);
+
+        setCarregando(false);
       }
     }
   }
@@ -83,7 +97,7 @@ export function TelaAlterarSenhaPadrao() {
             handleChange={handleChange}
           />
 
-          <Botao cor="laranja">Alterar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Alterar</Botao>
         </form>
       </main>
     </>

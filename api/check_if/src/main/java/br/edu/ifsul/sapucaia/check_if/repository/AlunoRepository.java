@@ -1,7 +1,6 @@
 package br.edu.ifsul.sapucaia.check_if.repository;
 
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
-import br.edu.ifsul.sapucaia.check_if.domain.ChegadaAtrasada;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
 import br.edu.ifsul.sapucaia.check_if.domain.SaidaAntecipada;
 import org.springframework.data.domain.Page;
@@ -12,19 +11,19 @@ import java.util.List;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-    Page<Aluno> findByNomeContainingOrMatriculaContaining(String nome, String matricula, Pageable pageable);
+    Page<Aluno> findByNomeContainingOrMatriculaContainingAndIsAtivo(String nome, String matricula, boolean ativo, Pageable pageable);
 
-    Aluno findByChegadasAtrasadas(ChegadaAtrasada chegadaAtrasada);
+    Aluno findBySaidasAntecipadasAndIsAtivo(SaidaAntecipada saidaAntecipada, boolean ativo);
 
-    Aluno findBySaidasAntecipadas(SaidaAntecipada saidaAntecipada);
+    boolean existsByMatriculaAndIsAtivo(String matricula, boolean ativo);
 
-    boolean existsByMatricula(String matricula);
+    Aluno findByMatriculaAndIsAtivo(String matriculaAluno, boolean ativo);
 
-    Aluno findByMatricula(String matriculaAluno);
+    List<Aluno> findAllByResponsaveisAndIsAtivo(Responsavel responsavel, boolean ativo);
 
-    List<Aluno> findAllByResponsaveis(Responsavel responsavel);
+    Aluno findByMatriculaContainingAndIsAtivo(String matricula, boolean ativo);
 
-    Aluno findByMatriculaContaining(String matricula);
+    boolean existsByMatriculaContainingAndIsAtivo(String matricula, boolean ativo);
 
-    boolean existsByMatriculaContaining(String matricula);
+    List<Aluno> findAllByMatriculaNotInAndIsAtivo(List<String> alunosPlanilha, boolean ativo);
 }

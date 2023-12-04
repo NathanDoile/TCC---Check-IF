@@ -15,7 +15,7 @@ public class ValidaAdministradorService {
 
     public void porEmail(String email) {
 
-        if(administradorRepository.existsByEmail(email)){
+        if(administradorRepository.existsByEmailAndIsAtivo(email, true)){
 
             throw new ResponseStatusException(CONFLICT, "E-mail já vinculado a outro usuário.");
         }
@@ -23,7 +23,7 @@ public class ValidaAdministradorService {
 
     public void porSiape(String siape) {
 
-        if(administradorRepository.existsBySiape(siape)){
+        if(administradorRepository.existsBySiapeAndIsAtivo(siape, true)){
 
             throw new ResponseStatusException(CONFLICT, "SIAPE já vinculado a outro usuário.");
         }

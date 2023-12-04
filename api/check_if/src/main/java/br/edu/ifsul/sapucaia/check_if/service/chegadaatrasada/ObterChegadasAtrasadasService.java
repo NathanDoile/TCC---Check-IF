@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toResponse;
+import static java.time.LocalDate.parse;
 
 @Service
 public class ObterChegadasAtrasadasService {
@@ -23,12 +24,9 @@ public class ObterChegadasAtrasadasService {
     @Autowired
     private ChegadaAtrasadaRepository chegadaAtrasadaRepository;
 
-    @Autowired
-    private AlunoRepository alunoRepository;
-
     public Page<ChegadaAtrasadaResponse> obter(String data, Pageable pageable) {
 
-        LocalDate date = LocalDate.parse(data);
+        LocalDate date = parse(data);
 
         LocalDateTime inicioData = LocalDateTime.of(date, LocalTime.MIN);
         LocalDateTime fimData = LocalDateTime.of(date, LocalTime.MAX);

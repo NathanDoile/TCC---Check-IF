@@ -4,7 +4,6 @@ import lombok.Getter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Getter
 public class AlterarResponsavelRequest {
@@ -18,6 +17,5 @@ public class AlterarResponsavelRequest {
     @Email
     private String email;
 
-    @NotNull(message = MENSAGEM_DE_ERRO_CAMPO_OBRIGATORIO)
     private Long celular;
 }

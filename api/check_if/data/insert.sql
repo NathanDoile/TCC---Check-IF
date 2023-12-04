@@ -1,37 +1,24 @@
 USE check_if;
 
 INSERT INTO administrador VALUES 
-(null, 'administrador', 'administrador@checkif.com', '1A2B3C', '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true, null, null, null);
+(null, 'ApoioAcademico', 'apoio@checkif.com', '1A2B3C', '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true, null, null, null);
 
 INSERT INTO portaria VALUES (null, 'portaria@checkif.com', '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true);
 
-INSERT INTO responsavel VALUES 
-(null, 'responsavel', 'responsavel@checkif.com', 51999999999, '$2a$10$Qn5zoRMMhzVPkyosKrBoLev4uvhRTbFy3WLAyyuLaHAwSMpKAlhdS', true, null, null, null);
-
 INSERT INTO permissao VALUES 
 (null, 'ADMINISTRADOR', null, null, 1),
-(null, 'PORTARIA', null, 1, null),
-(null, 'RESPONSAVEL', 1, null, null);
-
-INSERT INTO aluno VALUES 
-(null, 'Nathan de Souza Doile', '078790INFQ', '4K', '2004-07-29', true),
-(null, 'Emily Aparecida da Silveira Eberhardt', '078630INFQ', '4I', '2004-12-30', true),
-(null, 'Bianca Ramos Alves', '078510INFQ', '4I', '2005-03-07', true),
-(null, 'Evelyn Iglesias da Silva', '080320INFQ', '4K', '2004-06-14', true);
+(null, 'PORTARIA', null, 1, null);
 
 INSERT INTO professor VALUES 
-(null, 'Fábio Lemes', '1A2B3C', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999999, true, true, true),
-(null, 'Priscila Ligoski', '3324089', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999998, true, true, true),
-(null, 'Lourenço Basso', '4D5E6F', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999997, true, true, true),
-(null, 'Roberto Bowowski', '7G8H9I', 'biancaalves.ssnfq@academico.ifsul.edu.br', 51999999996, true, true, true);
+(null, 'Fábio Lemes', '1A2B3C', 'fabio@checkif.com', 51999999999, true, true),
+(null, 'Priscila Ligoski', '3324089', 'priscila@checkif.com', 51999999998, true, true),
+(null, 'Lourenço Basso', '4D5E6F', 'lourenco@checkif.com', 51999999997, true, true),
+(null, 'Alex Orozco', '7G8H9J', 'alex@checkif.com', 51999999996, true, true),
+(null, 'Rodrigo Remor', '10k11l', 'rodrigo@checkif.com', 51999999995, true, true),
+(null, 'Vitor Hugo', '12ç13z', 'vitor@checkif.com', 51999999994, true, true),
+(null, 'Marcelo Haas', '13x14c', 'marcelo@checkif.com', 51999999993, true, true),
+(null, 'Janaina Jaeger', '14v15b', 'janaina@checkif.com', 51999999992, true, true),
+(null, 'Roberto Bowowski', '7G8H9I', 'roberto@checkif.com', 51999999991, true, true);
 
-INSERT INTO chegada_atrasada VALUES 
-(null, '2023-09-05 11:02:04', 'Não queria vir para a escola', 'Empreendedorismo', 1, 1, null),  	
-(null, '2023-09-04 11:02:04', 'Despertador não tocou', 'Empreendedorismo', 2, 1, null);
-
-INSERT INTO saida_antecipada VALUES
-(null, null, "2023-09-20 12:00:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-20 11:45:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-20 12:00:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-20 11:45:00", "Simone de Souza Doile", "PENDENTE", null, "Tem que trabalhar.", 1, 1, null),
-(null, null, "2023-09-20 11:45:00", "Simone de Souza Doile", "SAIU", null, "Tem que trabalhar.", 1, 1, null);
+INSERT INTO aluno VALUES
+(null, 'Nicolle', '087654INFQ', '4K', '2008-10-23', true);

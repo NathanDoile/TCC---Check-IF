@@ -2,7 +2,6 @@ package br.edu.ifsul.sapucaia.check_if.service.professor;
 
 import br.edu.ifsul.sapucaia.check_if.controller.request.professor.CadastrarProfessorRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Professor;
-import br.edu.ifsul.sapucaia.check_if.mapper.ProfessorMapper;
 import br.edu.ifsul.sapucaia.check_if.repository.ProfessorRepository;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,12 @@ public class CadastrarProfessorService {
         validaProfessorService.porEmail(request.getEmail());
         validaProfessorService.porSiape(request.getSiape());
 
-        if(request.getCelular() > 0){
+        if(request.getCelular() != null && request.getCelular() > 0){
             validaProfessorService.porCelular(request.getCelular());
         }
 
         Professor professor = toEntity(request);
         professor.setNotificacaoEmail(true);
-        professor.setNotificacaoWhatsapp(true);
         professor.setAtivo(true);
 
         professorRepository.save(professor);

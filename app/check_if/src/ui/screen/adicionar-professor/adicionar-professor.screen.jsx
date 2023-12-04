@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 
 export function TelaAdicionarProfessor() {
 
+  const [carregando, setCarregando] = useState(false);
+
   const [formInput, setFormInput] = useState({
     nome: "",
     email:"",
@@ -30,7 +32,12 @@ export function TelaAdicionarProfessor() {
       toast.error("Preencha todos os campos obrigatórios.");
     }
     else{
+
+      setCarregando(true);
+
       await cadastrarProfessor(formInput.nome, formInput.email, formInput.siape, formInput.celular);
+
+      setCarregando(false);
     }
   }
 
@@ -77,7 +84,7 @@ export function TelaAdicionarProfessor() {
             grande
           />
 
-          <Botao cor="laranja">Adicionar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Adicionar</Botao>
         </form>
       </main>
     </>

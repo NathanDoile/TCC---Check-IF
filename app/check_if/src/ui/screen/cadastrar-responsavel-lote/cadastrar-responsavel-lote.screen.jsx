@@ -12,6 +12,8 @@ import { useCadastrarResponsavelLote } from '../../../hooks';
 
 export function TelaCadastrarResponsavelLote() {
 
+  const [carregando, setCarregando] = useState(false);
+
   const [arquivo, setArquivo] = useState();
 
   const [nomeFile, setNomeFile] = useState("");
@@ -31,7 +33,11 @@ export function TelaCadastrarResponsavelLote() {
   async function handleSubmit(event){
     event.preventDefault();
     
+    setCarregando(true);
+
     await cadastrarResponsavelLote(arquivo);
+
+    setCarregando(false);
   }
 
   return (
@@ -59,7 +65,7 @@ export function TelaCadastrarResponsavelLote() {
             file={nomeFile}
           />
 
-          <Botao>Cadastrar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Cadastrar</Botao>
         </form>
 
         <img

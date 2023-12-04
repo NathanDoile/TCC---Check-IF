@@ -16,4 +16,6 @@ public class UsuarioResponse {
     private String permissao;
 
     private String celular;
+
+    private boolean primeiroAcesso;
 }

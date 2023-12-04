@@ -26,3 +26,6 @@ export { solicitarSaidaAntecipadaApi } from "./solicitar-saida-antecipada/solici
 export { confirmarSaidaAntecipadaApi } from "./confirmar-saida-antecipada/confirmar-saida-antecipada.api";
 export { obterAlunosPorResponsavelApi } from "./obter-alunos-por-responsavel/obter-alunos-por-responsavel.api";
 export { cadastrarProfessorApi } from './cadastrar-professor/cadastrar-professor.api';
+export { vincularResponsavelAlunoApi } from './vincular-responsavel-aluno/vincular-responsavel-aluno.api';
+export { verSaidasAntecipadasApi } from './ver-saidas-antecipadas/ver-saidas-antecipadas.api';
+export { obterProfessoresPaginadoApi } from './obter-professores-paginado/obter-professores-paginado.api';

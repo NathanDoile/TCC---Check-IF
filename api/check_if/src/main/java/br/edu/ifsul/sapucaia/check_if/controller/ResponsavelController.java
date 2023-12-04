@@ -1,8 +1,11 @@
 package br.edu.ifsul.sapucaia.check_if.controller;
 
 import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.*;
+import br.edu.ifsul.sapucaia.check_if.controller.response.SaidaAntecipadaResponse;
 import br.edu.ifsul.sapucaia.check_if.service.responsavel.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,6 +36,9 @@ public class ResponsavelController {
 
     @Autowired
     private VincularResponsavelService vincularResponsavelService;
+
+    @Autowired
+    private ObterSaidasAntecipadasResponsavelService obterSaidasAntecipadasResponsavelService;
 
     @Secured("ROLE_ADMINISTRADOR")
     @PostMapping
@@ -75,5 +81,12 @@ public class ResponsavelController {
     @ResponseStatus(OK)
     public void vincular(@Valid @RequestBody VincularResponsavelRequest request){
         vincularResponsavelService.vincular(request);
+    }
+
+    @Secured("ROLE_RESPONSAVEL")
+    @GetMapping("/saidas-antecipadas/{data}")
+    @ResponseStatus(OK)
+    public Page<SaidaAntecipadaResponse> obterSaidasAntecipadas(@PathVariable String data, Pageable pageable){
+        return obterSaidasAntecipadasResponsavelService.obter(data, pageable);
     }
 }

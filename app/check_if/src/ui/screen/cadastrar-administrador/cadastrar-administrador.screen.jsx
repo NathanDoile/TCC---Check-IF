@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import { useCadastrarAdministrador } from "../../../hooks";
 
 export function TelaCadastrarAdministrador() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const { cadastrarAdministrador } = useCadastrarAdministrador();
 
   const [formInput, setFormInput] = useState({
@@ -29,11 +32,16 @@ export function TelaCadastrarAdministrador() {
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
+
+      setCarregando(true);
+
       await cadastrarAdministrador(
         formInput.nome,
         formInput.siape,
         formInput.email
       );
+
+      setCarregando(false);
     }
   }
 
@@ -72,7 +80,7 @@ export function TelaCadastrarAdministrador() {
             grande
           />
 
-          <Botao cor="laranja">Cadastrar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Cadastrar</Botao>
         </form>
       </main>
     </>

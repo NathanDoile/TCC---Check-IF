@@ -7,8 +7,11 @@ import {
 } from "../../../component";
 import { useObterSaidasAntecipadas } from "../../../../hooks";
 import { useState, useEffect } from "react";
+import loading from '../../../../assets/images/loading.svg';
 
 export function TelaHomePortaria() {
+
+  const [carregando, setCarregando] = useState(false);
 
   const { obterSaidasAntecipadas } = useObterSaidasAntecipadas();
 
@@ -25,8 +28,12 @@ export function TelaHomePortaria() {
   useEffect(() => {
 
     async function obterSaidas() {
+
+      setCarregando(true);
       
       const response = await obterSaidasAntecipadas(pagina);
+
+      setCarregando(false);
       
       const saidas = response.content;
       setNumeroPaginas(response.totalPages);
@@ -67,8 +74,10 @@ export function TelaHomePortaria() {
           Solicitações de saídas antecipadas
         </TituloTelasIniciais>
 
+        {carregando ? <img src={loading} className="loading-botao" /> : null}
+
         <div className="conteudo-saidas-antecipadas">
-          {saidasAntecipadasTag.length > 0 ? saidasAntecipadas : <TituloTelasIniciais>Nenhuma saída antecipada para o dia de hoje</TituloTelasIniciais>}
+          {saidasAntecipadasTag.length > 0 ? saidasAntecipadasTag : <TituloTelasIniciais>Nenhuma saída antecipada para o dia de hoje</TituloTelasIniciais>}
         </div>
 
         <Navbar paginaAtual={pagina} numeroPaginas={numeroPaginas} alterarPagina={setPagina} />

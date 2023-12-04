@@ -1,8 +1,8 @@
 import { axiosInstance } from "../base/axiosInstance";
 
-export async function obterProfessoresApi(page) {
+export async function obterProfessoresApi() {
   try {
-    const response = await axiosInstance.get(`/professores/publico?size=4&page=${page}`);
+    const response = await axiosInstance.get(`/professores/publico`);
 
     return response.data;
   } catch (error) {

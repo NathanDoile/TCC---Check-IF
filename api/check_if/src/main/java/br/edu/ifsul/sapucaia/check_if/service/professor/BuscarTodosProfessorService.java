@@ -19,10 +19,13 @@ public class BuscarTodosProfessorService {
     private ProfessorRepository professorRepository;
 
 
-    public Page<ProfessorResponse> buscar(Pageable pageable) {
+    public List<ProfessorResponse> buscar() {
 
-        Page<Professor> professores = professorRepository.findAll(pageable);
+        List<Professor> professores = professorRepository.findAllByOrderByNome();
 
-        return professores.map(ProfessorMapper::toResponse);
+        return professores
+                .stream()
+                .map(ProfessorMapper::toResponse)
+                .toList();
     }
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Service
 public class ValidaResponsavelService {
@@ -16,7 +15,7 @@ public class ValidaResponsavelService {
 
     public void porEmail(String email) {
 
-        if(responsavelRepository.existsByEmail(email)){
+        if(responsavelRepository.existsByEmailAndIsAtivo(email, true)){
 
             throw new ResponseStatusException(CONFLICT, "E-mail já vinculado a outro usuário.");
         }
@@ -25,18 +24,18 @@ public class ValidaResponsavelService {
 
     public void porCelular(Long celular) {
 
-        if(responsavelRepository.existsByCelular(celular)){
+        if(responsavelRepository.existsByCelularAndIsAtivo(celular, true)){
 
             throw new ResponseStatusException(CONFLICT, "Celular já vinculado a outro usuário.");
         }
 
     }
 
-    public void porId(Long idResponsavel) {
+    public void naoExisteEmail(String email) {
 
-        if(!responsavelRepository.existsById(idResponsavel)){
+        if(!responsavelRepository.existsByEmailAndIsAtivo(email, true)){
 
-            throw new ResponseStatusException(NOT_FOUND, "Responsável não encontrado.");
+            throw new ResponseStatusException(CONFLICT, "E-mail não encontrado.");
         }
     }
 }

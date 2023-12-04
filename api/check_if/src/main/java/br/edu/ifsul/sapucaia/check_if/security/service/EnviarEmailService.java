@@ -111,14 +111,14 @@ public class EnviarEmailService {
         email.setEmailPara(emailTo);
         email.setEnviadoEm(now());
 
-        if(administradorRepository.existsByEmail(emailTo)){
+        if(administradorRepository.existsByEmailAndIsAtivo(emailTo, true)){
 
-            Administrador administrador = administradorRepository.findByEmail(emailTo);
+            Administrador administrador = administradorRepository.findByEmailAndIsAtivo(emailTo, true);
 
             email.setRemetente(administrador.getNome());
         }else{
 
-            Responsavel responsavel = responsavelRepository.findByEmail(emailTo);
+            Responsavel responsavel = responsavelRepository.findByEmailAndIsAtivo(emailTo, true);
 
             email.setRemetente(responsavel.getNome());
         }

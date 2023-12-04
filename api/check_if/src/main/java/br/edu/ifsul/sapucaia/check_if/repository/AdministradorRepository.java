@@ -5,11 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdministradorRepository extends JpaRepository<Administrador, Long> {
 
-    boolean existsByEmail(String email);
+    boolean existsByEmailAndIsAtivo(String email, boolean ativo);
 
-    Administrador findByEmail(String email);
+    Administrador findByEmailAndIsAtivo(String email, boolean ativo);
 
-    boolean existsBySiape(String siape);
+    boolean existsBySiapeAndIsAtivo(String siape, boolean ativo);
 
-    boolean existsByEmailAndIdNot(String email, Long id);
+    boolean existsByEmailAndIdNotAndIsAtivo(String email, Long id, boolean ativo);
 }

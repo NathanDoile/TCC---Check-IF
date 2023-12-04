@@ -111,7 +111,7 @@ export function Cabecalho() {
 
           <p>{usuario.email}</p>
 
-          {usuario.permissao === "RESPONSAVEL" ? (
+          {usuario.permissao === "RESPONSAVEL" && usuario.celular > 0 ? (
             <p>{usuario.celular}</p>
           ) : null}
         </span>

@@ -4,6 +4,7 @@ import br.edu.ifsul.sapucaia.check_if.controller.request.professor.AlterarNotifi
 import br.edu.ifsul.sapucaia.check_if.controller.request.professor.CadastrarProfessorRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.response.ProfessorResponse;
 import br.edu.ifsul.sapucaia.check_if.service.professor.AlterarNotificacaoProfessorService;
+import br.edu.ifsul.sapucaia.check_if.service.professor.BuscarTodosProfessorPaginadoService;
 import br.edu.ifsul.sapucaia.check_if.service.professor.BuscarTodosProfessorService;
 import br.edu.ifsul.sapucaia.check_if.service.professor.CadastrarProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class ProfessorController {
     private BuscarTodosProfessorService buscarTodosProfessorService;
 
     @Autowired
+    private BuscarTodosProfessorPaginadoService buscarTodosProfessorPaginadoService;
+
+    @Autowired
     private CadastrarProfessorService cadastrarProfessorService;
 
     @Secured("ROLE_ADMINISTRADOR")
@@ -41,8 +45,14 @@ public class ProfessorController {
 
     @GetMapping("/publico")
     @ResponseStatus(OK)
+    public List<ProfessorResponse> buscarTodos(){
+        return buscarTodosProfessorService.buscar();
+    }
+
+    @GetMapping("/paginado/publico")
+    @ResponseStatus(OK)
     public Page<ProfessorResponse> buscarTodos(Pageable pageable){
-        return buscarTodosProfessorService.buscar(pageable);
+        return buscarTodosProfessorPaginadoService.buscar(pageable);
     }
 
     @Secured("ROLE_ADMINISTRADOR")

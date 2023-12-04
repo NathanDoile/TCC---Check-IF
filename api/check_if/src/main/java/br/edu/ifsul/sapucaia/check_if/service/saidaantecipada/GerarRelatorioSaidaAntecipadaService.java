@@ -52,7 +52,7 @@ public class GerarRelatorioSaidaAntecipadaService {
             linha.getCells().add(aluno.getNome());
             linha.getCells().add(aluno.getMatricula());
             linha.getCells().add(aluno.getTurma());
-            linha.getCells().add(saidaAntecipada.getDataHoraSaida().toLocalDate().format(ofPattern("dd/MM/yyyy")).toString());
+            linha.getCells().add(saidaAntecipada.getDataHoraSaida().toLocalDate().format(ofPattern("dd/MM/yyyy")));
             linha.getCells().add(saidaAntecipada.getDataHoraSaida().toLocalTime().toString());
             linha.getCells().add("SAÍDA ANTECIPADA");
             linha.getCells().add(saidaAntecipada.getMotivo());

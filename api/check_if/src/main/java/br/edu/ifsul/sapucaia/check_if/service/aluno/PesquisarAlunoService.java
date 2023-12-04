@@ -6,14 +6,8 @@ import br.edu.ifsul.sapucaia.check_if.mapper.AlunoMapper;
 import br.edu.ifsul.sapucaia.check_if.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.function.Function;
-
-import static br.edu.ifsul.sapucaia.check_if.mapper.AlunoMapper.toPesquisarAlunoResponse;
 
 @Service
 public class PesquisarAlunoService {
@@ -23,11 +17,7 @@ public class PesquisarAlunoService {
 
     public Page<PesquisarAlunoResponse> pesquisar(String texto, Pageable pageable) {
 
-        Page<Aluno> alunos = alunoRepository.findByNomeContainingOrMatriculaContaining(texto, texto, pageable);
-
-        if(alunos.isEmpty()){
-            return null;
-        }
+        Page<Aluno> alunos = alunoRepository.findByNomeContainingOrMatriculaContainingAndIsAtivo(texto, texto, true, pageable);
 
         return alunos.map(AlunoMapper::toPesquisarAlunoResponse);
     }

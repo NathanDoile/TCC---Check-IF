@@ -6,8 +6,7 @@ export async function alterarNotificacaoResponsavelApi(
 ) {
   try {
     await axiosInstance.put("/responsaveis/alterar-notificacao", {
-      idAluno,
-      tipoNotificacao,
+      idAluno
     });
   } catch (error) {
     throw error?.response?.data?.message;

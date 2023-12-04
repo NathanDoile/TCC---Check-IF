@@ -3,7 +3,6 @@ import {
   TelaLogin,
   TelaRegistrarChegadaAluno,
   TelaEsqueceuSenha,
-  TelaHome,
   TelaEsqueceuSenhaToken,
   TelaEsqueceuSenhaAlterar,
   TelaRegistrarChegadaAdministrador,
@@ -23,6 +22,7 @@ import {
   TelaGerenciarNotificacoes,
   TelaPaginaNaoEncontrada,
 } from "../ui/screen/";
+import { PrivateRouteAdministrador, PrivateRouteResponsavel, PrivateRouteHome, PrivateRouteLogado } from "./private";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <TelaHome />,
+    element: <PrivateRouteHome />,
   },
   {
     path: "/esqueceu-senha/token",
@@ -57,63 +57,63 @@ export const router = createBrowserRouter([
   },
   {
     path: "/administrador/registrar-chegada-atrasada",
-    element: <TelaRegistrarChegadaAdministrador />,
+    element: <PrivateRouteAdministrador Screen={TelaRegistrarChegadaAdministrador} />,
   },
   {
     path: "/registrar-saida-antecipada",
-    element: <TelaRegistrarSaidaAntecipada />,
+    element: <PrivateRouteAdministrador Screen={TelaRegistrarSaidaAntecipada} />,
   },
   {
     path: "/cadastrar-administrador",
-    element: <TelaCadastrarAdministrador />,
+    element: <PrivateRouteAdministrador Screen={TelaCadastrarAdministrador} />,
   },
   {
     path: "/cadastrar-responsavel",
-    element: <TelaCadastrarResponsavel />,
+    element: <PrivateRouteAdministrador Screen={TelaCadastrarResponsavel} />,
   },
   {
     path: "/cadastrar-responsavel/lote",
-    element: <TelaCadastrarResponsavelLote />,
+    element: <PrivateRouteAdministrador Screen={TelaCadastrarResponsavelLote} />,
   },
   {
     path: "/pesquisar/:texto",
-    element: <TelaPesquisarAluno />,
+    element: <PrivateRouteAdministrador Screen={TelaPesquisarAluno} />,
   },
   {
     path: "/aluno/:id",
-    element: <TelaPerfilAluno />,
+    element: <PrivateRouteAdministrador Screen={TelaPerfilAluno} />,
   },
   {
     path: "/gerenciar-professores",
-    element: <TelaGerenciarProfessores />,
+    element: <PrivateRouteAdministrador Screen={TelaGerenciarProfessores} />,
   },
   {
     path: "/editar-perfil",
-    element: <TelaEditarPerfil />,
+    element: <PrivateRouteLogado Screen={TelaEditarPerfil} />,
   },
   {
     path: "/adicionar-professor",
-    element: <TelaAdicionarProfessor />,
+    element: <PrivateRouteAdministrador Screen={TelaAdicionarProfessor} />,
   },
   {
     path: "/vincular",
-    element: <TelaVincularAlunoResponsavel />,
+    element: <PrivateRouteAdministrador Screen={TelaVincularAlunoResponsavel} />,
   },
   {
     path: "/alterar-senha",
-    element: <TelaAlterarSenhaPadrao />,
+    element: <PrivateRouteLogado Screen={TelaAlterarSenhaPadrao} />,
   },
   {
     path: "/alterar-senha-inicial",
-    element: <TelaAlterarSenhaInicial />,
+    element: <PrivateRouteLogado Screen={TelaAlterarSenhaInicial} />,
   },
   {
     path: "/solicitacoes",
-    element: <TelaVerSolicitacoes />,
+    element: <PrivateRouteResponsavel Screen={TelaVerSolicitacoes} />,
   },
   {
     path: "/notificacoes",
-    element: <TelaGerenciarNotificacoes />,
+    element: <PrivateRouteResponsavel Screen={TelaGerenciarNotificacoes} />,
   },
   {
     path: "*",

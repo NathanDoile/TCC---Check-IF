@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import static java.nio.file.Files.readAllBytes;
 import static java.time.LocalDate.now;
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
@@ -97,6 +98,6 @@ public class GerarRelatorioAlunoService {
 
         File file = new File("Relatório.pdf");
 
-        return Files.readAllBytes(file.toPath());
+        return readAllBytes(file.toPath());
     }
 }

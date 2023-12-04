@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import { useCadastrarResponsavel } from "../../../hooks";
 
 export function TelaCadastrarResponsavel() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const { cadastrarResponsavel } = useCadastrarResponsavel();
 
   const [formInput, setFormInput] = useState({
@@ -30,12 +33,17 @@ export function TelaCadastrarResponsavel() {
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
+
+      setCarregando(true);
+
       await cadastrarResponsavel(
         formInput.nome,
         formInput.email,
         formInput.celular,
         formInput.aluno
       );
+
+      setCarregando(false);
     }
   }
 
@@ -82,7 +90,7 @@ export function TelaCadastrarResponsavel() {
             grande
           />
 
-          <Botao cor="laranja">Cadastrar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Cadastrar</Botao>
         </form>
       </main>
     </>

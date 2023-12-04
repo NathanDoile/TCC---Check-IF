@@ -17,7 +17,6 @@ public class ProfessorMapper {
                 .email(professor.getEmail())
                 .celular(professor.getCelular())
                 .notificacaoEmail(professor.isNotificacaoEmail())
-                .notificacaoWhatsapp(professor.isNotificacaoWhatsapp())
                 .build();
     }
 

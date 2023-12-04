@@ -8,13 +8,18 @@ public class ResponsavelMapper {
 
     public static UsuarioResponse toResponse(Responsavel responsavel) {
 
-        return UsuarioResponse
+        UsuarioResponse usuarioResponse = UsuarioResponse
                 .builder()
                 .nome(responsavel.getNome())
                 .email(responsavel.getEmail())
                 .permissao(responsavel.getPermissoes().get(0).getFuncao().toString())
-                .celular(responsavel.getCelular().toString())
                 .build();
+
+        if(responsavel.getCelular() != null){
+            usuarioResponse.setCelular(responsavel.getCelular().toString());
+        }
+
+        return usuarioResponse;
     }
 
     public static Responsavel toEntity(CadastrarResponsavelRequest request) {

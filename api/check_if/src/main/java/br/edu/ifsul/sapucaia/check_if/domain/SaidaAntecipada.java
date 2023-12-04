@@ -39,7 +39,7 @@ public class SaidaAntecipada {
     @JoinColumn(name = "id_responsavel")
     private Responsavel responsavel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_aluno")
     private Aluno aluno;
 

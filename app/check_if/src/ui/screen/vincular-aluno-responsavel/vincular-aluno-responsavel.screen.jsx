@@ -2,9 +2,46 @@ import "./vincular-aluno-responsavel.screen.css";
 import { Cabecalho, TituloTelasIniciais, Input, Botao } from "../../component";
 import ajudaImg from "../../../assets/images/Ajuda.svg";
 import { useState } from "react";
+import { useVincularResponsavelAluno } from "../../../hooks";
+import { toast } from 'react-toastify';
 
 export function TelaVincularAlunoResponsavel() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const [ajuda, setAjuda] = useState(false);
+
+  const [formInput, setFormInput] = useState({
+    matricula: "",
+    email: ""
+  })
+
+  const { vincularResponsavelAluno } = useVincularResponsavelAluno();
+
+  function handleChange(event){
+
+    const { name, value} = event.target;
+
+    setFormInput((oldFormInput) => ({...oldFormInput, [name]:value}));
+  }
+
+  async function handleSubmit(event){
+    
+    event.preventDefault();
+
+    if(formInput.email === "" || formInput.matricula === ""){
+      toast.error("Preencha todos os campos.");
+    }
+    else{
+
+      setCarregando(true);
+
+      await vincularResponsavelAluno(formInput.matricula, formInput.email);
+
+      setCarregando(false);
+
+    }
+  }
 
   return (
     <>
@@ -13,12 +50,12 @@ export function TelaVincularAlunoResponsavel() {
       <main className="main-tela-vincular">
         <TituloTelasIniciais>Vincular aluno ao responsável</TituloTelasIniciais>
 
-        <form className="form-vincular">
+        <form className="form-vincular" onSubmit={handleSubmit}>
           <Input
             legenda="Matricula do aluno"
             isObrigatorio
             name="matricula"
-            handleChange={() => {}}
+            handleChange={handleChange}
             type="text"
             grande
           />
@@ -27,12 +64,12 @@ export function TelaVincularAlunoResponsavel() {
             legenda="E-mail do responsável"
             isObrigatorio
             name="email"
-            handleChange={() => {}}
+            handleChange={handleChange}
             type="email"
             grande
           />
 
-          <Botao>Vincular</Botao>
+          <Botao cor="laranja" carregando={carregando}>Vincular</Botao>
         </form>
 
         <img

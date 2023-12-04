@@ -4,8 +4,12 @@ import adicionar from "../../../../assets/images/Adicionar-marrom.svg";
 import { useObterChegadasAtrasadas } from "../../../../hooks";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import loading from '../../../../assets/images/loading.svg'; 
 
 export function TelaHomeAdministrador() {
+
+   const [carregando, setCarregando] = useState(false);
+
   const navigate = useNavigate();
 
   const hoje = new Date(Date.now()).toISOString().substring(0, 10);
@@ -25,7 +29,12 @@ export function TelaHomeAdministrador() {
   const [registrarOcorrencia, setRegistrarOcorrencia] = useState(false);
 
   async function atualizarChegadas(date) {
+
+    setCarregando(true);
+
     const response = await obterChegadasAtrasadas(date, pagina);
+
+    setCarregando(false);
 
     const chegadas = response.content;
 
@@ -92,6 +101,7 @@ export function TelaHomeAdministrador() {
             ) : (
               <span>Cadastre ocorrências</span>
             )}
+
           </span>
 
           <h1 className="titulo-chegadas-atrasadas">
@@ -99,6 +109,7 @@ export function TelaHomeAdministrador() {
           </h1>
 
           <form>
+            {carregando ? <img src={loading} className="loading-botao" /> : null}
             <input
               type="date"
               name="data"

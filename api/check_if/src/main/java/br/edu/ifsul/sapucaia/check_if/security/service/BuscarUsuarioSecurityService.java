@@ -28,8 +28,8 @@ public class BuscarUsuarioSecurityService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        if(administradorRepository.existsByEmail(email)){
-            Administrador usuario = administradorRepository.findByEmail(email);
+        if(administradorRepository.existsByEmailAndIsAtivo(email, true)){
+            Administrador usuario = administradorRepository.findByEmailAndIsAtivo(email, true);
 
             return new UsuarioSecurity(usuario);
         }
@@ -39,7 +39,7 @@ public class BuscarUsuarioSecurityService implements UserDetailsService {
             return new UsuarioSecurity(usuario);
         }
         else{
-            Responsavel usuario = responsavelRepository.findByEmail(email);
+            Responsavel usuario = responsavelRepository.findByEmailAndIsAtivo(email, true);
 
             return new UsuarioSecurity(usuario);
         }

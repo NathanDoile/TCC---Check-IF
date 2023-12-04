@@ -1,22 +1,22 @@
 import "./professor.component.css";
 import iconeTelegram from "../../../assets/images/telegram-marrom.svg";
 import iconeEmail from "../../../assets/images/Email-marrom.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAlterarNotificacaoProfessor } from '../../../hooks';
 import { toast } from "react-toastify";
+import loading from '../../../assets/images/loading.svg';
 
 export function Professor({
   nome,
   siape,
-  numero,
   email,
-  notificacaoNumero,
   notificacaoEmail,
   id
 }) {
 
+  const [carregando, setCarregando] = useState(false);
+
   const [formInput, setFormInput] = useState({
-    whatsapp: notificacaoNumero,
     email: notificacaoEmail,
   });
 
@@ -27,8 +27,12 @@ export function Professor({
     const { name, checked } = event.target;
 
     try{
+
+      setCarregando(true);
   
-      await alterarNotificacaoProfessor(id, name);
+      await alterarNotificacaoProfessor(id);
+
+      setCarregando(false);
 
       setFormInput((oldFormInput) => ({ ...oldFormInput, [name]: checked }));
 
@@ -36,9 +40,15 @@ export function Professor({
     catch(error){
 
       toast.error(error);
+
+      setCarregando(false);
     }
 
   }
+
+  useEffect(() => {
+    setFormInput({email: notificacaoEmail})
+  }, [notificacaoEmail])
 
   return (
     <div className="div-professor">
@@ -46,36 +56,22 @@ export function Professor({
       <span className="professor-siape">{siape}</span>
       <span className="professor-notificacoes">
         <div className="dados-notificacao-professor">
-          <img
-            src={iconeTelegram}
-            alt="WhatsApp"
-            className="icone-notificacao-professor"
-          />
 
           <img
             src={iconeEmail}
             alt="E-mail"
             className="icone-notificacao-professor"
           />
+
         </div>
 
         <div className="dados-notificacao-professor dados-professor-especifico">
-          <span>{numero}</span>
 
           <span>{email}</span>
+
         </div>
 
         <form className="dados-notificacao-professor dados-professor-especifico">
-          <label className="switch">
-            <input
-              type="checkbox"
-              className="input-professor-notificacao"
-              name="whatsapp"
-              onChange={handleChange}
-              checked={formInput.whatsapp}
-            />
-            <span className="slider round"></span>
-          </label>
 
           <label className="switch">
             <input
@@ -87,8 +83,11 @@ export function Professor({
             />
             <span className="slider round"></span>
           </label>
+          
         </form>
       </span>
+      {carregando ? <img src={loading} className="loading-lista" /> : null}
+      
     </div>
   );
 }

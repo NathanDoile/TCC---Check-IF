@@ -7,6 +7,8 @@ import { useState } from "react";
 
 export function TelaEditarPerfil() {
 
+  const [carregando, setCarregando] = useState(false);
+
   const [usuario] = useGlobalUsuario();
 
   const [formInput, setFormInput] = useState({
@@ -33,13 +35,20 @@ export function TelaEditarPerfil() {
 
     if(usuario.permissao === "ADMINISTRADOR"){
       
+      setCarregando(true);
+      
       await alterarAdministrador(formInput.nome, formInput.email);
+
+      setCarregando(false);
 
     }
     else{
 
+      setCarregando(true);
+
       await alterarResponsavel(formInput.nome, formInput.email, formInput.celular);
 
+      setCarregando(false);
     }
   }
 
@@ -70,7 +79,7 @@ export function TelaEditarPerfil() {
             </label>
           ) : null}
 
-          <Botao cor="laranja">Salvar</Botao>
+          <Botao cor="laranja" carregando={carregando}>Salvar</Botao>
         </form>
       </main>
     </>

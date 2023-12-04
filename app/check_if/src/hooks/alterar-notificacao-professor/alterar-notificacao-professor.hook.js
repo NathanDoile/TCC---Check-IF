@@ -3,9 +3,9 @@ import { alterarNotificacaoProfessorApi } from "../../api";
 
 export function useAlterarNotificacaoProfessor() {
 
-  async function alterarNotificacaoProfessor(id, tipoNotificacao) {
+  async function alterarNotificacaoProfessor(id) {
 
-    await alterarNotificacaoProfessorApi(id, tipoNotificacao);
+    await alterarNotificacaoProfessorApi(id);
 
   }
 

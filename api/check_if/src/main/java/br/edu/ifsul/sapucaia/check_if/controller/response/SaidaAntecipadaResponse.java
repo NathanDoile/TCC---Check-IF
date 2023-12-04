@@ -20,6 +20,10 @@ public class SaidaAntecipadaResponse {
 
     private LocalTime horaAutorizada;
 
+    private String dataSaida;
+
+    private LocalTime horaSaida;
+
     private String nome;
 
     private String turma;

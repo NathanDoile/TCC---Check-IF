@@ -8,11 +8,13 @@ import java.util.List;
 
 public interface ResponsavelRepository extends JpaRepository<Responsavel, Long> {
 
-    boolean existsByEmail(String email);
+    boolean existsByEmailAndIsAtivo(String email, boolean ativo);
 
-    Responsavel findByEmail(String email);
+    Responsavel findByEmailAndIsAtivo(String email, boolean ativo);
 
-    boolean existsByCelular(Long celular);
+    boolean existsByCelularAndIsAtivo(Long celular, boolean ativo);
 
-    List<Responsavel> findAllByAlunos(Aluno aluno);
+    List<Responsavel> findAllByAlunosAndIsAtivo(Aluno aluno, boolean ativo);
+
+    List<Responsavel> findAllByEmailNotInAndIsAtivo(List<String> responsaveisPlanilha, boolean ativo);
 }

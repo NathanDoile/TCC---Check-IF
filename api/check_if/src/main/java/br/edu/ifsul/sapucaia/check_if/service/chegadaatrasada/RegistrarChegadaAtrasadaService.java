@@ -7,24 +7,17 @@ import br.edu.ifsul.sapucaia.check_if.repository.*;
 import br.edu.ifsul.sapucaia.check_if.security.controller.request.EnviarEmailRequest;
 import br.edu.ifsul.sapucaia.check_if.security.service.EnviarEmailService;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaAlunoService;
-import br.edu.ifsul.sapucaia.check_if.validator.ValidaIpValidator;
 import br.edu.ifsul.sapucaia.check_if.service.validator.ValidaProfessorService;
-import com.aspose.barcode.barcoderecognition.BarCodeReader;
-import com.aspose.barcode.barcoderecognition.BarCodeResult;
-import com.aspose.barcode.barcoderecognition.DecodeType;
+import br.edu.ifsul.sapucaia.check_if.validator.ValidaIpValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.util.List;
 
 import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toEntity;
 import static br.edu.ifsul.sapucaia.check_if.mapper.ChegadasAtrasadasMapper.toResponse;
-import static com.aspose.barcode.barcoderecognition.DecodeType.CODE_39_STANDARD;
 import static java.time.LocalDateTime.now;
 import static java.time.format.DateTimeFormatter.ofPattern;
 
@@ -56,22 +49,18 @@ public class RegistrarChegadaAtrasadaService {
     private NotificacaoEmailRepository notificacaoEmailRepository;
 
     @Autowired
-    private NotificacaoWhatsappRepository notificacaoWhatsappRepository;
-
-    @Autowired
     private ValidaIpValidator validaIpValidator;
 
     @Transactional
-    public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) throws IOException {
+    public ChegadaAtrasadaResponse registrar(RegistrarChegadaAtrasadaRequest request, HttpServletRequest requestServlet) {
 
         String matricula = request.getMatriculaAluno().replace("*", "");
-        System.out.println(matricula);
 
         validaAlunoService.porMatricula(matricula);
         validaProfessorService.porId(request.getIdProfessor());
         //validaIpValidator.validar(requestServlet);
 
-        Aluno aluno = alunoRepository.findByMatriculaContaining(matricula);
+        Aluno aluno = alunoRepository.findByMatriculaContainingAndIsAtivo(matricula, true);
 
         Professor professor = professorRepository.findById(request.getIdProfessor()).get();
 
@@ -82,11 +71,11 @@ public class RegistrarChegadaAtrasadaService {
 
         chegadaAtrasadaRepository.save(chegadaAtrasada);
 
-        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunosAndIsAtivo(aluno, true);
 
         EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
                 .builder()
-                .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                .titulo("Chegada Atrasada do(a) aluno(a) " + aluno.getNome())
                 .mensagem(mensagemChegadaAtrasada(chegadaAtrasada))
                 .build();
 
@@ -98,20 +87,13 @@ public class RegistrarChegadaAtrasadaService {
 
                 enviarEmailService.enviarResponsavel(enviarEmailRequest, responsavel);
             }
-
-            NotificacaoWhatsapp notificacaoWhatsapp = notificacaoWhatsappRepository.findByAlunoAndResponsavel(aluno, responsavel);
-
-            if(notificacaoWhatsapp.isReceber()){
-
-
-            }
         }
 
         if(professor.isNotificacaoEmail()){
 
             EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
                     .builder()
-                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                    .titulo("Chegada Atrasada da(o) aluna(o) " + aluno.getNome())
                     .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
                     .build();
 
@@ -124,7 +106,7 @@ public class RegistrarChegadaAtrasadaService {
     private String mensagemChegadaAtrasada(ChegadaAtrasada chegadaAtrasada) {
 
         return "Prezado(a),\n\n" +
-                "Informamos que o aluno " + chegadaAtrasada.getAluno().getNome() + " registrou uma chegada atrasada no " +
+                "Informamos que o(a) aluno(a) " + chegadaAtrasada.getAluno().getNome() + " registrou uma chegada atrasada no " +
                 "dia " + chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
                 chegadaAtrasada.getDataHora().toLocalTime().format(ofPattern("HH:mm:ss")) + ", na disciplina " + chegadaAtrasada.getDisciplina()
                 + " e alegou o seguinte motivo: '" + chegadaAtrasada.getMotivo() + "'.\n\n" +
@@ -134,8 +116,8 @@ public class RegistrarChegadaAtrasadaService {
 
     private String mensagemChegadaAtrasadaProfessor(ChegadaAtrasada chegadaAtrasada) {
 
-        return "Prezado(a),\n\n" +
-                "Informamos que o aluno " + chegadaAtrasada.getAluno().getNome() + ", da turma " + chegadaAtrasada.getAluno().getTurma() + ", " +
+        return "Prezada(o),\n\n" +
+                "Informamos que a(o) aluna(o) " + chegadaAtrasada.getAluno().getNome() + ", da turma " + chegadaAtrasada.getAluno().getTurma() + ", " +
                 "registrou uma chegada atrasada no " +
                 "dia " + chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
                 chegadaAtrasada.getDataHora().toLocalTime().format(ofPattern("HH:mm:ss")) + ", na disciplina " + chegadaAtrasada.getDisciplina()

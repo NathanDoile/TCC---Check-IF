@@ -1,6 +1,5 @@
 package br.edu.ifsul.sapucaia.check_if.service.responsavel;
 
-import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.CadastrarResponsavelEmLoteRequest;
 import br.edu.ifsul.sapucaia.check_if.controller.request.responsavel.CadastrarResponsavelRequest;
 import br.edu.ifsul.sapucaia.check_if.domain.Aluno;
 import br.edu.ifsul.sapucaia.check_if.domain.Responsavel;
@@ -14,14 +13,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Long.parseLong;
 import static java.time.LocalDateTime.parse;
-import static java.util.List.of;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -43,6 +40,10 @@ public class CadastrarResponsavelEmLoteService {
         Workbook workbook = new Workbook(arquivo.getInputStream());
 
         WorksheetCollection collection  = workbook.getWorksheets();
+
+        List<String> responsaveisPlanilha = new ArrayList<>();
+
+        List<String> alunosPlanilha = new ArrayList<>();
 
         for (int worksheetIndex = 0; worksheetIndex < collection.getCount(); worksheetIndex++) {
 
@@ -66,6 +67,8 @@ public class CadastrarResponsavelEmLoteService {
 
                 long celular = 0L;
 
+                alunosPlanilha.add(matricula);
+
                 if(nonNull(planilha.getCells().get(i, 6).getValue())){
 
                     celular = parseLong(planilha.getCells().get(i, 6).getValue()
@@ -76,7 +79,7 @@ public class CadastrarResponsavelEmLoteService {
 
                 if(isNull(emailObject)){
 
-                    if(!alunoRepository.existsByMatricula(matricula)){
+                    if(!alunoRepository.existsByMatriculaAndIsAtivo(matricula, true)){
 
                         Aluno aluno = Aluno
                                 .builder()
@@ -90,17 +93,19 @@ public class CadastrarResponsavelEmLoteService {
                         alunoRepository.save(aluno);
                     }
                 }
-                else if(alunoRepository.existsByMatricula(matricula)){
+                else if(alunoRepository.existsByMatriculaAndIsAtivo(matricula, true)){
 
                     String email = emailObject.toString();
 
-                    Aluno aluno = alunoRepository.findByMatricula(matricula);
+                    responsaveisPlanilha.add(email);
 
-                    if(responsavelRepository.existsByEmail(email)){
+                    Aluno aluno = alunoRepository.findByMatriculaAndIsAtivo(matricula, true);
 
-                        Responsavel responsavel = responsavelRepository.findByEmail(email);
+                    if(responsavelRepository.existsByEmailAndIsAtivo(email, true)){
 
-                        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+                        Responsavel responsavel = responsavelRepository.findByEmailAndIsAtivo(email, true);
+
+                        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunosAndIsAtivo(aluno, true);
 
                         if(!responsaveis.contains(responsavel)){
 
@@ -129,6 +134,8 @@ public class CadastrarResponsavelEmLoteService {
 
                     String email = emailObject.toString();
 
+                    responsaveisPlanilha.add(email);
+
                     Aluno aluno = Aluno
                             .builder()
                             .nome(nomeAluno)
@@ -140,9 +147,9 @@ public class CadastrarResponsavelEmLoteService {
 
                     alunoRepository.save(aluno);
 
-                    if(responsavelRepository.existsByEmail(email)){
+                    if(responsavelRepository.existsByEmailAndIsAtivo(email, true)){
 
-                        Responsavel responsavel = responsavelRepository.findByEmail(email);
+                        Responsavel responsavel = responsavelRepository.findByEmailAndIsAtivo(email, true);
 
                         aluno.setResponsaveis(new ArrayList<>());
                         aluno.getResponsaveis().add(responsavel);
@@ -163,6 +170,24 @@ public class CadastrarResponsavelEmLoteService {
                     }
                 }
             }
+        }
+
+        List<Responsavel> responsaveisNaoListados = responsavelRepository.findAllByEmailNotInAndIsAtivo(responsaveisPlanilha, true);
+
+        List<Aluno> alunosNaoListados = alunoRepository.findAllByMatriculaNotInAndIsAtivo(alunosPlanilha, true);
+
+        for(Responsavel responsavel : responsaveisNaoListados){
+
+            responsavel.setAtivo(false);
+
+            responsavelRepository.save(responsavel);
+        }
+
+        for(Aluno aluno : alunosNaoListados){
+
+            aluno.setAtivo(false);
+
+            alunoRepository.save(aluno);
         }
     }
 }

@@ -17,6 +17,9 @@ import {
 } from "../../../hooks";
 
 export function TelaRegistrarChegadaAluno() {
+
+  const [carregando, setCarregando] = useState(false);
+
   const { lerCracha } = useLerCracha();
 
   const { registrarChegadaAtrasadaCracha } =
@@ -76,12 +79,17 @@ export function TelaRegistrarChegadaAluno() {
     ) {
       toast.error("Preencha todos os campos obrigatórios!");
     } else {
-      registrarChegadaAtrasadaCracha(
+
+      setCarregando(true);
+
+      await registrarChegadaAtrasadaCracha(
         formInput.motivo,
         formInput.disciplina,
         formInput.matricula,
         formInput.professor
       );
+
+      setCarregando(false);
     }
   }
 
@@ -93,7 +101,12 @@ export function TelaRegistrarChegadaAluno() {
 
   async function concluirLerCracha() {
     try {
+
+      setCarregando(true);
+
       const response = await lerCracha(imgSrc.substring(23));
+
+      setCarregando(false);
 
       setCapturarCodigoBarras(false);
 
@@ -102,6 +115,7 @@ export function TelaRegistrarChegadaAluno() {
         matricula: response.matricula,
       }));
     } catch (error) {
+      setCarregando(false);
       setImgSrc(null);
     }
   }
@@ -119,6 +133,7 @@ export function TelaRegistrarChegadaAluno() {
   }, []);
 
   useEffect(() => {
+
     setNomesProfessores([]);
     setIdsProfessores([]);
 
@@ -210,7 +225,7 @@ export function TelaRegistrarChegadaAluno() {
                 ) : null}
               </span>
 
-              <Botao cor="amarelo">Registrar</Botao>
+              <Botao cor="amarelo" carregando={carregando}>Registrar</Botao>
             </form>
           </>
         ) : null}
@@ -244,7 +259,7 @@ export function TelaRegistrarChegadaAluno() {
               >
                 Tentar novamente
               </Botao>
-              <Botao cor="amarelo" onClick={concluirLerCracha}>
+              <Botao cor="amarelo" onClick={concluirLerCracha} carregando={carregando}>
                 Concluir
               </Botao>
             </>

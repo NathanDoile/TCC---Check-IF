@@ -50,6 +50,6 @@ public class SolicitarSaidaAntecipadaService {
 
         saidaAntecipadaRepository.save(saidaAntecipada);
 
-        return toResponse(saidaAntecipada, aluno);
+        return toResponse(saidaAntecipada);
     }
 }

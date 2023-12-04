@@ -24,7 +24,5 @@ public class AlunoResponse {
 
     private List<String> responsaveis;
 
-    private boolean notificacaoWhatsapp;
-
     private boolean notificacaoEmail;
 }

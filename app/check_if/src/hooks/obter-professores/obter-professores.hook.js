@@ -2,9 +2,9 @@ import { obterProfessoresApi } from "../../api";
 import { toast } from "react-toastify";
 
 export function useObterProfessores() {
-  async function obterProfessores(page) {
+  async function obterProfessores() {
     try {
-      const response = await obterProfessoresApi(page);
+      const response = await obterProfessoresApi();
 
       return response;
     } catch (error) {

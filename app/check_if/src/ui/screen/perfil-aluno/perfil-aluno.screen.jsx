@@ -8,6 +8,8 @@ import { useEffect, useState, useRef } from "react";
 
 export function TelaPerfilAluno() {
 
+  const [carregando, setCarregando] = useState(false);
+
   const ano = new Date(Date.now()).toISOString().substring(0, 4);
 
   const { id } = useParams();
@@ -38,7 +40,11 @@ export function TelaPerfilAluno() {
 
   async function handleSubmit() {
 
+    setCarregando(true);
+
     const response = await gerarRelatorioAluno(aluno.id, formInput.mes, formInput.ano);
+
+    setCarregando(false);
 
     setRelatorio(response);
   }
@@ -64,12 +70,17 @@ export function TelaPerfilAluno() {
 
     }
 
+  }, [relatorio])
+
+  useEffect(() => {
+
     if (relatorioUrl && relatorioRef) {
       relatorioRef.current.click();
+
+      setCarregando(false);
     }
 
-
-  }, [relatorio])
+  }, [relatorioUrl])
 
   return (
     <>
@@ -95,7 +106,11 @@ export function TelaPerfilAluno() {
               <p>
                 <b>Responsável:</b>
                 <br />
-                {aluno?.responsaveis}
+                {aluno.responsaveis.map(responsavel => 
+                  {
+                    return <span>{responsavel}<br /></span>
+                  })
+                }
               </p>
               : null}
 
@@ -145,7 +160,7 @@ export function TelaPerfilAluno() {
             </form>
           </span>
 
-          <Botao cor="laranja" onClick={handleSubmit}>Exportar</Botao>
+          <Botao cor="laranja" onClick={handleSubmit} carregando={carregando}>Exportar</Botao>
         </div>
 
         {relatorioUrl

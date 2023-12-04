@@ -78,9 +78,9 @@ public class AtualizarRedefinirSenhaService {
         String novaSenha = request.getSenha();
         String email = request.getEmail();
 
-        if(administradorRepository.existsByEmail(email)){
+        if(administradorRepository.existsByEmailAndIsAtivo(email, true)){
 
-            Administrador administrador = administradorRepository.findByEmail(email);
+            Administrador administrador = administradorRepository.findByEmailAndIsAtivo(email, true);
 
             validarTentativasService.validarAdministrador(administrador);
 
@@ -94,7 +94,7 @@ public class AtualizarRedefinirSenhaService {
             administradorRepository.save(administrador);
         }else{
 
-            Responsavel responsavel = responsavelRepository.findByEmail(email);
+            Responsavel responsavel = responsavelRepository.findByEmailAndIsAtivo(email, true);
 
             if(isNull(responsavel)){
                 throw new ResponseStatusException(NOT_FOUND, "E-mail não encontradono nosso sistema.");
@@ -116,9 +116,9 @@ public class AtualizarRedefinirSenhaService {
     @Transactional
     public void atualizarTokenResetarSenha(String token, String email) {
 
-        if(administradorRepository.existsByEmail(email)){
+        if(administradorRepository.existsByEmailAndIsAtivo(email, true)){
 
-            Administrador administrador = administradorRepository.findByEmail(email);
+            Administrador administrador = administradorRepository.findByEmailAndIsAtivo(email, true);
 
             administrador.setTokenResetarSenha(token);
             administrador.setDataEnvioToken(now());
@@ -128,7 +128,7 @@ public class AtualizarRedefinirSenhaService {
 
         }else{
 
-            Responsavel responsavel = responsavelRepository.findByEmail(email);
+            Responsavel responsavel = responsavelRepository.findByEmailAndIsAtivo(email, true);
 
             responsavel.setTokenResetarSenha(token);
             responsavel.setDataEnvioToken(now());

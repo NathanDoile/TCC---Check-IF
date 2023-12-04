@@ -52,7 +52,7 @@ public class CadastrarSaidaAntecipadaService {
 
         validaAlunoService.porMatricula(request.getMatriculaAluno());
 
-        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
+        Aluno aluno = alunoRepository.findByMatriculaAndIsAtivo(request.getMatriculaAluno(), true);
 
         Administrador administrador = usuarioAutenticadoService.getAdministrador();
 
@@ -65,7 +65,7 @@ public class CadastrarSaidaAntecipadaService {
 
         saidaAntecipadaRepository.save(saidaAntecipada);
 
-        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunosAndIsAtivo(aluno, true);
 
         EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
                 .builder()
@@ -83,13 +83,13 @@ public class CadastrarSaidaAntecipadaService {
             }
         }
 
-        return toResponse(saidaAntecipada, aluno);
+        return toResponse(saidaAntecipada);
     }
 
     private String mensagemSaidaAntecipada(SaidaAntecipada saidaAntecipada) {
 
         return "Prezado(a),\n\n" +
-                "Informamos que o aluno " + saidaAntecipada.getAluno().getNome() + " saiu antecipadamente do IFsul no " +
+                "Informamos que o(a) aluno(a) " + saidaAntecipada.getAluno().getNome() + " saiu antecipadamente do IFsul no " +
                 "dia " + saidaAntecipada.getDataHoraSaida().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
                 saidaAntecipada.getDataHoraSaida().toLocalTime().format(ofPattern("HH:mm:ss")) + ", com o(a) seu(sua) " +
                 saidaAntecipada.getGrauParentesco() + " " + saidaAntecipada.getNomeResponsavel() +

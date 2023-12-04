@@ -18,8 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static br.edu.ifsul.sapucaia.check_if.domain.enums.SituacaoSaida.NÃO_COMPARECEU;
-import static br.edu.ifsul.sapucaia.check_if.domain.enums.SituacaoSaida.SAIU;
+import static br.edu.ifsul.sapucaia.check_if.domain.enums.SituacaoSaida.*;
 import static java.time.LocalDateTime.now;
 import static java.time.format.DateTimeFormatter.ofPattern;
 
@@ -59,16 +58,16 @@ public class ConfirmarSaidaAntecipadaService {
             saidaAntecipada.setDataHoraSaida(now());
         }
         else{
-            saidaAntecipada.setSituacaoSaida(NÃO_COMPARECEU);
+            saidaAntecipada.setSituacaoSaida(NAO_COMPARECEU);
         }
 
         saidaAntecipadaRepository.save(saidaAntecipada);
 
         if(saidaAntecipada.getSituacaoSaida() == SAIU){
 
-            Aluno aluno = alunoRepository.findBySaidasAntecipadas(saidaAntecipada);
+            Aluno aluno = alunoRepository.findBySaidasAntecipadasAndIsAtivo(saidaAntecipada, true);
 
-            List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+            List<Responsavel> responsaveis = responsavelRepository.findAllByAlunosAndIsAtivo(aluno, true);
 
             EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
                     .builder()

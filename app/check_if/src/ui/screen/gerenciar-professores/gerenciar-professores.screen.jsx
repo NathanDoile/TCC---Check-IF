@@ -2,10 +2,13 @@ import "./gerenciar-professores.screen.css";
 import { Cabecalho, Navbar, Professor } from "../../component";
 import adicionarImg from "../../../assets/images/Adicionar-marrom.svg";
 import { useNavigate } from "react-router-dom";
-import { useObterProfessores } from '../../../hooks';
+import { useObterProfessoresPaginado } from '../../../hooks';
 import { useEffect, useState } from "react";
+import loading from '../../../assets/images/loading.svg';
 
 export function TelaGerenciarProfessores() {
+
+  const [carregando, setCarregando] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,13 +20,17 @@ export function TelaGerenciarProfessores() {
 
   const [numeroPaginas, setNumeroPaginas] = useState();
 
-  const { obterProfessores } = useObterProfessores();
+  const { obterProfessores } = useObterProfessoresPaginado();
 
   useEffect(() => {
 
     async function obter() {
 
+      setCarregando(true);
+
       const response = await obterProfessores(pagina);
+
+      setCarregando(false);
 
       const listaProfessores = response.content;
 
@@ -43,9 +50,7 @@ export function TelaGerenciarProfessores() {
       <Professor
         nome={professor.nome}
         siape={professor.siape}
-        numero={professor.celular}
         email={professor.email}
-        notificacaoNumero={professor.notificacaoWhatsapp}
         notificacaoEmail={professor.notificacaoEmail}
         id={professor.id}
       />
@@ -59,6 +64,7 @@ export function TelaGerenciarProfessores() {
 
       <main className="main-tela-gerenciar-professores">
         <div className="cabecalho-gerenciar-professores">
+
           <img
             src={adicionarImg}
             alt="Adicionar"
@@ -67,7 +73,10 @@ export function TelaGerenciarProfessores() {
               navigate("/adicionar-professor");
             }}
           />
+
           Adicionar professores
+
+          {carregando ? <img src={loading} className="loading-botao" /> : null}
         </div>
 
         <div className="lista-professores">

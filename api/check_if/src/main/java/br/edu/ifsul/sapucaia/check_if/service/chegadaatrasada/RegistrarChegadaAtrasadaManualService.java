@@ -56,7 +56,7 @@ public class RegistrarChegadaAtrasadaManualService {
         validaAlunoService.porMatricula(request.getMatriculaAluno());
         validaProfessorService.porId(request.getIdProfessor());
 
-        Aluno aluno = alunoRepository.findByMatricula(request.getMatriculaAluno());
+        Aluno aluno = alunoRepository.findByMatriculaAndIsAtivo(request.getMatriculaAluno(), true);
         Professor professor = professorRepository.findById(request.getIdProfessor()).get();
         Administrador administrador = usuarioAutenticadoService.getAdministrador();
 
@@ -68,11 +68,11 @@ public class RegistrarChegadaAtrasadaManualService {
 
         chegadaAtrasadaRepository.save(chegadaAtrasada);
 
-        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunos(aluno);
+        List<Responsavel> responsaveis = responsavelRepository.findAllByAlunosAndIsAtivo(aluno, true);
 
         EnviarEmailRequest enviarEmailRequest = EnviarEmailRequest
                 .builder()
-                .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                .titulo("Chegada Atrasada da(o) aluna(o) " + aluno.getNome())
                 .mensagem(mensagemChegadaAtrasada(chegadaAtrasada))
                 .build();
 
@@ -90,7 +90,7 @@ public class RegistrarChegadaAtrasadaManualService {
 
             EnviarEmailRequest enviarEmailRequestProfessor = EnviarEmailRequest
                     .builder()
-                    .titulo("Chegada Atrasada do aluno " + aluno.getNome())
+                    .titulo("Chegada Atrasada do(a) aluno(a) " + aluno.getNome())
                     .mensagem(mensagemChegadaAtrasadaProfessor(chegadaAtrasada))
                     .build();
 
@@ -102,8 +102,8 @@ public class RegistrarChegadaAtrasadaManualService {
 
     private String mensagemChegadaAtrasada(ChegadaAtrasada chegadaAtrasada) {
 
-        return "Prezado(a),\n\n" +
-                "Informamos que o aluno " + chegadaAtrasada.getAluno().getNome() + " registrou uma chegada atrasada no " +
+        return "Prezada(o),\n\n" +
+                "Informamos que a(o) aluna(o) " + chegadaAtrasada.getAluno().getNome() + " registrou uma chegada atrasada no " +
                 "dia " + chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
                 chegadaAtrasada.getDataHora().toLocalTime().format(ofPattern("HH:mm:ss")) + ", na disciplina " + chegadaAtrasada.getDisciplina()
                 + " e alegou o seguinte motivo: '" + chegadaAtrasada.getMotivo() + "'.\n\n" +
@@ -114,7 +114,7 @@ public class RegistrarChegadaAtrasadaManualService {
     private String mensagemChegadaAtrasadaProfessor(ChegadaAtrasada chegadaAtrasada) {
 
         return "Prezado(a),\n\n" +
-                "Informamos que o aluno " + chegadaAtrasada.getAluno().getNome() + ", da turma " + chegadaAtrasada.getAluno().getTurma() + ", " +
+                "Informamos que o(a) aluno(a) " + chegadaAtrasada.getAluno().getNome() + ", da turma " + chegadaAtrasada.getAluno().getTurma() + ", " +
                 "registrou uma chegada atrasada no " +
                 "dia " + chegadaAtrasada.getDataHora().toLocalDate().format(ofPattern("dd/MM/yyyy")) + ", às " +
                 chegadaAtrasada.getDataHora().toLocalTime().format(ofPattern("HH:mm:ss")) + ", na disciplina " + chegadaAtrasada.getDisciplina()

@@ -8,19 +8,35 @@ import br.edu.ifsul.sapucaia.check_if.domain.SaidaAntecipada;
 
 import java.time.LocalDateTime;
 
+import static java.time.format.DateTimeFormatter.ofPattern;
+
 public class SaidaAntecipadaMapper {
 
 
-    public static SaidaAntecipadaResponse toResponse(SaidaAntecipada saidaAntecipada, Aluno aluno) {
+    public static SaidaAntecipadaResponse toResponse(SaidaAntecipada saidaAntecipada) {
+
+        if(saidaAntecipada.getDataHoraSaida() == null){
+            return SaidaAntecipadaResponse
+                    .builder()
+                    .id(saidaAntecipada.getId())
+                    .dataAutorizada(saidaAntecipada.getDataHoraAutorizada().toLocalDate())
+                    .horaAutorizada(saidaAntecipada.getDataHoraAutorizada().toLocalTime())
+                    .nome(saidaAntecipada.getAluno().getNome())
+                    .turma(saidaAntecipada.getAluno().getTurma())
+                    .matricula(saidaAntecipada.getAluno().getMatricula())
+                    .build();
+        }
 
         return SaidaAntecipadaResponse
                 .builder()
                 .id(saidaAntecipada.getId())
                 .dataAutorizada(saidaAntecipada.getDataHoraAutorizada().toLocalDate())
                 .horaAutorizada(saidaAntecipada.getDataHoraAutorizada().toLocalTime())
-                .nome(aluno.getNome())
-                .turma(aluno.getTurma())
-                .matricula(aluno.getMatricula())
+                .nome(saidaAntecipada.getAluno().getNome())
+                .turma(saidaAntecipada.getAluno().getTurma())
+                .matricula(saidaAntecipada.getAluno().getMatricula())
+                .dataSaida(saidaAntecipada.getDataHoraSaida().toLocalDate().format(ofPattern("dd/MM/yyyy")))
+                .horaSaida(saidaAntecipada.getDataHoraSaida().toLocalTime())
                 .build();
     }
 
